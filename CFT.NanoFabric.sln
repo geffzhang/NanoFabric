@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26014.0
+VisualStudioVersion = 15.0.26020.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CFT.NanoFabric.Core", "src\CFT.NanoFabric.Core\CFT.NanoFabric.Core.csproj", "{15A40438-0751-4F6F-8FD1-6C84DDB3820D}"
 EndProject
@@ -32,6 +32,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFT.NanoFabric.Domain", "src\CFT.NanoFabric.Domain\CFT.NanoFabric.Domain.csproj", "{1072CAE9-5F7F-45F6-B616-32C0278342DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleService.IdentityServer", "Sample\SampleService.IdentityServer\SampleService.IdentityServer.csproj", "{E2974632-2770-4E8C-BA04-72368AC760C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{C20230F6-0006-4A51-84D9-838C3EDD663A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
