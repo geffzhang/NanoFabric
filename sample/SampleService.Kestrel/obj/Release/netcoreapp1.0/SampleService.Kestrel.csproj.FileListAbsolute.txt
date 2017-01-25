@@ -1,0 +1,17 @@
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\NLog.config
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\SampleService.Kestrel.deps.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\SampleService.Kestrel.runtimeconfig.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\SampleService.Kestrel.runtimeconfig.dev.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\SampleService.Kestrel.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\SampleService.Kestrel.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\CFT.NanoFabric.AspNetCore.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\CFT.NanoFabric.Core.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\CFT.NanoFabric.RegistryHost.ConsulRegistry.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\CFT.NanoFabric.AspNetCore.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\CFT.NanoFabric.Core.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\CFT.NanoFabric.RegistryHost.ConsulRegistry.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\obj\Release\netcoreapp1.0\SampleService.Kestrel.csprojResolveAssemblyReference.cache
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\obj\Release\netcoreapp1.0\SampleService.Kestrel.AssemblyInfo.cs
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\obj\Release\netcoreapp1.0\SampleService.Kestrel.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\obj\Release\netcoreapp1.0\SampleService.Kestrel.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\SampleService.Kestrel\bin\Release\netcoreapp1.0\SampleService.Kestrel.xml

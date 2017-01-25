@@ -1,0 +1,13 @@
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.deps.json
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.runtimeconfig.json
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.runtimeconfig.dev.json
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.dll
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.pdb
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.csprojResolveAssemblyReference.cache
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.AssemblyInfo.cs
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.dll
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.pdb
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.IdentityServer.dll
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Domain.dll
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.IdentityServer.pdb
+D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Domain.pdb

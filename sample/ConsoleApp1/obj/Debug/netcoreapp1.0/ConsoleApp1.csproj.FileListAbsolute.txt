@@ -1,0 +1,10 @@
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Debug\netcoreapp1.0\ConsoleApp1.deps.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Debug\netcoreapp1.0\ConsoleApp1.runtimeconfig.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Debug\netcoreapp1.0\ConsoleApp1.runtimeconfig.dev.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Debug\netcoreapp1.0\ConsoleApp1.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Debug\netcoreapp1.0\ConsoleApp1.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Core.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Core.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\obj\Debug\netcoreapp1.0\ConsoleApp1.AssemblyInfo.cs
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\obj\Debug\netcoreapp1.0\ConsoleApp1.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\obj\Debug\netcoreapp1.0\ConsoleApp1.pdb

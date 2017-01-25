@@ -1,0 +1,17 @@
+﻿{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "10.125.32.121",
+      "DownstreamPort": 9030,
+      "UpstreamTemplate": "/api/values/",
+      "UpstreamHttpMethod": "Get",
+      "FileCacheOptions": { "TtlSeconds": 15 }
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId"
+  }
+}

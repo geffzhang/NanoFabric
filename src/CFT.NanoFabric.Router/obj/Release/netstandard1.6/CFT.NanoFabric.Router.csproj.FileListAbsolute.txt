@@ -1,0 +1,9 @@
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\bin\Release\netstandard1.6\CFT.NanoFabric.Router.deps.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\bin\Release\netstandard1.6\CFT.NanoFabric.Router.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\bin\Release\netstandard1.6\CFT.NanoFabric.Router.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\bin\Release\netstandard1.6\CFT.NanoFabric.Core.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\bin\Release\netstandard1.6\CFT.NanoFabric.Core.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\obj\Release\netstandard1.6\CFT.NanoFabric.Router.csprojResolveAssemblyReference.cache
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\obj\Release\netstandard1.6\CFT.NanoFabric.Router.AssemblyInfo.cs
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\obj\Release\netstandard1.6\CFT.NanoFabric.Router.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.Router\obj\Release\netstandard1.6\CFT.NanoFabric.Router.pdb

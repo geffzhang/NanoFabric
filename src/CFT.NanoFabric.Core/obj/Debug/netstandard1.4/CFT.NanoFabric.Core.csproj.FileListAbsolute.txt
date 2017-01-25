@@ -1,0 +1,7 @@
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.Core\bin\Debug\netstandard1.4\CFT.NanoFabric.Core.deps.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.Core\obj\Debug\netstandard1.4\CFT.NanoFabric.Core.csprojResolveAssemblyReference.cache
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.Core\obj\Debug\netstandard1.4\CFT.NanoFabric.Core.AssemblyInfo.cs
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.Core\bin\Debug\netstandard1.4\CFT.NanoFabric.Core.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.Core\bin\Debug\netstandard1.4\CFT.NanoFabric.Core.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.Core\obj\Debug\netstandard1.4\CFT.NanoFabric.Core.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.Core\obj\Debug\netstandard1.4\CFT.NanoFabric.Core.pdb

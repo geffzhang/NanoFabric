@@ -1,0 +1,11 @@
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Release\netcoreapp1.1\ConsoleApp1.deps.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Release\netcoreapp1.1\ConsoleApp1.runtimeconfig.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Release\netcoreapp1.1\ConsoleApp1.runtimeconfig.dev.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Release\netcoreapp1.1\ConsoleApp1.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Release\netcoreapp1.1\ConsoleApp1.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Release\netcoreapp1.1\CFT.NanoFabric.Core.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\bin\Release\netcoreapp1.1\CFT.NanoFabric.Core.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\obj\Release\netcoreapp1.1\ConsoleApp1.csprojResolveAssemblyReference.cache
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\obj\Release\netcoreapp1.1\ConsoleApp1.AssemblyInfo.cs
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\obj\Release\netcoreapp1.1\ConsoleApp1.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\sample\ConsoleApp1\obj\Release\netcoreapp1.1\ConsoleApp1.pdb

@@ -1,0 +1,7 @@
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\IdentityServer4Demo\bin\Debug\netcoreapp1.0\IdentityServer4Demo.deps.json
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\IdentityServer4Demo\obj\Debug\netcoreapp1.0\IdentityServer4Demo.csprojResolveAssemblyReference.cache
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\IdentityServer4Demo\obj\Debug\netcoreapp1.0\IdentityServer4Demo.AssemblyInfo.cs
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\IdentityServer4Demo\bin\Debug\netcoreapp1.0\IdentityServer4Demo.dll
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\IdentityServer4Demo\bin\Debug\netcoreapp1.0\IdentityServer4Demo.pdb
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\IdentityServer4Demo\obj\Debug\netcoreapp1.0\IdentityServer4Demo.dll
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\IdentityServer4Demo\obj\Debug\netcoreapp1.0\IdentityServer4Demo.pdb

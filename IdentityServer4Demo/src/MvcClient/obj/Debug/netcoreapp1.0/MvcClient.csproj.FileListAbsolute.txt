@@ -1,0 +1,9 @@
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\bin\Debug\netcoreapp1.0\MvcClient.deps.json
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\bin\Debug\netcoreapp1.0\MvcClient.dll
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\bin\Debug\netcoreapp1.0\MvcClient.pdb
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\obj\Debug\netcoreapp1.0\MvcClient.csprojResolveAssemblyReference.cache
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\obj\Debug\netcoreapp1.0\MvcClient.AssemblyInfo.cs
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\obj\Debug\netcoreapp1.0\MvcClient.dll
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\obj\Debug\netcoreapp1.0\MvcClient.pdb
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\bin\Debug\netcoreapp1.0\MvcClient.runtimeconfig.json
+E:\Workshop\dotnetcore\IdentityServer4Demo-master\End\src\MvcClient\bin\Debug\netcoreapp1.0\MvcClient.runtimeconfig.dev.json

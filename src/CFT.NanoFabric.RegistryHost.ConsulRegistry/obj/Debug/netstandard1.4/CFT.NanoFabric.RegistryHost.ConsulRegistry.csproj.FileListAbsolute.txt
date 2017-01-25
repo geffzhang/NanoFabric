@@ -1,0 +1,9 @@
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.4\CFT.NanoFabric.RegistryHost.ConsulRegistry.deps.json
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.4\CFT.NanoFabric.RegistryHost.ConsulRegistry.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.4\CFT.NanoFabric.Core.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.4\CFT.NanoFabric.Core.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryHost.ConsulRegistry.csprojResolveAssemblyReference.cache
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryHost.ConsulRegistry.AssemblyInfo.cs
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.4\CFT.NanoFabric.RegistryHost.ConsulRegistry.pdb
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryHost.ConsulRegistry.dll
+D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryHost.ConsulRegistry.pdb
