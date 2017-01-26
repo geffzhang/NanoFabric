@@ -1,9 +1,0 @@
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\bin\Debug\netstandard1.4\CFT.NanoFabric.RegistryTenant.WebApi.deps.json
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryTenant.WebApi.AssemblyInfo.cs
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\bin\Debug\netstandard1.4\CFT.NanoFabric.RegistryTenant.WebApi.dll
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\bin\Debug\netstandard1.4\CFT.NanoFabric.RegistryTenant.WebApi.pdb
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\bin\Debug\netstandard1.4\CFT.NanoFabric.Core.dll
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\bin\Debug\netstandard1.4\CFT.NanoFabric.Core.pdb
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryTenant.WebApi.csprojResolveAssemblyReference.cache
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryTenant.WebApi.dll
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\CFT.NanoFabric.RegistryTenant.WebApi\obj\Debug\netstandard1.4\CFT.NanoFabric.RegistryTenant.WebApi.pdb

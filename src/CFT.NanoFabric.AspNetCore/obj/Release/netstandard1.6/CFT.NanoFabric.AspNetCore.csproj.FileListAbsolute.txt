@@ -1,9 +1,0 @@
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\bin\Release\netstandard1.6\CFT.NanoFabric.AspNetCore.deps.json
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\bin\Release\netstandard1.6\CFT.NanoFabric.AspNetCore.dll
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\bin\Release\netstandard1.6\CFT.NanoFabric.AspNetCore.pdb
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\bin\Release\netstandard1.6\CFT.NanoFabric.Core.dll
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\bin\Release\netstandard1.6\CFT.NanoFabric.Core.pdb
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\obj\Release\netstandard1.6\CFT.NanoFabric.AspNetCore.csprojResolveAssemblyReference.cache
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\obj\Release\netstandard1.6\CFT.NanoFabric.AspNetCore.AssemblyInfo.cs
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\obj\Release\netstandard1.6\CFT.NanoFabric.AspNetCore.dll
-D:\FitProject\Apollo\src\dotnetcore\CFT.NanoFabric\src\CFT.NanoFabric.AspNetCore\obj\Release\netstandard1.6\CFT.NanoFabric.AspNetCore.pdb
