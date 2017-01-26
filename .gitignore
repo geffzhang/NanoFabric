@@ -45,3 +45,30 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/sample/SampleService.Client/obj
+/sample/SampleService.Client/bin
+/sample/SampleService.IdentityServer/bin
+/sample/SampleService.IdentityServer/obj
+/sample/SampleService.Kestrel/bin
+/sample/SampleService.Kestrel/obj
+/src/CFT.NanoFabric.AspNetCore/bin
+/src/CFT.NanoFabric.AspNetCore/obj
+/src/CFT.NanoFabric.Core/bin
+/src/CFT.NanoFabric.Core/obj
+/src/CFT.NanoFabric.Fabio/bin
+/src/CFT.NanoFabric.Fabio/obj
+/src/CFT.NanoFabric.Fabio
+/src/CFT.NanoFabric.IdentityServer/bin
+/src/CFT.NanoFabric.IdentityServer/obj
+/src/CFT.NanoFabric.Ocelot/bin
+/src/CFT.NanoFabric.Ocelot/obj
+/src/CFT.NanoFabric.RegistryHost.ConsulRegistry/bin
+/src/CFT.NanoFabric.RegistryHost.ConsulRegistry/obj
+/src/CFT.NanoFabric.Router/bin
+/src/CFT.NanoFabric.Router/obj
+/test/CFT.NanoFabric.AspNetCore.Tests/bin
+/test/CFT.NanoFabric.AspNetCore.Tests/obj
+/test/CFT.NanoFabric.RegistryHost.ConsulRegistry.Test/bin
+/test/CFT.NanoFabric.RegistryHost.ConsulRegistry.Test/obj
+/test/CFT.NanoFabric.Router.Tests/bin
+/test/CFT.NanoFabric.Router.Tests/obj

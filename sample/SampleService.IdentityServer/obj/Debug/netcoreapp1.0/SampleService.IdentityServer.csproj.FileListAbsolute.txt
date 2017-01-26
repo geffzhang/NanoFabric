@@ -11,3 +11,16 @@ D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\
 D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Domain.dll
 D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.IdentityServer.pdb
 D:\Workshop\GitHub\CFT.NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Domain.pdb
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.deps.json
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.runtimeconfig.json
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.runtimeconfig.dev.json
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.dll
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\SampleService.IdentityServer.pdb
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Domain.dll
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.IdentityServer.dll
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Domain.pdb
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\bin\Debug\netcoreapp1.0\CFT.NanoFabric.IdentityServer.pdb
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.csprojResolveAssemblyReference.cache
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.AssemblyInfo.cs
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.dll
+F:\Workshop\Github\NanoFabric\Sample\SampleService.IdentityServer\obj\Debug\netcoreapp1.0\SampleService.IdentityServer.pdb

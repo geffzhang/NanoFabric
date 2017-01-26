@@ -19,3 +19,10 @@ D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandar
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandard1.4\CFT.NanoFabric.Domain.AssemblyInfo.cs
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandard1.4\CFT.NanoFabric.Domain.dll
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandard1.4\CFT.NanoFabric.Domain.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Domain\bin\Debug\netstandard1.4\CFT.NanoFabric.Domain.deps.json
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Domain\bin\Debug\netstandard1.4\CFT.NanoFabric.Domain.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Domain\bin\Debug\netstandard1.4\CFT.NanoFabric.Domain.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandard1.4\CFT.NanoFabric.Domain.csprojResolveAssemblyReference.cache
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandard1.4\CFT.NanoFabric.Domain.AssemblyInfo.cs
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandard1.4\CFT.NanoFabric.Domain.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Domain\obj\Debug\netstandard1.4\CFT.NanoFabric.Domain.pdb

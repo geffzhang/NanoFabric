@@ -34,3 +34,12 @@ D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.AssemblyInfo.cs
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.dll
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.deps.json
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.6\CFT.NanoFabric.Core.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\bin\Debug\netstandard1.6\CFT.NanoFabric.Core.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.csprojResolveAssemblyReference.cache
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.AssemblyInfo.cs
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\obj\Debug\netstandard1.6\CFT.NanoFabric.RegistryHost.ConsulRegistry.pdb

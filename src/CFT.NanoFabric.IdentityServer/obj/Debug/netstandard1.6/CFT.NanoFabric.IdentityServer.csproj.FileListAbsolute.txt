@@ -25,3 +25,12 @@ D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\ne
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.AssemblyInfo.cs
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.dll
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\bin\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.deps.json
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\bin\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\bin\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\bin\Debug\netstandard1.6\CFT.NanoFabric.Domain.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\bin\Debug\netstandard1.6\CFT.NanoFabric.Domain.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.csprojResolveAssemblyReference.cache
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.AssemblyInfo.cs
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.IdentityServer\obj\Debug\netstandard1.6\CFT.NanoFabric.IdentityServer.pdb

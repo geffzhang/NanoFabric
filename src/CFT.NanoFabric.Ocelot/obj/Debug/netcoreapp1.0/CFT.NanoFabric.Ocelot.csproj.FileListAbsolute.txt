@@ -25,3 +25,12 @@ D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.AssemblyInfo.cs
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.dll
 D:\Workshop\GitHub\CFT.NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.deps.json
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.runtimeconfig.json
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.runtimeconfig.dev.json
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\bin\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.pdb
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.csprojResolveAssemblyReference.cache
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.AssemblyInfo.cs
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.dll
+F:\Workshop\Github\NanoFabric\src\CFT.NanoFabric.Ocelot\obj\Debug\netcoreapp1.0\CFT.NanoFabric.Ocelot.pdb
