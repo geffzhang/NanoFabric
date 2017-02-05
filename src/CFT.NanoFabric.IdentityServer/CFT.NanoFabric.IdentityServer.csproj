@@ -3,12 +3,7 @@
     <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="IdentityServer4" Version="1.0.2" />
-    <PackageReference Include="NETStandard.Library" Version="1.6" />
+    <PackageReference Include="IdentityServer4" Version="1.1.0" />
     <PackageReference Include="NodaTime" Version="2.0.0-beta20170123" />
   </ItemGroup>
   <ItemGroup>

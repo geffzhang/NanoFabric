@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26020.0
+VisualStudioVersion = 15.0.26127.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CFT.NanoFabric.Core", "src\CFT.NanoFabric.Core\CFT.NanoFabric.Core.csproj", "{15A40438-0751-4F6F-8FD1-6C84DDB3820D}"
 EndProject
@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{C202
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService.MvcClient", "sample\SampleService.MvcClient\SampleService.MvcClient.csproj", "{457032D7-7127-4846-B25C-881394EC26DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -204,6 +206,18 @@ Global
 		{E2974632-2770-4E8C-BA04-72368AC760C9}.Release|x64.Build.0 = Release|x64
 		{E2974632-2770-4E8C-BA04-72368AC760C9}.Release|x86.ActiveCfg = Release|x86
 		{E2974632-2770-4E8C-BA04-72368AC760C9}.Release|x86.Build.0 = Release|x86
+		{457032D7-7127-4846-B25C-881394EC26DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{457032D7-7127-4846-B25C-881394EC26DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{457032D7-7127-4846-B25C-881394EC26DB}.Debug|x64.ActiveCfg = Debug|x64
+		{457032D7-7127-4846-B25C-881394EC26DB}.Debug|x64.Build.0 = Debug|x64
+		{457032D7-7127-4846-B25C-881394EC26DB}.Debug|x86.ActiveCfg = Debug|x86
+		{457032D7-7127-4846-B25C-881394EC26DB}.Debug|x86.Build.0 = Debug|x86
+		{457032D7-7127-4846-B25C-881394EC26DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{457032D7-7127-4846-B25C-881394EC26DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{457032D7-7127-4846-B25C-881394EC26DB}.Release|x64.ActiveCfg = Release|x64
+		{457032D7-7127-4846-B25C-881394EC26DB}.Release|x64.Build.0 = Release|x64
+		{457032D7-7127-4846-B25C-881394EC26DB}.Release|x86.ActiveCfg = Release|x86
+		{457032D7-7127-4846-B25C-881394EC26DB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,5 +229,6 @@ Global
 		{FAB2F10F-3A5B-477E-81A4-29EB676F8EE8} = {45A95389-8368-49B3-A252-53E60A655D95}
 		{C396A3B3-D781-49FB-845E-3BBBC1C5DB1A} = {B65FAC1E-DA36-42F2-95F9-8F10E5CEBA47}
 		{E2974632-2770-4E8C-BA04-72368AC760C9} = {B65FAC1E-DA36-42F2-95F9-8F10E5CEBA47}
+		{457032D7-7127-4846-B25C-881394EC26DB} = {B65FAC1E-DA36-42F2-95F9-8F10E5CEBA47}
 	EndGlobalSection
 EndGlobal

@@ -7,6 +7,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using CFT.NanoFabric.IdentityServer.Extensions;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using IdentityServer4.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using IdentityModel;
 
 namespace SampleService.IdentityServer
 {
@@ -27,8 +34,43 @@ namespace SampleService.IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddNanoFabricIdentityServer();
+
+            services.AddMvc()
+               .AddJsonOptions(options =>
+               {
+                   options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                   options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
+                   options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                   options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+
+               });
+
+            services.AddIdentityServer(options =>
+            {
+                options.UserInteraction = new UserInteractionOptions
+                {
+                    LoginUrl = "/" + RoutePaths.SignInUrl,
+                    LogoutUrl = "/" + RoutePaths.SignOutUrl,
+                    ConsentUrl = "/" + RoutePaths.ConsentUrl,
+                    ErrorUrl = "/" + RoutePaths.ErrorUrl
+                };
+
+            })
+            .AddInMemoryPersistedGrants()
+            .AddTemporarySigningCredential();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", corsBuilder =>
+                {
+                    corsBuilder.AllowAnyHeader();
+                    corsBuilder.AllowAnyMethod();
+                    corsBuilder.AllowAnyOrigin();
+                    corsBuilder.AllowCredentials();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +88,8 @@ namespace SampleService.IdentityServer
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseCors("CorsPolicy");
+            app.UseIdentityServer();
 
             app.UseStaticFiles();
 

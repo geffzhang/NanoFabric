@@ -10,15 +10,12 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-/// <summary>
-/// https://github.com/TheFeedBackNetwork/TheFeedbackNetworkApi
-/// </summary>
+ 
 namespace CFT.NanoFabric.IdentityServer.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddNanoFabric(this IServiceCollection services)
+        public static IServiceCollection AddNanoFabricIdentityServer(this IServiceCollection services)
         {
             //repositories
             services.AddTransient<IUserRepository, UserInMemoryRepository>();
