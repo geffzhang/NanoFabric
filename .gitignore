@@ -95,3 +95,11 @@ Temporary Items
 /src/CFT.NanoFabric.Router/bin
 /src/CFT.NanoFabric.Router/obj
 /.vs
+/sample/SampleService.MvcClient/obj/Debug/netcoreapp1.0
+/sample/SampleService.MvcClient/obj/SampleService.MvcClient.csproj.nuget.g.targets
+/sample/SampleService.MvcClient/obj/SampleService.MvcClient.csproj.nuget.g.props
+/sample/SampleService.MvcClient/obj
+/sample/SampleService.MvcClient/obj/project.assets.json
+/sample/SampleService.MvcClient/obj
+/src/CFT.NanoFabric.Ocelot/CFT.NanoFabric.Ocelot.csproj.user
+/src/CFT.NanoFabric.Ocelot/CFT.NanoFabric.Ocelot.csproj.user
