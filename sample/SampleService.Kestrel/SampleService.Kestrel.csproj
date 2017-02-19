@@ -29,9 +29,9 @@
     <PackageReference Include="Winton.Extensions.Configuration.Consul" Version="0.1.0-master0074" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CFT.NanoFabric.AspNetCore\CFT.NanoFabric.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\src\CFT.NanoFabric.Core\CFT.NanoFabric.Core.csproj" />
-    <ProjectReference Include="..\..\src\CFT.NanoFabric.RegistryHost.ConsulRegistry\CFT.NanoFabric.RegistryHost.ConsulRegistry.csproj" />
+    <ProjectReference Include="..\..\src\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\NanoFabric.Core\NanoFabric.Core.csproj" />
+    <ProjectReference Include="..\..\src\NanoFabric.RegistryHost.ConsulRegistry\NanoFabric.RegistryHost.ConsulRegistry.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="NLog.config">

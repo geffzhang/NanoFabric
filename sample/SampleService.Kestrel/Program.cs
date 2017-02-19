@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using NLog;
 using Newtonsoft.Json;
-using CFT.NanoFabric.RegistryHost.ConsulRegistry;
+using NanoFabric.RegistryHost.ConsulRegistry;
 using Microsoft.Extensions.Configuration;
-using CFT.NanoFabric.AspNetCore.Configuration;
+using NanoFabric.AspNetCore.Configuration;
 
 namespace SampleService.Kestrel
 {

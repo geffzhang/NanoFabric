@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CFT.NanoFabric.IdentityServer.Extensions;
+using NanoFabric.IdentityServer.Extensions;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using IdentityServer4.Configuration;

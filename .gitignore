@@ -103,3 +103,16 @@ Temporary Items
 /sample/SampleService.MvcClient/obj
 /src/CFT.NanoFabric.Ocelot/CFT.NanoFabric.Ocelot.csproj.user
 /src/CFT.NanoFabric.Ocelot/CFT.NanoFabric.Ocelot.csproj.user
+/test/NanoFabric.Router.Tests/obj
+/test/NanoFabric.Router.Tests/obj
+/test/NanoFabric.Router.Tests/bin/Debug/netcoreapp1.0
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/Release/netcoreapp1.0
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/x64
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/x86
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/NanoFabric.RegistryHost.ConsulRegistry.Tests.csproj.nuget.g.targets
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/NanoFabric.RegistryHost.ConsulRegistry.Tests.csproj.nuget.g.props
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/CFT.NanoFabric.RegistryHost.ConsulRegistry.Tests.csproj.nuget.g.targets
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/CFT.NanoFabric.RegistryHost.ConsulRegistry.Tests.csproj.nuget.g.props
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/CFT.NanoFabric.RegistryHost.ConsulRegistry.Test.csproj.nuget.g.targets
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/CFT.NanoFabric.RegistryHost.ConsulRegistry.Test.csproj.nuget.g.props
+/test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/project.assets.json

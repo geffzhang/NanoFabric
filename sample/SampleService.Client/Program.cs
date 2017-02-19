@@ -1,5 +1,5 @@
-﻿using CFT.NanoFabric.RegistryHost.ConsulRegistry;
-using CFT.NanoFabric.Router;
+﻿using NanoFabric.RegistryHost.ConsulRegistry;
+using NanoFabric.Router;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
