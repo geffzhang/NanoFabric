@@ -116,3 +116,5 @@ Temporary Items
 /test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/CFT.NanoFabric.RegistryHost.ConsulRegistry.Test.csproj.nuget.g.targets
 /test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/CFT.NanoFabric.RegistryHost.ConsulRegistry.Test.csproj.nuget.g.props
 /test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/project.assets.json
+bin
+obj
