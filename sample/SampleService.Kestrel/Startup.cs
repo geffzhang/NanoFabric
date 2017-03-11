@@ -35,7 +35,7 @@ namespace SampleService.Kestrel
                     _consulConfigCancellationTokenSource.Token,
                     options => {
                         options.ConsulConfigurationOptions = (cco) => {
-                            cco.Address = new Uri("http://10.125.32.121:8500");
+                            cco.Address = new Uri("http://localhost:8500");
                         };
                         options.Optional = true;
                         options.ReloadOnChange = true;
@@ -115,16 +115,10 @@ namespace SampleService.Kestrel
             log.LogInformation("Registering tenant at ${uri}");
             var registryInformation = app.AddTenant("values", "1.0.0-pre", uri, tags: new[] { "urlprefix-/values" });
             log.LogInformation("Registering additional health check");
-            //var checkId = app.AddHealthCheck(registryInformation, new Uri(uri, "status"), TimeSpan.FromSeconds(15), "status");
-
-            // prepare checkId for options injection
-            //app.ApplicationServices.GetService<IOptions<HealthCheckOptions>>().Value.HealthCheckId = checkId;
-
-            // register service & health check cleanup
+             // register service & health check cleanup
             applicationLifetime.ApplicationStopping.Register(() =>
             {
                 log.LogInformation("Removing tenant & additional health check");
-                //app.RemoveHealthCheck(checkId);
                 app.RemoveTenant(registryInformation.Id);
                 _consulConfigCancellationTokenSource.Cancel();
             });

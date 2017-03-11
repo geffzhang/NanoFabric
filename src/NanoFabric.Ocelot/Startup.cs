@@ -43,17 +43,16 @@ namespace NanoFabric.Ocelot
             };
 
             services.AddOcelotOutputCaching(settings);
-            services.AddOcelotFileConfiguration(Configuration);
-            services.AddOcelot();
+            services.AddOcelot(Configuration);
         }
 
         public IConfigurationRoot Configuration { get; } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            app.UseOcelot();
+            await app.UseOcelot();
         }
     }
 }
