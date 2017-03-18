@@ -105,7 +105,7 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
                         Description = "Scope for deleting",
                         DisplayName = "Posts.Delete"
                     }
-                    
+
                 },
                 UserClaims =
                 {
@@ -143,7 +143,8 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
                     JwtClaimTypes.FamilyName,
                     "biography",
                     "profile_picure_url"
-                }
+                },
+                ApiSecrets = "tracksSecrets"
             },
             new ApiResource
             {

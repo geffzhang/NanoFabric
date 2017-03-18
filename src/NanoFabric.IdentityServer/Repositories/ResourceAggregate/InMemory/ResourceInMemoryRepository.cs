@@ -32,7 +32,8 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
 
         public Task<IEnumerable<IdentityResource>> FindIdentityResourcesByScopeAsync(IEnumerable<string> scopeNames)
         {
-            if (scopeNames == null) throw new ArgumentNullException(nameof(scopeNames));
+            if (scopeNames == null)
+                throw new ArgumentNullException(nameof(scopeNames));
 
             var identity = from i in InMemoryResources.IdentityResources
                            where scopeNames.Contains(i.Name)
