@@ -1,0 +1,1 @@
+consul.exe agent -data-dir=data -ui-dir=web_ui -dev
