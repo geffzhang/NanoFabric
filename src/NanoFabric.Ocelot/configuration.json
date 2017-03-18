@@ -3,15 +3,20 @@
     {
       "DownstreamPathTemplate": "/api/values",
       "DownstreamScheme": "http",
-      "DownstreamHost": "10.125.32.121",
-      "DownstreamPort": 9030,
-      "UpstreamTemplate": "/api/values/",
+      "UpstreamPathTemplate": "/api/values",
       "UpstreamHttpMethod": "Get",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 9030,
       "FileCacheOptions": { "TtlSeconds": 15 }
     }
   ],
 
   "GlobalConfiguration": {
-    "RequestIdKey": "OcRequestId"
+    "RequestIdKey": "OcRequestId",
+    "ServiceDiscoveryProvider": {
+      "Provider": "Consul",
+      "Host": "localhost",
+      "Port": 8500
+    }
   }
 }

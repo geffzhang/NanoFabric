@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>CFT.NanoFabric.Ocelot</ActiveDebugProfile>
+    <ActiveDebugProfile>NanoFabric.Ocelot</ActiveDebugProfile>
   </PropertyGroup>
 </Project>
