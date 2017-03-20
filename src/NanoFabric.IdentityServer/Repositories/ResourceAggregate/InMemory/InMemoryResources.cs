@@ -144,7 +144,6 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
                     "biography",
                     "profile_picure_url"
                 },
-                ApiSecrets = "tracksSecrets"
             },
             new ApiResource
             {

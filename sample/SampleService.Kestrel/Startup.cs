@@ -66,20 +66,20 @@ namespace SampleService.Kestrel
             services.AddNanoFabric(() => new ConsulRegistryHost(consulConfig));
             services.AddMvc();
             services.AddOptions();
-            services.AddSwaggerGen();
-            services.ConfigureSwaggerGen(options =>
-            {
-                options.SingleApiVersion(new Swashbuckle.Swagger.Model.Info
-                {
-                    Version = "v1",
-                    Title = "Sample Web ",
-                    Description = "RESTful API for My Web Application",
-                    TermsOfService = "None"
-                });
-                options.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
-                    "SampleService.Kestrel.xml"));
-                options.DescribeAllEnumsAsStrings();
-            });
+            //services.AddSwaggerGen();
+            //services.ConfigureSwaggerGen(options =>
+            //{
+            //    options.SingleApiVersion(new Swashbuckle.Swagger.Model.Info
+            //    {
+            //        Version = "v1",
+            //        Title = "Sample Web ",
+            //        Description = "RESTful API for My Web Application",
+            //        TermsOfService = "None"
+            //    });
+            //    options.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
+            //        "SampleService.Kestrel.xml"));
+            //    options.DescribeAllEnumsAsStrings();
+            //});
         }
 
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,11 +101,11 @@ namespace SampleService.Kestrel
              });
 
 
-            app.UseSwagger((httpRequest, swaggerDoc) =>
-            {
-                swaggerDoc.Host = httpRequest.Host.Value;
-            });
-            app.UseSwaggerUi();
+            //app.UseSwagger((httpRequest, swaggerDoc) =>
+            //{
+            //    swaggerDoc.Host = httpRequest.Host.Value;
+            //});
+            //app.UseSwaggerUi();
 
 
 
