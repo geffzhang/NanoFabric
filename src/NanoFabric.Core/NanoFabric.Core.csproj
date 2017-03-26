@@ -5,4 +5,7 @@
   <ItemGroup>
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logging\" />
+  </ItemGroup>
 </Project>

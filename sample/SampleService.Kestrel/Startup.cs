@@ -64,22 +64,10 @@ namespace SampleService.Kestrel
                 Port = appSettings.Consul.Port
             };
             services.AddNanoFabric(() => new ConsulRegistryHost(consulConfig));
-            services.AddMvc();
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
             services.AddOptions();
-            //services.AddSwaggerGen();
-            //services.ConfigureSwaggerGen(options =>
-            //{
-            //    options.SingleApiVersion(new Swashbuckle.Swagger.Model.Info
-            //    {
-            //        Version = "v1",
-            //        Title = "Sample Web ",
-            //        Description = "RESTful API for My Web Application",
-            //        TermsOfService = "None"
-            //    });
-            //    options.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
-            //        "SampleService.Kestrel.xml"));
-            //    options.DescribeAllEnumsAsStrings();
-            //});
         }
 
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,27 +75,29 @@ namespace SampleService.Kestrel
         {
             var log = loggerFactory
                       .AddNLog()
-                      //.AddConsole()
-                      //.AddDebug()
                       .CreateLogger<Startup>();
 
             loggerFactory.ConfigureNLog("NLog.config");
 
+            var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
+
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = authority,
+
+                RequireHttpsMetadata = false,
+
+                ApiName = "api1",
+
+                ApiSecret = "myApiSecret"
+
+            });
             app.UseMvc(routes =>
              {
                  routes.MapRoute(
                      name: "default",
                      template: "{controller=Home}/{action=Index}/{id?}");
              });
-
-
-            //app.UseSwagger((httpRequest, swaggerDoc) =>
-            //{
-            //    swaggerDoc.Host = httpRequest.Host.Value;
-            //});
-            //app.UseSwaggerUi();
-
-
 
             // add tenant & health check
             var localAddress = DnsHelper.GetIpAddressAsync().Result;

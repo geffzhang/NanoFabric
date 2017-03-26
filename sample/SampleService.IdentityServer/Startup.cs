@@ -1,31 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IdentityServer4.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NanoFabric.IdentityServer.Extensions;
-using Newtonsoft.Json.Serialization;
+using NanoFabric.IdentityServer;
 using Newtonsoft.Json;
-using IdentityServer4.Configuration;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using IdentityModel;
+using Newtonsoft.Json.Serialization;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace SampleService.IdentityServer
 {
     public class Startup
     {
+        private readonly IHostingEnvironment _environment;
+
         public Startup(IHostingEnvironment env)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            _environment = env;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -34,9 +36,9 @@ namespace SampleService.IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IConfiguration>(Configuration);
-            services.AddNanoFabricIdentityServer();
+            var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "nanofabrictest.pfx"), "idsrv3test");
 
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc()
                .AddJsonOptions(options =>
                {
@@ -47,19 +49,9 @@ namespace SampleService.IdentityServer
 
                });
 
-            services.AddIdentityServer(options =>
-            {
-                options.UserInteraction = new UserInteractionOptions
-                {
-                    LoginUrl = "/" + RoutePaths.SignInUrl,
-                    LogoutUrl = "/" + RoutePaths.SignOutUrl,
-                    ConsentUrl = "/" + RoutePaths.ConsentUrl,
-                    ErrorUrl = "/" + RoutePaths.ErrorUrl
-                };
-
-            })
-            .AddInMemoryPersistedGrants()
-            .AddTemporarySigningCredential();
+            services.AddIdentityServer()
+                .AddSigningCredential(cert)
+                .AddNanoFabricIDS(Configuration);
 
             services.AddCors(options =>
             {

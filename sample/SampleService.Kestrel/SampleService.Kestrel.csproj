@@ -4,16 +4,11 @@
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="wwwroot\**" />
-    <Content Remove="wwwroot\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
-    <None Remove="wwwroot\**" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
@@ -35,12 +30,7 @@
     <ProjectReference Include="..\..\src\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.Core\NanoFabric.Core.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.RegistryHost.ConsulRegistry\NanoFabric.RegistryHost.ConsulRegistry.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="AppSettings.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-  </ItemGroup>
+  </ItemGroup> 
   <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -48,10 +38,5 @@
     <Content Update="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>
