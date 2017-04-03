@@ -79,19 +79,19 @@ namespace SampleService.Kestrel
 
             loggerFactory.ConfigureNLog("NLog.config");
 
-            var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
+            //var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
 
-            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
-            {
-                Authority = authority,
+            //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            //{
+            //    Authority = authority,
 
-                RequireHttpsMetadata = false,
+            //    RequireHttpsMetadata = false,
 
-                ApiName = "api1",
+            //    ApiName = "api1",
 
-                ApiSecret = "myApiSecret"
+            //    ApiSecret = "myApiSecret"
 
-            });
+            //});
             app.UseMvc(routes =>
              {
                  routes.MapRoute(
