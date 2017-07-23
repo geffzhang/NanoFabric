@@ -1,3 +1,10 @@
-»ùÓÚConsul + .NET Core + Polly + Ocelot + Exceptionless + IdentityServerµÈ¿ªÔ´ÏîÄ¿µÄÎ¢·şÎñ¿ª·¢¿ò¼Ü
+åŸºäºConsul + .NET Core + Polly + Ocelot + Exceptionless + IdentityServerç­‰å¼€æºé¡¹ç›®çš„å¾®æœåŠ¡å¼€å‘æ¡†æ¶
 
-nanofaric ÊÇ nano ºÍ fabricµÄºÏ³É£¬nano±íÊ¾Î¢·şÎñ£¬ fabricÀ´×ÔÓÚÎ¢ÈíµÄÎ¢·şÎñ¿ò¼Ü service fabric
+nanofabric æ˜¯ nano å’Œ fabricçš„åˆæˆï¼Œnanoè¡¨ç¤ºå¾®æœåŠ¡ï¼Œ fabricæ¥è‡ªäºå¾®è½¯çš„å¾®æœåŠ¡æ¡†æ¶ service fabric
+
+# Consul : https://www.consul.io/ 
+# Polly  : http://www.thepollyproject.org/ 
+# Ocelot : https://github.com/TomPallister/Ocelot 
+# Exceptionless : https://exceptionless.com/ 
+# IdentityServer: https://identityserver.io/ 
+# .NET Core : http;//www.dot.net 
