@@ -19,10 +19,17 @@ using System.Threading;
 
 namespace SampleService.Kestrel
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
         private readonly CancellationTokenSource _consulConfigCancellationTokenSource = new CancellationTokenSource();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="env"></param>
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
