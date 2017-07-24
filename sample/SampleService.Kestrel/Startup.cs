@@ -36,21 +36,21 @@ namespace SampleService.Kestrel
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                //.AddEnvironmentVariables()
-                .AddConsul(
-                    $"sampleservicesettings.json",
-                    _consulConfigCancellationTokenSource.Token,
-                    options => {
-                        options.ConsulConfigurationOptions = (cco) => {
-                            cco.Address = new Uri("http://localhost:8500");
-                        };
-                        options.Optional = true;
-                        options.ReloadOnChange = true;
-                        options.OnLoadException = (exceptionContext) => {
-                            exceptionContext.Ignore = true;
-                        };
-                    })
                 .AddEnvironmentVariables();
+                //.AddConsul(
+                //    $"sampleservicesettings.json",
+                //    _consulConfigCancellationTokenSource.Token,
+                //    options => {
+                //        options.ConsulConfigurationOptions = (cco) => {
+                //            cco.Address = new Uri("http://localhost:8500");
+                //        };
+                //        options.Optional = true;
+                //        options.ReloadOnChange = true;
+                //        options.OnLoadException = (exceptionContext) => {
+                //            exceptionContext.Ignore = true;
+                //        };
+                //    })
+                //.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
@@ -63,14 +63,14 @@ namespace SampleService.Kestrel
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            var appSettings = new AppSettings();
-            Configuration.Bind(appSettings);
-            var consulConfig = new ConsulRegistryHostConfiguration
-            {
-                HostName = appSettings.Consul.HostName,
-                Port = appSettings.Consul.Port
-            };
-            services.AddNanoFabric(() => new ConsulRegistryHost(consulConfig));
+            //var appSettings = new AppSettings();
+            //Configuration.Bind(appSettings);
+            //var consulConfig = new ConsulRegistryHostConfiguration
+            //{
+            //    HostName = appSettings.Consul.HostName,
+            //    Port = appSettings.Consul.Port
+            //};
+            //services.AddNanoFabric(() => new ConsulRegistryHost(consulConfig));
             services.AddMvcCore()
                 .AddAuthorization()
                 .AddJsonFormatters();
@@ -107,18 +107,18 @@ namespace SampleService.Kestrel
              });
 
             // add tenant & health check
-            var localAddress = DnsHelper.GetIpAddressAsync().Result;
-            var uri = new Uri($"http://{localAddress}:{Program.PORT}/");
-            log.LogInformation("Registering tenant at ${uri}");
-            var registryInformation = app.AddTenant("values", "1.0.0-pre", uri, tags: new[] { "urlprefix-/values" });
-            log.LogInformation("Registering additional health check");
-             // register service & health check cleanup
-            applicationLifetime.ApplicationStopping.Register(() =>
-            {
-                log.LogInformation("Removing tenant & additional health check");
-                app.RemoveTenant(registryInformation.Id);
-                _consulConfigCancellationTokenSource.Cancel();
-            });
+            //var localAddress = DnsHelper.GetIpAddressAsync().Result;
+            //var uri = new Uri($"http://{localAddress}:{Program.PORT}/");
+            //log.LogInformation("Registering tenant at ${uri}");
+            //var registryInformation = app.AddTenant("values", "1.0.0-pre", uri, tags: new[] { "urlprefix-/values" });
+            //log.LogInformation("Registering additional health check");
+            // // register service & health check cleanup
+            //applicationLifetime.ApplicationStopping.Register(() =>
+            //{
+            //    log.LogInformation("Removing tenant & additional health check");
+            //    app.RemoveTenant(registryInformation.Id);
+            //    _consulConfigCancellationTokenSource.Cancel();
+            //});
         }
     }
 }
