@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SampleService.MvcClient
 {
@@ -11,14 +9,16 @@ namespace SampleService.MvcClient
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
+            IWebHostBuilder builder = new WebHostBuilder();
+            builder.ConfigureServices(s => {
+                s.AddSingleton(builder);
+            });
+            builder.UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+                .UseStartup<Startup>();
+            var host = builder.Build();
+            host.Run();           
         }
     }
 }

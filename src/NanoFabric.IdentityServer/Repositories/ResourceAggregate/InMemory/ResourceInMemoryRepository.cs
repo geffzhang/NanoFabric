@@ -42,10 +42,10 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
             return Task.FromResult(identity);
         }
 
-        public Task<Resources> GetAllResources()
+        public Task<Resources> GetAllResourcesAsync()
         {
             var result = new Resources(InMemoryResources.IdentityResources,InMemoryResources.ApiResources);
             return Task.FromResult(result);
-        }
+        }       
     }
 }

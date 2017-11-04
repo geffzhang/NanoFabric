@@ -20,11 +20,11 @@ namespace NanoFabric.Ocelot
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile("configuration.json")
-                .AddEnvironmentVariables();
+                   .SetBasePath(env.ContentRootPath)
+                   .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                   .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                   .AddJsonFile("configuration.json")
+                   .AddEnvironmentVariables();
 
             Configuration = builder.Build();
         }
@@ -42,7 +42,14 @@ namespace NanoFabric.Ocelot
                 .WithDictionaryHandle();
             };
 
-            services.AddOcelot(Configuration,settings);
+            services.AddAuthentication()
+                .AddJwtBearer("TestKey", x =>
+                {
+                    x.Authority = "test";
+                    x.Audience = "test";
+                });
+
+            services.AddOcelot(Configuration, settings);
         }
 
         public IConfigurationRoot Configuration { get; } 

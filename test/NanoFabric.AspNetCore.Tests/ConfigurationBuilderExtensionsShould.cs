@@ -33,7 +33,7 @@ namespace NanoFabric.AspNetCore.Tests
 
         private async Task<IRegistryHost> GetConsulRegistryHostAsync()
         {
-            var configuration = new ConsulRegistryHostConfiguration() { HostName = "10.125.30.152" };
+            var configuration = new ConsulRegistryHostConfiguration() { HostName = "localhost" };
 
             var registryHost = new ConsulRegistryHost(configuration) ;
             await registryHost.KeyValuePutAsync("key1", "value1");
@@ -44,7 +44,7 @@ namespace NanoFabric.AspNetCore.Tests
             return registryHost;
         }
 
-        private void MakeKeyValuesAvailable(IRegistryHost registryHost, string key, string expectedValue)
+        private void MakeKeyValuesAvailableTest(IRegistryHost registryHost, string key, string expectedValue)
         {
             var config = new ConfigurationBuilder()
                 .AddNanoFabricKeyValues(() => registryHost)
@@ -64,8 +64,8 @@ namespace NanoFabric.AspNetCore.Tests
         [InlineData("folder/key4", "value4")]
         public void MakeKeyValuesAvailable(string key, string expectedValue)
         {
-            MakeKeyValuesAvailable(_inMemoryRegistryHost, key, expectedValue);
-            MakeKeyValuesAvailable(_consulRegistryHost, key, expectedValue);
+            MakeKeyValuesAvailableTest(_inMemoryRegistryHost, key, expectedValue);
+            MakeKeyValuesAvailableTest(_consulRegistryHost, key, expectedValue);
         }
     }
 }

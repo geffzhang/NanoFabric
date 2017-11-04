@@ -28,7 +28,7 @@ namespace NanoFabric.IdentityServer.Services
             {
                 var user = await _userManager.GetAsync(userId);
 
-                context.AddFilteredClaims(user.GetClaims());
+                context.IssuedClaims.AddRange(user.GetClaims());
             }
             else
             {

@@ -14,7 +14,7 @@ namespace NanoFabric.RegistryHost.ConsulRegistry.Tests
 
         public ConsulRegistryHostShould()
         {
-            var configuration = new ConsulRegistryHostConfiguration() {  HostName = "10.125.30.152" } ;
+            var configuration = new ConsulRegistryHostConfiguration() {  HostName = "localhost" } ;
             _registryHost = new ConsulRegistryHost(configuration);
         }
 
