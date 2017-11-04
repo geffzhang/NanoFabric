@@ -7,4 +7,5 @@ nanofabric 是 nano 和 fabric的合成，nano表示微服务， fabric来自于
 ##  Ocelot : https://github.com/TomPallister/Ocelot 
 ##  Exceptionless : https://exceptionless.com/ 
 ##  IdentityServer: https://identityserver.io/ 
+### IdentityServer4.Contrib.RedisStore https://github.com/geffzhang/IdentityServer4.Contrib.RedisStore
 ##  .NET Core : http://www.dot.net 
