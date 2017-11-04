@@ -20,11 +20,11 @@ namespace NanoFabric.Ocelot
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile("configuration.json")
-                .AddEnvironmentVariables();
+                   .SetBasePath(env.ContentRootPath)
+                   .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                   .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                   .AddJsonFile("configuration.json")
+                   .AddEnvironmentVariables();
 
             Configuration = builder.Build();
         }
@@ -42,18 +42,23 @@ namespace NanoFabric.Ocelot
                 .WithDictionaryHandle();
             };
 
-            services.AddOcelotOutputCaching(settings);
-            services.AddOcelotFileConfiguration(Configuration);
-            services.AddOcelot();
+            services.AddAuthentication()
+                .AddJwtBearer("TestKey", x =>
+                {
+                    x.Authority = "test";
+                    x.Audience = "test";
+                });
+
+            services.AddOcelot(Configuration, settings);
         }
 
         public IConfigurationRoot Configuration { get; } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            app.UseOcelot();
+            await app.UseOcelot();
         }
     }
 }

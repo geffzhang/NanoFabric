@@ -105,33 +105,6 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
                         Description = "Scope for deleting",
                         DisplayName = "Posts.Delete"
                     }
-                    
-                },
-                UserClaims =
-                {
-                    JwtClaimTypes.Email,
-                    JwtClaimTypes.PreferredUserName,
-                    JwtClaimTypes.Picture,
-                    JwtClaimTypes.GivenName,
-                    JwtClaimTypes.FamilyName,
-                    "biography",
-                    "profile_picure_url"
-                }
-            },
-            new ApiResource
-            {
-                Name = "tracks.delete",
-                DisplayName = "Tracks Delete",
-                Description = "Scope for deleting the tracks resource",
-                Scopes = new List<Scope>
-                {
-                    new Scope
-                    {
-                        Name = "tracks.delete",
-                        ShowInDiscoveryDocument = true,
-                        Description = "Scope for deleting tracks",
-                        DisplayName = "Tracks.Delete"
-                    }
 
                 },
                 UserClaims =
@@ -145,61 +118,10 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
                     "profile_picure_url"
                 }
             },
-            new ApiResource
-            {
-                Name = "tracks.read",
-                DisplayName = "Tracks Read",
-                Description = "Scope for reading the tracks resource",
-                Scopes = new List<Scope>
+              new ApiResource("api1", "My API")
                 {
-                    new Scope
-                    {
-                        Name = "tracks.read",
-                        ShowInDiscoveryDocument = true,
-                        Description = "Scope for reading tracks",
-                        DisplayName = "Tracks.Read"
-                    }
-
-                },
-                UserClaims =
-                {
-                    JwtClaimTypes.Email,
-                    JwtClaimTypes.PreferredUserName,
-                    JwtClaimTypes.Picture,
-                    JwtClaimTypes.GivenName,
-                    JwtClaimTypes.FamilyName,
-                    "biography",
-                    "profile_picure_url"
+                    ApiSecrets =   {   new Secret("myApiSecret".Sha256())  }
                 }
-            },
-            new ApiResource
-            {
-                Name = "tracks.write",
-                DisplayName = "Tracks Write",
-                Description = "Scope for writing the tracks resource",
-                Scopes = new List<Scope>
-                {
-                    new Scope
-                    {
-                        Name = "tracks.write",
-                        ShowInDiscoveryDocument = true,
-                        Description = "Scope for writing tracks",
-                        DisplayName = "Tracks.Write"
-                    }
-
-                },
-                UserClaims =
-                {
-                    JwtClaimTypes.Email,
-                    JwtClaimTypes.PreferredUserName,
-                    JwtClaimTypes.Picture,
-                    JwtClaimTypes.GivenName,
-                    JwtClaimTypes.FamilyName,
-                    "biography",
-                    "profile_picure_url"
-                }
-            },
-
         };
 
         //Identity Resources

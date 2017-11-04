@@ -15,7 +15,8 @@ namespace NanoFabric.IdentityServer.Repositories.ClientAggregate.InMemory
 
                     ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedScopes = { "api1" }
+                    AllowedScopes = { "api1" },                   
+                 
                     },
              new Client
                 {

@@ -39,7 +39,6 @@ namespace NanoFabric.Router
                 var instances = await registryHost.FindServiceInstancesAsync();
                 allInstances.AddRange(instances);
             }
-
             return allInstances;
         }
 
@@ -57,6 +56,19 @@ namespace NanoFabric.Router
         {
             var instances = await FindServiceInstancesAsync();
             return FindServiceInstancesAsync(uri, instances);
+        }
+
+        public async Task<IList<RegistryInformation>> FindServiceInstancesAsync(string serviceName)
+        {
+            var allInstances = new List<RegistryInformation>();
+
+            foreach (var registryHost in _registryHosts)
+            {
+                var instances = await registryHost.FindServiceInstancesAsync(serviceName);
+                allInstances.AddRange(instances);
+            }
+            return allInstances;
+          
         }
 
         public RegistryInformation Choose(IList<RegistryInformation> instances)

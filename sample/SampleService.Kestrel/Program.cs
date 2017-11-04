@@ -32,7 +32,6 @@ namespace SampleService.Kestrel
                 .UseKestrel()
                 .UseUrls($"http://*:{PORT}")
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(config)
                 .UseStartup<Startup>()
                 .Build();
 

@@ -43,7 +43,7 @@ namespace NanoFabric.Router.Tests
 
         private  RegistryClient BuildRegistryClient(string prefixName)
         {
-            var configuration = new ConsulRegistryHostConfiguration() { HostName = "10.125.30.152" };
+            var configuration = new ConsulRegistryHostConfiguration() { HostName = "localhost" };
 
             var consul = new ConsulRegistryHost(configuration);
 
@@ -56,7 +56,7 @@ namespace NanoFabric.Router.Tests
         [Fact]
         public void FindInstancesWithConsul()
         {
-            var uri = new Uri("http://10.125.32.121:9030/values");
+            var uri = new Uri("http://localhost:9030/values");
             var registryClient = BuildRegistryClient("urlprefix-");
             var results = registryClient.FindServiceInstancesAsync(uri).Result;
             Assert.Equal(1, results.Count);

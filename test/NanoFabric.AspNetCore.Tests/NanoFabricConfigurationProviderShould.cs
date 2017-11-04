@@ -33,7 +33,7 @@ namespace NanoFabric.AspNetCore.Tests
 
         private async Task<IRegistryHost> GetConsulRegistryHostAsync()
         {
-            var configuration = new ConsulRegistryHostConfiguration() { HostName = "10.125.30.152" };
+            var configuration = new ConsulRegistryHostConfiguration() { HostName = "localhost" };
 
             var registryHost = new ConsulRegistryHost(configuration);
 
@@ -45,7 +45,7 @@ namespace NanoFabric.AspNetCore.Tests
             return registryHost;
         }
 
-        private void TryGet(IConfigurationProvider provider)
+        private void TryGetTest(IConfigurationProvider provider)
         {
             string value;
             Assert.True(provider.TryGet("key1", out value));
@@ -58,11 +58,11 @@ namespace NanoFabric.AspNetCore.Tests
         [Fact]
         public void TryGet()
         {
-            TryGet(_inMemoryProvider);
-            TryGet(_consulProvider);
+            TryGetTest(_inMemoryProvider);
+            TryGetTest(_consulProvider);
         }
 
-        private void Set(IConfigurationProvider provider)
+        private void SetTest(IConfigurationProvider provider)
         {
             string key = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             string expectedValue = nameof(NanoFabricConfigurationProviderShould.Set);
@@ -76,11 +76,11 @@ namespace NanoFabric.AspNetCore.Tests
         [Fact]
         public void Set()
         {
-            Set(_inMemoryProvider);
-            Set(_consulProvider);
+            SetTest(_inMemoryProvider);
+            SetTest(_consulProvider);
         }
 
-        private void GetChildKeys(IConfigurationProvider provider)
+        private void GetChildKeysTest(IConfigurationProvider provider)
         {
             var result = provider.GetChildKeys(Enumerable.Empty<string>(), "folder/");
             Assert.Equal(new[] { "folder/key3", "folder/key4" }, result);
@@ -89,8 +89,8 @@ namespace NanoFabric.AspNetCore.Tests
         [Fact]
         public void GetChildKeys()
         {
-            GetChildKeys(_inMemoryProvider);
-            GetChildKeys(_consulProvider);
+            GetChildKeysTest(_inMemoryProvider);
+            GetChildKeysTest(_consulProvider);
         }
     }
 }

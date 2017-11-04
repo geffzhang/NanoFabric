@@ -19,31 +19,38 @@ using System.Threading;
 
 namespace SampleService.Kestrel
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
         private readonly CancellationTokenSource _consulConfigCancellationTokenSource = new CancellationTokenSource();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="env"></param>
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                //.AddEnvironmentVariables()
-                .AddConsul(
-                    $"sampleservicesettings.json",
-                    _consulConfigCancellationTokenSource.Token,
-                    options => {
-                        options.ConsulConfigurationOptions = (cco) => {
-                            cco.Address = new Uri("http://10.125.32.121:8500");
-                        };
-                        options.Optional = true;
-                        options.ReloadOnChange = true;
-                        options.OnLoadException = (exceptionContext) => {
-                            exceptionContext.Ignore = true;
-                        };
-                    })
                 .AddEnvironmentVariables();
+                //.AddConsul(
+                //    $"sampleservicesettings.json",
+                //    _consulConfigCancellationTokenSource.Token,
+                //    options => {
+                //        options.ConsulConfigurationOptions = (cco) => {
+                //            cco.Address = new Uri("http://localhost:8500");
+                //        };
+                //        options.Optional = true;
+                //        options.ReloadOnChange = true;
+                //        options.OnLoadException = (exceptionContext) => {
+                //            exceptionContext.Ignore = true;
+                //        };
+                //    })
+                //.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
@@ -56,30 +63,18 @@ namespace SampleService.Kestrel
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            var appSettings = new AppSettings();
-            Configuration.Bind(appSettings);
-            var consulConfig = new ConsulRegistryHostConfiguration
-            {
-                HostName = appSettings.Consul.HostName,
-                Port = appSettings.Consul.Port
-            };
-            services.AddNanoFabric(() => new ConsulRegistryHost(consulConfig));
-            services.AddMvc();
+            //var appSettings = new AppSettings();
+            //Configuration.Bind(appSettings);
+            //var consulConfig = new ConsulRegistryHostConfiguration
+            //{
+            //    HostName = appSettings.Consul.HostName,
+            //    Port = appSettings.Consul.Port
+            //};
+            //services.AddNanoFabric(() => new ConsulRegistryHost(consulConfig));
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
             services.AddOptions();
-            services.AddSwaggerGen();
-            services.ConfigureSwaggerGen(options =>
-            {
-                options.SingleApiVersion(new Swashbuckle.Swagger.Model.Info
-                {
-                    Version = "v1",
-                    Title = "Sample Web ",
-                    Description = "RESTful API for My Web Application",
-                    TermsOfService = "None"
-                });
-                options.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
-                    "SampleService.Kestrel.xml"));
-                options.DescribeAllEnumsAsStrings();
-            });
         }
 
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,12 +82,23 @@ namespace SampleService.Kestrel
         {
             var log = loggerFactory
                       .AddNLog()
-                      //.AddConsole()
-                      //.AddDebug()
                       .CreateLogger<Startup>();
 
             loggerFactory.ConfigureNLog("NLog.config");
 
+            //var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
+
+            //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            //{
+            //    Authority = authority,
+
+            //    RequireHttpsMetadata = false,
+
+            //    ApiName = "api1",
+
+            //    ApiSecret = "myApiSecret"
+
+            //});
             app.UseMvc(routes =>
              {
                  routes.MapRoute(
@@ -100,34 +106,19 @@ namespace SampleService.Kestrel
                      template: "{controller=Home}/{action=Index}/{id?}");
              });
 
-
-            app.UseSwagger((httpRequest, swaggerDoc) =>
-            {
-                swaggerDoc.Host = httpRequest.Host.Value;
-            });
-            app.UseSwaggerUi();
-
-
-
             // add tenant & health check
-            var localAddress = DnsHelper.GetIpAddressAsync().Result;
-            var uri = new Uri($"http://{localAddress}:{Program.PORT}/");
-            log.LogInformation("Registering tenant at ${uri}");
-            var registryInformation = app.AddTenant("values", "1.0.0-pre", uri, tags: new[] { "urlprefix-/values" });
-            log.LogInformation("Registering additional health check");
-            //var checkId = app.AddHealthCheck(registryInformation, new Uri(uri, "status"), TimeSpan.FromSeconds(15), "status");
-
-            // prepare checkId for options injection
-            //app.ApplicationServices.GetService<IOptions<HealthCheckOptions>>().Value.HealthCheckId = checkId;
-
-            // register service & health check cleanup
-            applicationLifetime.ApplicationStopping.Register(() =>
-            {
-                log.LogInformation("Removing tenant & additional health check");
-                //app.RemoveHealthCheck(checkId);
-                app.RemoveTenant(registryInformation.Id);
-                _consulConfigCancellationTokenSource.Cancel();
-            });
+            //var localAddress = DnsHelper.GetIpAddressAsync().Result;
+            //var uri = new Uri($"http://{localAddress}:{Program.PORT}/");
+            //log.LogInformation("Registering tenant at ${uri}");
+            //var registryInformation = app.AddTenant("values", "1.0.0-pre", uri, tags: new[] { "urlprefix-/values" });
+            //log.LogInformation("Registering additional health check");
+            // // register service & health check cleanup
+            //applicationLifetime.ApplicationStopping.Register(() =>
+            //{
+            //    log.LogInformation("Removing tenant & additional health check");
+            //    app.RemoveTenant(registryInformation.Id);
+            //    _consulConfigCancellationTokenSource.Cancel();
+            //});
         }
     }
 }

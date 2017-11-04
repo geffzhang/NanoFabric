@@ -22,7 +22,7 @@ class Program
 
     private  static RegistryClient BuildRegistryClient(string prefixName)
     {
-        var configuration = new ConsulRegistryHostConfiguration() { HostName = "10.125.30.152" };
+        var configuration = new ConsulRegistryHostConfiguration() { HostName = "localhost" };
 
         var consul = new ConsulRegistryHost(configuration);
 

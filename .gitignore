@@ -118,3 +118,4 @@ Temporary Items
 /test/NanoFabric.RegistryHost.ConsulRegistry.Test/obj/project.assets.json
 bin
 obj
+/sample/SampleService.MvcClient/obj
