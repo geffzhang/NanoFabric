@@ -49,7 +49,7 @@ namespace NanoFabric.Ocelot
                     x.Audience = "test";
                 });
 
-            services.AddOcelot(Configuration, settings);
+            services.AddOcelot(Configuration);
         }
 
         public IConfigurationRoot Configuration { get; } 

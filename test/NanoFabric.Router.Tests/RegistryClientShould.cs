@@ -13,7 +13,7 @@ namespace NanoFabric.Router.Tests
 
         public RegistryClientShould()
         {
-            var oneDotnetOne = new RegistryInformation { Name = "one", Address = "http://10.125.32.121", Port = 8888, Version = "1.0.0", Tags = new List<string> { "key2value2", "key1value1" } };
+            var oneDotnetOne = new RegistryInformation { Name = "one", Address = "http://localhost", Port = 8888, Version = "1.0.0", Tags = new List<string> { "key2value2", "key1value1" } };
             var oneDotnetTwo = new RegistryInformation { Name = "one", Address = "http://10.125.32.122", Port = 8889, Version = "1.0.0", Tags = new List<string> { "key2value2", "key1value1" } };
             var twoDotnetOne = new RegistryInformation { Name = "two", Address = "http://10.126.32.121", Port = 8890, Version = "2.0.0", Tags = new List<string> { "key2value2", "key1value1" } };
             var twoDotnetTwo = new RegistryInformation { Name = "two", Address = "http://10.126.32.122", Port = 8891, Version = "2.0.0", Tags = new List<string> { "prefix/values", "key1value1" } };

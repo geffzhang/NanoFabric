@@ -9,7 +9,7 @@ class Program
     {
         ServiceCollection services = new ServiceCollection(); // 准备好我们的容器
         var registryClient = BuildRegistryClient("urlprefix-");
-        var uri = new Uri("http://10.125.32.121:9030/values");
+        var uri = new Uri("http://localhost:9030/values");
         var results = registryClient.FindServiceInstancesAsync(uri).Result;
         if (results != null)
         {
