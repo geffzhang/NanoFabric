@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace NanoFabric.Core
 {
@@ -10,5 +11,16 @@ namespace NanoFabric.Core
         public int Port { get; set; }
         public string Version { get; set; }
         public IEnumerable<string> Tags { get; set; }
+
+        public Uri ToUri(string scheme = "http", string path = "/")
+        {
+            var builder = new UriBuilder(scheme, Address, Port, path);
+            return builder.Uri;
+        }
+
+        public override string ToString()
+        {
+            return $"{Address}:{Port}";
+        }
     }
 }

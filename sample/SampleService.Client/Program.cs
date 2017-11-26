@@ -1,37 +1,42 @@
-﻿using NanoFabric.RegistryHost.ConsulRegistry;
-using NanoFabric.Router;
+﻿using Consul;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using NanoFabric.Router;
 using System;
 
 class Program
 {
     static void Main(string[] args)
     {
-        ServiceCollection services = new ServiceCollection(); // 准备好我们的容器
-        var registryClient = BuildRegistryClient("urlprefix-");
-        var uri = new Uri("http://localhost:9030/values");
-        var results = registryClient.FindServiceInstancesAsync(uri).Result;
-        if (results != null)
+        string consulHost = "localhost";
+        int consulPort =  8500;
+
+        var consul = new ConsulClient(config =>
         {
-            var registerHost = registryClient.Choose(results);
+            config.Address = new Uri($"http://{consulHost}:{consulPort}");
+        });
 
-            Console.WriteLine($"{registerHost.Address }:{registerHost.Port}");
-        }
-        Console.ReadLine();
+        ServiceCollection services = new ServiceCollection(); // 准备好我们的容器
+
+        services.AddSingleton<IConsulClient>(consul);
+        services.AddCacheServiceSubscriber();
+        services.AddConsulServiceDiscovery();
+        services.TryAddTransient<IServiceSubscriberFactory, ServiceSubscriberFactory>();
+        IServiceSubscriberFactory subscriberFactory = services.BuildServiceProvider().GetRequiredService<IServiceSubscriberFactory>();
+        // 创建ConsoleLogProvider并根据日志类目名称（CategoryName）生成Logger实例
+        var logger = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>().AddConsole().CreateLogger("App");
+
+        var serviceSubscriber = subscriberFactory.CreateSubscriber("FooService");
+        serviceSubscriber.StartSubscription().ConfigureAwait(false).GetAwaiter().GetResult();
+        serviceSubscriber.EndpointsChanged += async (sender, eventArgs) =>
+        {
+            // Reset connection pool, do something with this info, etc
+            var endpoints = await serviceSubscriber.Endpoints();
+            var servicesInfo = string.Join(",", endpoints);
+            logger.LogInformation($"Received updated subscribers [{servicesInfo}]");
+        };
+
+        System.Console.ReadLine();
     }
-
-    private  static RegistryClient BuildRegistryClient(string prefixName)
-    {
-        var configuration = new ConsulRegistryHostConfiguration() { HostName = "localhost" };
-
-        var consul = new ConsulRegistryHost(configuration);
-
-        var registryClient = new RegistryClient(prefixName, new RoundRobinAddressRouter());
-        registryClient.AddRegistryHost(consul);
-
-        return registryClient;
-    }
-
-
-
 }
