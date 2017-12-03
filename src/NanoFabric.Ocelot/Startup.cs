@@ -12,6 +12,7 @@ using Ocelot.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Ocelot.Middleware;
 using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
+using App.Metrics;
 
 namespace NanoFabric.Ocelot
 {
@@ -51,20 +52,13 @@ namespace NanoFabric.Ocelot
 
             services.AddOcelot(Configuration);
 
-            //services.AddMetrics(options =>
-            //{
-            //    options.DefaultContextLabel = "NanoFabric API Gateway";
-            //    options.MetricsEnabled = true;
-            //    options.WithGlobalTags((globalTags, envInfo) =>
-            //    {
-            //        globalTags.Add("host", envInfo.HostName);
-            //        globalTags.Add("machine_name", envInfo.MachineName);
-            //        globalTags.Add("app_name", envInfo.EntryAssemblyName);
-            //        globalTags.Add("app_version", envInfo.EntryAssemblyVersion);
-            //    });
-            //})
-            //.AddJsonSerialization()
-            //.AddHealthChecks();//这里是健康检查的注入 
+            var metrics = AppMetrics.CreateDefaultBuilder()
+                       .Build();
+
+            services.AddMetrics(metrics);
+            services.AddMetricsTrackingMiddleware();
+            services.AddMetricsEndpoints();
+            services.AddMetricsReportScheduler();
         }
 
         public IConfigurationRoot Configuration { get; } 
@@ -73,6 +67,8 @@ namespace NanoFabric.Ocelot
         public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            app.UseMetricsAllMiddleware();
+            app.UseMetricsAllEndpoints();
             await app.UseOcelot();
         }
     }

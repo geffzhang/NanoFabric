@@ -17,6 +17,8 @@ namespace NanoFabric.Ocelot
             builder.UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
+                .UseMetricsWebTracking()
+                .UseMetricsEndpoints()
                 .UseStartup<Startup>();
             var host = builder.Build();
             host.Run();          
