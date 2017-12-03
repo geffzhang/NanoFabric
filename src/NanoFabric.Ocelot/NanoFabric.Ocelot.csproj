@@ -10,6 +10,8 @@
     <None Remove="wwwroot\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Ocelot" Version="2.0.3" />
+    <PackageReference Include="App.Metrics" Version="2.0.0-alpha" />
+    <PackageReference Include="App.Metrics.Formatters.Json" Version="2.0.0-alpha" />
+    <PackageReference Include="Ocelot" Version="2.0.4" />
   </ItemGroup>
 </Project>
