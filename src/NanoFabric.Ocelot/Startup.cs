@@ -12,6 +12,7 @@ using Ocelot.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Ocelot.Middleware;
 using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
+using App.Metrics;
 
 namespace NanoFabric.Ocelot
 {
@@ -49,7 +50,15 @@ namespace NanoFabric.Ocelot
                     x.Audience = "test";
                 });
 
-            services.AddOcelot(Configuration, settings);
+            services.AddOcelot(Configuration);
+
+            var metrics = AppMetrics.CreateDefaultBuilder()
+                       .Build();
+
+            services.AddMetrics(metrics);
+            services.AddMetricsTrackingMiddleware();
+            services.AddMetricsEndpoints();
+            services.AddMetricsReportScheduler();
         }
 
         public IConfigurationRoot Configuration { get; } 
@@ -58,6 +67,8 @@ namespace NanoFabric.Ocelot
         public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            app.UseMetricsAllMiddleware();
+            app.UseMetricsAllEndpoints();
             await app.UseOcelot();
         }
     }

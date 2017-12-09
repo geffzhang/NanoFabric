@@ -1,63 +1,95 @@
 ﻿using NanoFabric.Core;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NanoFabric.Router.Tests
 {
     public class RoundRobinAddressRouterShould
     {
-        private List<RegistryInformation> instances;
+        [Fact]
+        public async Task Endpoint_ZeroEndpoints_ReturnsNull()
+        {
+            var subscriber = Substitute.For<IServiceSubscriber>();
+            subscriber.Endpoints().Returns(Task.FromResult(new List<RegistryInformation>()));
+            var lb = new RoundRobinLoadBalancer(subscriber);
+
+            var actual = await lb.Endpoint();
+
+            Assert.Null(actual);
+        }
 
         [Fact]
-        public void  TrampArround()
+        public async Task Endpoint_OneEndpoint_ReturnsEndpoint()
         {
-            var oneDotnetOne = new RegistryInformation { Name = "one", Address = "1", Port = 8888, Version = "1.0.0" };
-            var oneDotnetTwo = new RegistryInformation { Name = "one", Address = "2", Port = 8889, Version = "1.0.0"};
-            var twoDotnetOne = new RegistryInformation { Name = "one", Address = "3", Port = 8890, Version = "2.0.0" };
-            var twoDotnetTwo = new RegistryInformation { Name = "one", Address = "4", Port = 8891, Version = "2.0.0"};
-            var threeDotnetOne = new RegistryInformation { Name = "one", Address = "5", Port = 8892, Version = "3.1.0" };
-            var threeDotnetTwo = new RegistryInformation { Name = "one", Address = "6", Port = 8893, Version = "3.2.0" };
+            var endpoint = new RegistryInformation {  Address = Guid.NewGuid().ToString(), Port = 123 };
 
-           instances = new List<RegistryInformation> {
-                oneDotnetOne,
-                oneDotnetTwo,
-                twoDotnetOne,
-                twoDotnetTwo,
-                threeDotnetOne,
-                threeDotnetTwo
+            var subscriber = Substitute.For<IServiceSubscriber>();
+            subscriber.Endpoints().Returns(Task.FromResult(new List<RegistryInformation> { endpoint }));
+            var lb = new RoundRobinLoadBalancer(subscriber);
+
+            var actual = await lb.Endpoint();
+
+            Assert.Equal(endpoint.Address, actual.Address);
+            Assert.Equal(endpoint.Port, actual.Port);
+        }
+
+        [Fact]
+        public async Task Endpoint_MultipleEndpoints_ReturnsEndpointInOrder()
+        {
+            var expectedList = new List<RegistryInformation>
+            {
+                new RegistryInformation { Address = Guid.NewGuid().ToString(), Port = 1},
+                new RegistryInformation { Address = Guid.NewGuid().ToString(), Port = 2},
+                new RegistryInformation { Address = Guid.NewGuid().ToString(), Port = 3}
             };
 
-            var router = new RoundRobinAddressRouter();
+            var subscriber = Substitute.For<IServiceSubscriber>();
+            subscriber.Endpoints().Returns(Task.FromResult(expectedList));
+            var lb = new RoundRobinLoadBalancer(subscriber);
 
-            var next = router.Choose(instances);
-            Assert.NotNull(next);
-            Assert.Equal("1", next.Address);
+            foreach (var expected in expectedList)
+            {
+                var actual = await lb.Endpoint();
+                Assert.Equal(expected.Address, actual.Address);
+                Assert.Equal(expected.Port, actual.Port);
+            }
 
-            next = router.Choose(instances);
-            Assert.NotNull(next);
-            Assert.Equal("2", next.Address);
-
-            next = router.Choose(instances);
-            Assert.NotNull(next);
-            Assert.Equal("3", next.Address);
-
-            next = router.Choose(instances);
-            Assert.NotNull(next);
-            Assert.Equal("4", next.Address);
-
-            next = router.Choose(instances);
-            Assert.NotNull(next);
-            Assert.Equal("5", next.Address);
-
-            next = router.Choose(instances);
-            Assert.NotNull(next);
-            Assert.Equal("6", next.Address);
-
-            next = router.Choose(instances);
-            Assert.NotNull(next);
-            Assert.Equal("1", next.Address);
+            var actualReset = await lb.Endpoint();
+            Assert.Equal(expectedList[0].Address, actualReset.Address);
+            Assert.Equal(expectedList[0].Port, actualReset.Port);
         }
+
+        [Fact]
+        public async Task Endpoint_ResetsNumberOfEndpoints_ReturnsEndpointAndResets()
+        {
+            var expectedList = new List<RegistryInformation>
+            {
+                new RegistryInformation { Address = Guid.NewGuid().ToString(), Port = 1},
+                new RegistryInformation { Address = Guid.NewGuid().ToString(), Port = 2},
+                new RegistryInformation { Address = Guid.NewGuid().ToString(), Port = 3}
+            };
+
+            var subscriber = Substitute.For<IServiceSubscriber>();
+            subscriber.Endpoints().Returns(Task.FromResult(expectedList));
+            var lb = new RoundRobinLoadBalancer(subscriber);
+
+            foreach (var expected in expectedList.Take(2))
+            {
+                var actual = await lb.Endpoint();
+                Assert.Equal(expected.Address, actual.Address );
+                Assert.Equal(expected.Port, actual.Port);
+            }
+
+            subscriber.Endpoints().Returns(Task.FromResult(expectedList.Take(2).ToList()));
+            var actualReset = await lb.Endpoint();
+            Assert.Equal(expectedList[0].Address, actualReset.Address);
+            Assert.Equal(expectedList[0].Port, actualReset.Port);
+        }
+
     }
 }

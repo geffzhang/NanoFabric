@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Consul" Version="0.7.2.3" />
-    <PackageReference Include="SemanticVersioning" Version="0.9.2" />
+    <PackageReference Include="SemanticVersioning" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NanoFabric.Core\NanoFabric.Core.csproj" />

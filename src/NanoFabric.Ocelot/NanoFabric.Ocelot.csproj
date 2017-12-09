@@ -10,6 +10,11 @@
     <None Remove="wwwroot\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Ocelot" Version="2.0.0" />
+    <PackageReference Include="App.Metrics" Version="2.0.0-alpha" />
+    <PackageReference Include="App.Metrics.AspNetCore.Endpoints" Version="2.0.0-alpha" />
+    <PackageReference Include="App.Metrics.AspNetCore.Reporting" Version="2.0.0-alpha" />
+    <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="2.0.0-alpha" />
+    <PackageReference Include="App.Metrics.Formatters.Json" Version="2.0.0-alpha" />
+    <PackageReference Include="Ocelot" Version="2.0.4" />
   </ItemGroup>
 </Project>
