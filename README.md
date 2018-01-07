@@ -13,4 +13,5 @@ nanofabric 是 nano 和 fabric的合成，nano表示微服务， fabric来自于
 ##  IdentityServer: https://identityserver.io/ 
 ### IdentityServer4.Contrib.RedisStore https://github.com/geffzhang/IdentityServer4.Contrib.RedisStore
 ##  .NET Core : http://www.dot.net 
-## Rebus is a free .NET “service bus”  https://rebus.fm/
+## Rebus is a free .NET “service bus”  https://rebus.fm/
+## 基于gRPC的HTTP / 2 RPC Streaming Framework for .NET，.NET Core和Unity https://github.com/neuecc/MagicOnion
