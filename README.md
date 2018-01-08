@@ -16,3 +16,4 @@ nanofabric 是 nano 和 fabric的合成，nano表示微服务， fabric来自于
 ## Rebus is a free .NET “service bus”  https://rebus.fm/
 ## 基于gRPC的HTTP / 2 RPC Streaming Framework for .NET，.NET Core和Unity https://github.com/neuecc/MagicOnion
 ## 微服务监控系统 https://github.com/ButterflyAPM/butterfly
+## .NET API client for vault https://github.com/Chatham/Vault.NET 
