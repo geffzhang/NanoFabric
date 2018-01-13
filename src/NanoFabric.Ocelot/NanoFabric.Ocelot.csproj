@@ -15,13 +15,17 @@
     <PackageReference Include="App.Metrics.AspNetCore.Reporting" Version="2.0.0-alpha" />
     <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="2.0.0-alpha" />
     <PackageReference Include="App.Metrics.Formatters.Json" Version="2.0.0-alpha" />
-    <PackageReference Include="Ocelot" Version="2.0.8" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc2" />
+    <PackageReference Include="Ocelot" Version="2.0.10" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="configuration.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="nlog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="peers.json">

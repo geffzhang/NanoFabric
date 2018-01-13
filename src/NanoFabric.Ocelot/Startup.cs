@@ -14,6 +14,8 @@ using Ocelot.Middleware;
 using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
 using App.Metrics;
 using Rafty.Infrastructure;
+using NLog.Web;
+using NLog.Extensions.Logging;
 
 namespace NanoFabric.Ocelot
 {
@@ -53,10 +55,17 @@ namespace NanoFabric.Ocelot
             services.AddMetricsEndpoints();
             services.AddMetricsReportScheduler();
         }
-
+        // http://edi.wang/post/2017/11/1/use-nlog-aspnet-20
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
+            env.ConfigureNLog($"{env.ContentRootPath}/nlog.config");
+            //add NLog to ASP.NET Core
+            loggerFactory.AddNLog();
+
+            var logger = loggerFactory.CreateLogger<Startup>();
+            logger.LogInformation("Application - Configure is invoked");
+
             app.UseMetricsAllMiddleware();
             app.UseMetricsAllEndpoints();
             await app.UseOcelot();

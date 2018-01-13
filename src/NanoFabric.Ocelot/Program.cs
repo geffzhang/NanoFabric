@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Rafty.Infrastructure;
+using NLog.Web;
 
 namespace NanoFabric.Ocelot
 {
@@ -37,15 +38,16 @@ namespace NanoFabric.Ocelot
                     config.AddJsonFile("peers.json");
                     config.AddEnvironmentVariables();
                 })
-                
                  .ConfigureLogging((hostingContext, logging) =>
                  {
                      logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                      logging.AddConsole();
+                     logging.AddDebug();
                  })
                 .UseIISIntegration()
                 .UseMetricsWebTracking()
                 .UseMetricsEndpoints()
+                .UseNLog()
                 .UseStartup<Startup>();
             var host = builder.Build();
             host.Run();          
