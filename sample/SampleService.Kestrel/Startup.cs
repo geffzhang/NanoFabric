@@ -16,6 +16,7 @@ using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 using Winton.Extensions.Configuration.Consul;
 using System.Threading;
+using Butterfly.Client.AspNetCore;
 
 namespace SampleService.Kestrel
 {
@@ -75,6 +76,13 @@ namespace SampleService.Kestrel
                 .AddAuthorization()
                 .AddJsonFormatters();
             services.AddOptions();
+            var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
+
+            services.AddButterfly(option =>
+            {
+                option.CollectorUrl = collectorUrl;
+                option.Service = "SampleService.Kestrel";
+            });
         }
 
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

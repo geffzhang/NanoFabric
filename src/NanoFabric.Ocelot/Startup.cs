@@ -16,45 +16,12 @@ using App.Metrics;
 using Rafty.Infrastructure;
 using NLog.Web;
 using NLog.Extensions.Logging;
+using Butterfly.Client.AspNetCore;
 
 namespace NanoFabric.Ocelot
 {
     public class Startup
-    {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
-        {
-            Action<ConfigurationBuilderCachePart> settings = (x) =>
-            {
-                x.WithMicrosoftLogging(log =>
-                {
-                    log.AddConsole(LogLevel.Debug);
-                })
-                .WithDictionaryHandle();
-            };
-
-            services.AddAuthentication()
-                .AddJwtBearer("TestKey", x =>
-                {
-                    x.Authority = "test";
-                    x.Audience = "test";
-                });
-
-            services.AddOcelot()
-                .AddCacheManager(settings)
-                .AddAdministration("/administration", "secret")
-                .AddRafty();
-            
-
-            var metrics = AppMetrics.CreateDefaultBuilder()
-                       .Build();
-
-            services.AddMetrics(metrics);
-            services.AddMetricsTrackingMiddleware();
-            services.AddMetricsEndpoints();
-            services.AddMetricsReportScheduler();
-        }
+    {        
         // http://edi.wang/post/2017/11/1/use-nlog-aspnet-20
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)

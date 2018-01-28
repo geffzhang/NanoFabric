@@ -273,7 +273,7 @@
   ],
 
   "GlobalConfiguration": {
-    "RequestIdKey": "OcRequestId",
+    "RequestIdKey": "ot-traceid",
     "ServiceDiscoveryProvider": {
       "Provider": "Consul",
       "Host": "localhost",
