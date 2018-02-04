@@ -9,7 +9,7 @@
     <AssemblyName>SampleService.Kestrel</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.2" />
+    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.5" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.1" />
