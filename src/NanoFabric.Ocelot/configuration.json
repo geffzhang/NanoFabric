@@ -291,7 +291,8 @@
       ],
       "UpstreamPathTemplate": "/bbc/",
       "UpstreamHttpMethod": [ "Get" ]
-    },
+    }
+    ],
     "GlobalConfiguration",
     {
       "RequestIdKey": "ot-traceid",
