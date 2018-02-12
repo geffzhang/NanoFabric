@@ -1,1 +1,1 @@
-consul.exe agent -data-dir=/data/consul/data -ui -dev -bind 0.0.0.0 -client 10.104.48.111 
+consul.exe agent -data-dir=/data/consul/data -ui -dev -bind 0.0.0.0 -client 127.0.0.1

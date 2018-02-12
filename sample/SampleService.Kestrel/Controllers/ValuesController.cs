@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Butterfly.Client;
+using Butterfly.Client.Tracing;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SampleService.Kestrel.Controllers

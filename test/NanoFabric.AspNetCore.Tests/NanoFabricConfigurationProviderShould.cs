@@ -33,7 +33,7 @@ namespace NanoFabric.AspNetCore.Tests
 
         private async Task<IRegistryHost> GetConsulRegistryHostAsync()
         {
-            var configuration = new ConsulRegistryHostConfiguration() { HostName = "localhost" };
+            var configuration = new ConsulRegistryHostConfiguration() {  HttpEndpoint = "http://127.0.0.1:8500" };
 
             var registryHost = new ConsulRegistryHost(configuration);
 

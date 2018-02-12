@@ -14,7 +14,7 @@ namespace NanoFabric.RegistryHost.ConsulRegistry.Tests
 
         public ConsulRegistryHostShould()
         {
-            var configuration = new ConsulRegistryHostConfiguration() {  HostName = "localhost" } ;
+            var configuration = new ConsulRegistryHostConfiguration() {   HttpEndpoint = "http://127.0.0.1:8500" , DnsEndpoint = new DnsEndpoint() {  Address = "127.0.0.1", Port = 8600 } } ;
             _registryHost = new ConsulRegistryHost(configuration);
         }
 

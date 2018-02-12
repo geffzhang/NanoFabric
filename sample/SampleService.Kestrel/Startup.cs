@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Butterfly.Client.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NLog.Extensions.Logging;
-using NanoFabric.Core;
 using NanoFabric.AspNetCore;
-using Microsoft.Extensions.Options;
-using NanoFabric.RegistryHost.ConsulRegistry;
-using System.IO;
-using Microsoft.Extensions.PlatformAbstractions;
-using Winton.Extensions.Configuration.Consul;
+using NanoFabric.Router;
+using NLog.Extensions.Logging;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Threading;
-using Butterfly.Client.AspNetCore;
 
 namespace SampleService.Kestrel
 {
@@ -28,56 +20,30 @@ namespace SampleService.Kestrel
         private readonly CancellationTokenSource _consulConfigCancellationTokenSource = new CancellationTokenSource();
 
         /// <summary>
-        /// 
+        /// 构造函数，初始化配置信息
         /// </summary>
-        /// <param name="env"></param>
-        public Startup(IHostingEnvironment env)
+        /// <param name="configuration"></param>
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-                //.AddConsul(
-                //    $"sampleservicesettings.json",
-                //    _consulConfigCancellationTokenSource.Token,
-                //    options => {
-                //        options.ConsulConfigurationOptions = (cco) => {
-                //            cco.Address = new Uri("http://localhost:8500");
-                //        };
-                //        options.Optional = true;
-                //        options.ReloadOnChange = true;
-                //        options.OnLoadException = (exceptionContext) => {
-                //            exceptionContext.Ignore = true;
-                //        };
-                //    })
-                //.AddEnvironmentVariables();
-            Configuration = builder.Build();
-        }
+            Configuration = configuration;
+        }        
 
         /// <summary>
         /// 系统配置
         /// </summary>
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         /// This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            //var appSettings = new AppSettings();
-            //Configuration.Bind(appSettings);
-            //var consulConfig = new ConsulRegistryHostConfiguration
-            //{
-            //    HostName = appSettings.Consul.HostName,
-            //    Port = appSettings.Consul.Port
-            //};
-            //services.AddNanoFabric(() => new ConsulRegistryHost(consulConfig));
+            services.AddNanoFabricConsul(Configuration);
+            services.AddNanoFabricConsulRouter();
             services.AddMvcCore()
                 .AddAuthorization()
                 .AddJsonFormatters();
             services.AddOptions();
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
-
+            services.AddSwaggerGen(option => { option.SwaggerDoc("v1", new Info { Title = "SampleService.Kestrel http api", Version = "v1" }); });
             services.AddButterfly(option =>
             {
                 option.CollectorUrl = collectorUrl;
@@ -94,7 +60,7 @@ namespace SampleService.Kestrel
 
             loggerFactory.ConfigureNLog("NLog.config");
 
-            //var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
+           //var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
 
             //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             //{
@@ -113,20 +79,7 @@ namespace SampleService.Kestrel
                      name: "default",
                      template: "{controller=Home}/{action=Index}/{id?}");
              });
-
-            // add tenant & health check
-            //var localAddress = DnsHelper.GetIpAddressAsync().Result;
-            //var uri = new Uri($"http://{localAddress}:{Program.PORT}/");
-            //log.LogInformation("Registering tenant at ${uri}");
-            //var registryInformation = app.AddTenant("values", "1.0.0-pre", uri, tags: new[] { "urlprefix-/values" });
-            //log.LogInformation("Registering additional health check");
-            // // register service & health check cleanup
-            //applicationLifetime.ApplicationStopping.Register(() =>
-            //{
-            //    log.LogInformation("Removing tenant & additional health check");
-            //    app.RemoveTenant(registryInformation.Id);
-            //    _consulConfigCancellationTokenSource.Cancel();
-            //});
+            app.UseConsulRegisterService(Configuration);
         }
     }
 }
