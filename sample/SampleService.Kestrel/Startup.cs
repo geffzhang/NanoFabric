@@ -47,7 +47,7 @@ namespace SampleService.Kestrel
             services.AddButterfly(option =>
             {
                 option.CollectorUrl = collectorUrl;
-                option.Service = "SampleService.Kestrel";
+                option.Service = "SampleService_Kestrel";
             });
         }
 

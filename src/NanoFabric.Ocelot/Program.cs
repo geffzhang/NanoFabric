@@ -1,10 +1,10 @@
 ﻿using App.Metrics;
-using Butterfly.Client.AspNetCore;
 using CacheManager.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NanoFabric.AspNetCore;
 using NLog.Web;
 using Ocelot.DependencyInjection;
 using Rafty.Infrastructure;
@@ -15,19 +15,29 @@ namespace NanoFabric.Ocelot
 {
     public class Program
     {
+        private const string defaultAddress = "http://localhost:8000";
+        private const string addressKey = "serveraddress";
+
         public static void Main(string[] args)
         {
-            var hostingconfig = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("hosting.json", optional: true)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddCommandLine(args)
-            .Build();
-
-            var url = hostingconfig.GetValue<string>("urls");            
-
+            var configurationBuilder = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+           .AddJsonFile("appsettings.Development.json", true, false)
+           .AddJsonFile("appsettings.Production.json", true, false)
+           .AddEnvironmentVariables()
+           .AddCommandLine(args);
+           
+            if (args != null)
+            {
+                configurationBuilder.AddCommandLine(args);
+            }
+            var hostingconfig = configurationBuilder.Build();
+            var url = hostingconfig[addressKey] ?? defaultAddress;
+          
             IWebHostBuilder builder = new WebHostBuilder();
-            builder.ConfigureServices(s => {
+            builder.ConfigureServices(s =>
+            {
                 s.AddSingleton(builder);
                 s.AddSingleton(new NodeId(url));
             });
@@ -37,52 +47,12 @@ namespace NanoFabric.Ocelot
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
-                    var env = hostingContext.HostingEnvironment;                    
+                    var env = hostingContext.HostingEnvironment;
                     config.AddJsonFile("configuration.json");
                     config.AddJsonFile("peers.json");
                     config.AddEnvironmentVariables();
-                })
-                .ConfigureServices(services =>
-                {
-                    Action<CacheManager.Core.ConfigurationBuilderCachePart> settings = (x) =>
-                    {
-                        x.WithMicrosoftLogging(log =>
-                        {
-                            log.AddConsole(LogLevel.Debug);
-                        })
-                        .WithDictionaryHandle();
-                    };
-
-                    services.AddAuthentication()
-                        .AddJwtBearer("TestKey", x =>
-                        {
-                            x.Authority = "test";
-                            x.Audience = "test";
-                        });
-
-                    services.AddOcelot()
-                        .AddCacheManager(settings)
-                        .AddAdministration("/administration", "secret")
-                        .AddRafty();
-
-
-                    var metrics = AppMetrics.CreateDefaultBuilder()
-                               .Build();
-
-                    services.AddMetrics(metrics);
-                    services.AddMetricsTrackingMiddleware();
-                    services.AddMetricsEndpoints();
-                    services.AddMetricsReportScheduler();
-
-                    var collectorUrl = hostingconfig.GetValue<string>("Butterfly:CollectorUrl");
-
-                    services.AddButterfly(option =>
-                    {
-                        option.CollectorUrl = collectorUrl;
-                        option.Service = "Ocelot";
-                    });
-                })
-                 .ConfigureLogging((hostingContext, logging) =>
+                })                
+                .ConfigureLogging((hostingContext, logging) =>
                  {
                      logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                      logging.AddConsole();
@@ -92,9 +62,10 @@ namespace NanoFabric.Ocelot
                 .UseMetricsWebTracking()
                 .UseMetricsEndpoints()
                 .UseNLog()
+                .UseUrls(url)
                 .UseStartup<Startup>();
             var host = builder.Build();
-            host.Run();          
+            host.Run();
         }
     }
 }

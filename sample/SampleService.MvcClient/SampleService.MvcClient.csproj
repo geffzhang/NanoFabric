@@ -8,13 +8,20 @@
     <AssemblyName>SampleService.MvcClient</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.7" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\NanoFabric.Core\NanoFabric.Core.csproj" />
+    <ProjectReference Include="..\..\src\NanoFabric.RegistryHost.ConsulRegistry\NanoFabric.RegistryHost.ConsulRegistry.csproj" />
+    <ProjectReference Include="..\..\src\NanoFabric.Router\NanoFabric.Router.csproj" />
   </ItemGroup>
 </Project>

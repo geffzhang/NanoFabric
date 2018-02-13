@@ -110,7 +110,7 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
 
         private  string GetServiceId(string serviceName, Uri uri)
         {
-            return $"{serviceName}_{uri.Host}:{uri.Port}";
+            return $"{serviceName}_{uri.Host.Replace(".","_")}_{uri.Port}";
         }
 
         public async Task<RegistryInformation> RegisterServiceAsync(string serviceName, string version, Uri uri, Uri healthCheckUri = null, IEnumerable<string> tags = null)

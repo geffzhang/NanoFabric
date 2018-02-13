@@ -1,6 +1,6 @@
 {
 	"Peers": [{
-			"HostAndPort": "http://localhost:5000"
+			"HostAndPort": "http://localhost:8000"
 		},
 		{
 			"HostAndPort": "http://localhost:5002"

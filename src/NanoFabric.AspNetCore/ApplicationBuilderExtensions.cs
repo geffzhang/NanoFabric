@@ -58,7 +58,7 @@ namespace NanoFabric.AspNetCore
 
             foreach (var address in addresses)
             {
-                var serviceID = $"{serviceDiscoveryOption.ServiceName}_{address.Host}:{address.Port}";
+                var serviceID = GetServiceId(serviceDiscoveryOption.ServiceName,address);
                 logger.LogInformation($"Registering service {serviceID} for address {address}.");
                 Uri healthCheck = null;
                 if (!string.IsNullOrEmpty(serviceDiscoveryOption.HealthCheckTemplate))
@@ -76,6 +76,11 @@ namespace NanoFabric.AspNetCore
                 });
             }
             return app;
+        }
+
+        private static  string GetServiceId(string serviceName, Uri uri)
+        {
+            return $"{serviceName}_{uri.Host.Replace(".", "_")}_{uri.Port}";
         }
 
         public static RegistryInformation AddTenant(this IApplicationBuilder app, string serviceName, string version, Uri uri, Uri healthCheckUri = null, IEnumerable<string> tags = null)
