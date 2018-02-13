@@ -26,8 +26,8 @@ namespace SampleService.MvcClient
             // Add framework services.
             services.AddMvc();
             services.AddNanoFabricConsul(Configuration);
-            services.AddNanoFabricConsulRouter()
-                    .AddCacheServiceSubscriber();
+            services.AddNanoFabricConsulRouter();
+
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
             services.AddButterfly(option =>
             {

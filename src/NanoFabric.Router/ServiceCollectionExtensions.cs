@@ -33,6 +33,7 @@ namespace NanoFabric.Router
             services.AddSingleton<IConsulServiceSubscriberFactory, ConsulServiceSubscriberFactory>();
             services.AddSingleton<IConsulPreparedQueryServiceSubscriberFactory, ConsulPreparedQueryServiceSubscriberFactory>();
             services.TryAddTransient<IServiceSubscriberFactory, ServiceSubscriberFactory>();
+            services.AddCacheServiceSubscriber();
             return services;
         }
 

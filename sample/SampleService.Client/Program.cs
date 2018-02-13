@@ -50,7 +50,6 @@ class Program
 
         _serviceProvider = new ServiceCollection()
             .AddNanoFabricConsulRouter(configuration)
-            .AddCacheServiceSubscriber()
             .AddLogging()
             .BuildServiceProvider();
     }
