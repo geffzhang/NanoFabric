@@ -56,13 +56,14 @@ namespace NanoFabric.Ocelot
                 });
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
             services.AddOcelot()
+                .AddStoreOcelotConfigurationInConsul()
                 .AddCacheManager(settings)
                 .AddOpenTracing(option =>
                 {
                     option.CollectorUrl = collectorUrl;
                     option.Service = "NanoFabric_Ocelot";
                 })
-                .AddAdministration("/administration", "secret");
+                .AddAdministration("/administration", "secret")                ; 
 
             var metrics = AppMetrics.CreateDefaultBuilder()
                        .Build();

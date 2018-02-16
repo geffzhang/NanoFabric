@@ -293,9 +293,9 @@
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],
-  "GlobalConfiguration": 
-    {
+  "GlobalConfiguration": {
     "RequestIdKey": "ot-traceid",
+    "BaseUrl": "http://111.230.101.173:8000",
     "ServiceDiscoveryProvider": {
       "Provider": "Consul",
       "Host": "localhost",
