@@ -62,6 +62,7 @@ namespace NanoFabric.Ocelot
                 {
                     option.CollectorUrl = collectorUrl;
                     option.Service = "NanoFabric_Ocelot";
+                    option.IgnoredRoutesRegexPatterns = new string[] { "/status/" };
                 })
                 .AddAdministration("/administration", "secret")                ; 
 

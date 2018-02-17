@@ -48,6 +48,7 @@ namespace SampleService.Kestrel
             {
                 option.CollectorUrl = collectorUrl;
                 option.Service = "SampleService_Kestrel";
+                option.IgnoredRoutesRegexPatterns = new string[] { "/status/" };
             });
         }
 

@@ -33,6 +33,7 @@ namespace SampleService.MvcClient
             {
                 option.CollectorUrl = collectorUrl;
                 option.Service = "SampleService_MvcClient";
+                option.IgnoredRoutesRegexPatterns = new string[] { "/status/" };
             });
 
             services.AddSingleton<HttpClient>(p => new HttpClient(p.GetService<HttpTracingHandler>()));

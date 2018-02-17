@@ -15,7 +15,7 @@
     <PackageReference Include="App.Metrics.AspNetCore.Reporting" Version="2.0.0-preview1" />
     <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="2.0.0-preview1" />
     <PackageReference Include="App.Metrics.Formatters.Json" Version="2.0.0-preview1" />
-    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.7" />
+    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.8-preview-35642484" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc2" />
     <PackageReference Include="Ocelot" Version="3.1.5" />
   </ItemGroup>

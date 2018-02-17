@@ -8,7 +8,7 @@
     <AssemblyName>SampleService.MvcClient</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.7" />
+    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.8-preview-35642484" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
