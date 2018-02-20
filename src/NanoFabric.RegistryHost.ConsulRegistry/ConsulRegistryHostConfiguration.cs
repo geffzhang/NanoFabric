@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace NanoFabric.RegistryHost.ConsulRegistry
 {
@@ -7,6 +8,14 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
         public string HttpEndpoint { get; set; }
 
         public DnsEndpoint DnsEndpoint { get; set; }
+
+        public string Datacenter { get; set; }
+
+        public string AclToken { get; set; }
+
+        public TimeSpan? LongPollMaxWait { get; set; }
+
+        public TimeSpan? RetryDelay { get; set; } = Defaults.ErrorRetryInterval;
     }
 
     public class DnsEndpoint
@@ -21,4 +30,10 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
         }
     }
 
+    public static class Defaults
+    {
+        public static TimeSpan ErrorRetryInterval => TimeSpan.FromSeconds(15);
+
+        public static TimeSpan UpdateMaxInterval => TimeSpan.FromSeconds(15);
+    }
 }

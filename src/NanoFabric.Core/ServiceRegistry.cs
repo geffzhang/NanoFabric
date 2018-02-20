@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace NanoFabric.Core
 {
-    public class ServiceRegistry : IManageServiceInstances, IManageHealthChecks, IResolveServiceInstances, IHaveKeyValues
+    public class ServiceRegistry : IManageServiceInstances, IManageHealthChecks, IResolveServiceInstances
     {
         private readonly IRegistryHost _registryHost;
         private IResolveServiceInstances _serviceInstancesResolver;
@@ -95,32 +95,7 @@ namespace NanoFabric.Core
         public async Task<string> AddHealthCheckAsync(string serviceName, string serviceId, Uri checkUri, TimeSpan? interval = null, string notes = null)
         {
             return await RegisterHealthCheckAsync(serviceName, serviceId, checkUri, interval, notes);
-        }
-
-        public async Task KeyValuePutAsync(string key, string value)
-        {
-            await _registryHost.KeyValuePutAsync(key, value);
-        }
-
-        public async Task<string> KeyValueGetAsync(string key)
-        {
-            return await _registryHost.KeyValueGetAsync(key);
-        }
-
-        public async Task KeyValueDeleteAsync(string key)
-        {
-            await _registryHost.KeyValueDeleteAsync(key);
-        }
-
-        public async Task KeyValueDeleteTreeAsync(string prefix)
-        {
-            await _registryHost.KeyValueDeleteTreeAsync(prefix);
-        }
-
-        public async Task<string[]> KeyValuesGetKeysAsync(string prefix)
-        {
-            return await _registryHost.KeyValuesGetKeysAsync(prefix);
-        }
+        } 
 
         public void ResolveServiceInstancesWith<T>(T serviceInstancesResolver)
             where T : IResolveServiceInstances

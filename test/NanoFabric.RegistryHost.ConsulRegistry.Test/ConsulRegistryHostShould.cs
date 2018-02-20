@@ -42,32 +42,6 @@ namespace NanoFabric.RegistryHost.ConsulRegistry.Tests
             await _registryHost.DeregisterServiceAsync(tenant.Id);
             Assert.Null(findTenant(serviceName).Result);
         }
-
-        [Fact]
-        public async Task UseKeyValueStoreAsync()
-        {
-            const string KEY = "hello";
-            var dateValue = new DateTime(2016, 5, 28);
-
-            await _registryHost.KeyValuePutAsync(KEY, dateValue.ToString(CultureInfo.InvariantCulture));
-            var value = await _registryHost.KeyValueGetAsync("hello");
-            Assert.Equal(dateValue, DateTime.Parse(value, CultureInfo.InvariantCulture));
-
-            await _registryHost.KeyValueDeleteAsync(KEY);
-        }
-
-        [Fact]
-        public async Task UseKeyValueStoreWithFoldersAsync()
-        {
-            const string FOLDER = "folder/hello/world/";
-            const string KEY = "date";
-            var dateValue = new DateTime(2016, 5, 28);
-
-            await _registryHost.KeyValuePutAsync(FOLDER + KEY, dateValue.ToString(CultureInfo.InvariantCulture));
-            var value = await _registryHost.KeyValueGetAsync(FOLDER + KEY);
-            Assert.Equal(dateValue, DateTime.Parse(value, CultureInfo.InvariantCulture));
-
-            await _registryHost.KeyValueDeleteTreeAsync(FOLDER);
-        }
+     
     }
 }

@@ -12,8 +12,6 @@ namespace NanoFabric.AspNetCore.Tests
 
         private readonly List<Core.RegistryInformation> _serviceInstances = new List<RegistryInformation>();
 
-        public KeyValues KeyValues { get; set; } = new KeyValues();
-
         public IList<RegistryInformation> ServiceInstances
         {
             get { return _serviceInstances; }
@@ -120,31 +118,6 @@ namespace NanoFabric.AspNetCore.Tests
         public Task<bool> DeregisterHealthCheckAsync(string checkId)
         {
             return Task.FromResult(false);
-        }
-
-        public async Task KeyValuePutAsync(string key, string value)
-        {
-            await KeyValues.KeyValuePutAsync(key, value);
-        }
-
-        public async Task<string> KeyValueGetAsync(string key)
-        {
-            return await KeyValues.KeyValueGetAsync(key);
-        }
-
-        public async Task KeyValueDeleteAsync(string key)
-        {
-            await KeyValues.KeyValueDeleteAsync(key);
-        }
-
-        public async Task KeyValueDeleteTreeAsync(string prefix)
-        {
-            await KeyValues.KeyValueDeleteTreeAsync(prefix);
-        }
-
-        public async Task<string[]> KeyValuesGetKeysAsync(string prefix)
-        {
-            return await KeyValues.KeyValuesGetKeysAsync(prefix);
-        }
+        }      
     }
 }

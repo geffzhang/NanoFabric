@@ -24,6 +24,10 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
             _consul = new ConsulClient(config =>
             {
                 config.Address = new Uri(_configuration.HttpEndpoint);
+                if (!string.IsNullOrEmpty(_configuration.Datacenter))
+                {
+                    config.Datacenter = _configuration.Datacenter;
+                }
             });
         }
 
@@ -192,42 +196,16 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
             return isSuccess;
         }
 
-        public async Task KeyValuePutAsync(string key, string value)
+        private QueryOptions QueryOptions(ulong index)
         {
-            var keyValuePair = new KVPair(key) { Value = Encoding.UTF8.GetBytes(value) };
-            await _consul.KV.Put(keyValuePair);
-        }
-
-        /// <summary>
-        /// https://labs.magnet.me/nerds/2015/10/26/consultant-configuration-management-with-consul.html
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public async Task<string> KeyValueGetAsync(string key)
-        {
-            var queryResult = await _consul.KV.Get(key);
-            if (queryResult.Response == null)
+            return new QueryOptions
             {
-                return null;
-            }
-
-            return Encoding.UTF8.GetString(queryResult.Response.Value);
+                Datacenter = _configuration.Datacenter,
+                Token = _configuration.AclToken ?? "anonymous",
+                WaitIndex = index,
+                WaitTime = _configuration.LongPollMaxWait
+            };
         }
 
-        public async Task KeyValueDeleteAsync(string key)
-        {
-            await _consul.KV.Delete(key);
-        }
-
-        public async Task KeyValueDeleteTreeAsync(string prefix)
-        {
-            await _consul.KV.DeleteTree(prefix);
-        }
-
-        public async Task<string[]> KeyValuesGetKeysAsync(string prefix)
-        {
-            var queryResult = await _consul.KV.Keys(prefix ?? "");
-            return queryResult.Response;
-        }
     }
 }
