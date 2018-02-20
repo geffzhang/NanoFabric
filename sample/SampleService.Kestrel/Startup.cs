@@ -40,7 +40,9 @@ namespace SampleService.Kestrel
             services.AddNanoFabricConsulRouter();
             services.AddMvcCore()
                 .AddAuthorization()
-                .AddJsonFormatters();
+                .AddJsonFormatters()
+                .AddMvcApiResult();
+
             services.AddOptions();
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
             services.AddSwaggerGen(option => { option.SwaggerDoc("v1", new Info { Title = "SampleService.Kestrel http api", Version = "v1" }); });

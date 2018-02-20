@@ -11,6 +11,7 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
+
 namespace SampleService.IdentityServer
 {
     public class Startup
@@ -47,7 +48,7 @@ namespace SampleService.IdentityServer
                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 
-               });
+               })  ;
 
             services.AddIdentityServer()
                 .AddSigningCredential(cert)

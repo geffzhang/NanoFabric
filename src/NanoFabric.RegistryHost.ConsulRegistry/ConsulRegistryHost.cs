@@ -198,6 +198,11 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
             await _consul.KV.Put(keyValuePair);
         }
 
+        /// <summary>
+        /// https://labs.magnet.me/nerds/2015/10/26/consultant-configuration-management-with-consul.html
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public async Task<string> KeyValueGetAsync(string key)
         {
             var queryResult = await _consul.KV.Get(key);
