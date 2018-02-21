@@ -38,14 +38,30 @@ namespace SampleService.Kestrel
         {
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
-            services.AddMvcCore()
-                .AddAuthorization()
-                .AddJsonFormatters()
+            services.AddMvc()
                 .AddMvcApiResult();
 
             services.AddOptions();
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
-            services.AddSwaggerGen(option => { option.SwaggerDoc("v1", new Info { Title = "SampleService.Kestrel http api", Version = "v1" }); });
+            //http://www.cnblogs.com/morang/p/8325729.html
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new Info
+                    {
+                        Version = "v1",
+                        Title = "SampleService 接口文档",
+                        Description = "SampleService 接口集成 Swashbuckle",
+                        TermsOfService = "Values 和 Status（健康检查）.",
+                        //Contact = new Contact { Name = "geffzhang", Email = "", Url = "http://github.com/geffzhang" },
+                        //License = new License { Name = "Use under MIT", Url = "https://github.com/geffzhang/NanoFabric/blob/develop/LICENSE.md" }
+                    }
+                );
+                c.OperationFilter<AssignOperationVendorExtensions>();
+                c.DocumentFilter<ApplyTagDescriptions>();
+                
+            });
+
             services.AddButterfly(option =>
             {
                 option.CollectorUrl = collectorUrl;
@@ -62,8 +78,17 @@ namespace SampleService.Kestrel
                       .CreateLogger<Startup>();
 
             loggerFactory.ConfigureNLog("NLog.config");
+            env.EnvironmentName = EnvironmentName.Development;
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
-           //var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
+            //var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
 
             //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             //{
@@ -76,12 +101,18 @@ namespace SampleService.Kestrel
             //    ApiSecret = "myApiSecret"
 
             //});
-            app.UseMvc(routes =>
+            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseSwagger(c =>
              {
-                 routes.MapRoute(
-                     name: "default",
-                     template: "{controller=Home}/{action=Index}/{id?}");
+                 c.PreSerializeFilters.Add((swagger, httpReq) => swagger.Host = httpReq.Host.Value);
              });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
+                //注入汉化文件
+                c.InjectOnCompleteJavaScript($"/lib/swagger/swagger_translator.js");
+            });
             app.UseConsulRegisterService(Configuration);
         }
     }
