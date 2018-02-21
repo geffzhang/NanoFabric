@@ -9,7 +9,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.8-preview-35642484" />
+    <PackageReference Include="IdentityModel" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
@@ -23,5 +25,10 @@
     <ProjectReference Include="..\..\src\NanoFabric.Core\NanoFabric.Core.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.RegistryHost.ConsulRegistry\NanoFabric.RegistryHost.ConsulRegistry.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.Router\NanoFabric.Router.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.1.4\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
