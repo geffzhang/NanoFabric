@@ -18,6 +18,7 @@ using NLog.Web;
 using NLog.Extensions.Logging;
 using Butterfly.Client.AspNetCore;
 using NanoFabric.AspNetCore;
+using System.IO;
 
 namespace NanoFabric.Ocelot
 {
@@ -80,12 +81,11 @@ namespace NanoFabric.Ocelot
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {        
-            env.ConfigureNLog($"{env.ContentRootPath}/nlog.config");
+            env.ConfigureNLog($"{env.ContentRootPath}{ Path.DirectorySeparatorChar}nlog.config");
             //add NLog to ASP.NET Core
             loggerFactory.AddNLog();
             var logger = loggerFactory.CreateLogger<Startup>();
             logger.LogInformation("Application - Configure is invoked");
-
             app.UseConsulRegisterService(Configuration);
             app.UseMetricsAllMiddleware();
             app.UseMetricsAllEndpoints();

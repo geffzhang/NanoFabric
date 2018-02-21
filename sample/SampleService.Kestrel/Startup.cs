@@ -53,9 +53,11 @@ namespace SampleService.Kestrel
                         Title = "SampleService 接口文档",
                         Description = "SampleService 接口集成 Swashbuckle",
                         TermsOfService = "Values 和 Status（健康检查）.",
+
                         //Contact = new Contact { Name = "geffzhang", Email = "", Url = "http://github.com/geffzhang" },
                         //License = new License { Name = "Use under MIT", Url = "https://github.com/geffzhang/NanoFabric/blob/develop/LICENSE.md" }
                     }
+                         
                 );
                 c.OperationFilter<AssignOperationVendorExtensions>();
                 c.DocumentFilter<ApplyTagDescriptions>();
