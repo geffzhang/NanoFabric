@@ -19,13 +19,15 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
 
         public ConsulRegistryHost(ConsulRegistryHostConfiguration configuration = null)
         {
-            string consulHost = configuration?.HostName ?? "localhost";
-            int consulPort = configuration?.Port ?? 8500;
-            _configuration = new ConsulRegistryHostConfiguration {HostName = consulHost, Port = consulPort};
+            _configuration = configuration;
 
             _consul = new ConsulClient(config =>
             {
-                config.Address = new Uri($"http://{_configuration.HostName}:{_configuration.Port}");
+                config.Address = new Uri(_configuration.HttpEndpoint);
+                if (!string.IsNullOrEmpty(_configuration.Datacenter))
+                {
+                    config.Datacenter = _configuration.Datacenter;
+                }
             });
         }
 
@@ -110,15 +112,14 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
             return instances.ToList();
         }
 
-        private async Task<string> GetServiceIdAsync(string serviceName, Uri uri)
+        private  string GetServiceId(string serviceName, Uri uri)
         {
-            var ipAddress = await DnsHelper.GetIpAddressAsync();
-            return $"{serviceName}_{ipAddress.Replace(".", "_")}_{uri.Port}";
+            return $"{serviceName}_{uri.Host.Replace(".","_")}_{uri.Port}";
         }
 
         public async Task<RegistryInformation> RegisterServiceAsync(string serviceName, string version, Uri uri, Uri healthCheckUri = null, IEnumerable<string> tags = null)
         {
-            var serviceId = await GetServiceIdAsync(serviceName, uri);
+            var serviceId = GetServiceId(serviceName, uri);
             string check = healthCheckUri?.ToString() ?? $"{uri}".TrimEnd('/') + "/status";
 
             string versionLabel = $"{VERSION_PREFIX}{version}";
@@ -195,37 +196,16 @@ namespace NanoFabric.RegistryHost.ConsulRegistry
             return isSuccess;
         }
 
-        public async Task KeyValuePutAsync(string key, string value)
+        private QueryOptions QueryOptions(ulong index)
         {
-            var keyValuePair = new KVPair(key) { Value = Encoding.UTF8.GetBytes(value) };
-            await _consul.KV.Put(keyValuePair);
-        }
-
-        public async Task<string> KeyValueGetAsync(string key)
-        {
-            var queryResult = await _consul.KV.Get(key);
-            if (queryResult.Response == null)
+            return new QueryOptions
             {
-                return null;
-            }
-
-            return Encoding.UTF8.GetString(queryResult.Response.Value);
+                Datacenter = _configuration.Datacenter,
+                Token = _configuration.AclToken ?? "anonymous",
+                WaitIndex = index,
+                WaitTime = _configuration.LongPollMaxWait
+            };
         }
 
-        public async Task KeyValueDeleteAsync(string key)
-        {
-            await _consul.KV.Delete(key);
-        }
-
-        public async Task KeyValueDeleteTreeAsync(string prefix)
-        {
-            await _consul.KV.DeleteTree(prefix);
-        }
-
-        public async Task<string[]> KeyValuesGetKeysAsync(string prefix)
-        {
-            var queryResult = await _consul.KV.Keys(prefix ?? "");
-            return queryResult.Response;
-        }
     }
 }

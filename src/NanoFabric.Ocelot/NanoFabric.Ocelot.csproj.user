@@ -6,5 +6,6 @@
   <PropertyGroup>
     <ActiveDebugProfile>NanoFabric.Ocelot</ActiveDebugProfile>
     <NameOfLastUsedPublishProfile>FolderProfile</NameOfLastUsedPublishProfile>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>

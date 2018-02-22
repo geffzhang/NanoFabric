@@ -1,41 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Builder;
-using NLog;
-using Newtonsoft.Json;
-using NanoFabric.RegistryHost.ConsulRegistry;
 using Microsoft.Extensions.Configuration;
-using NanoFabric.AspNetCore.Configuration;
+using System.IO;
 
 namespace SampleService.Kestrel
 {
     public class Program
     {
-        public const int PORT = 9030;
+        private const string defaultAddress = "http://localhost:9300";
+        private const string addressKey = "serveraddress";
 
         public static void Main(string[] args)
         {
-            var log = LogManager.GetCurrentClassLogger();
-            log.Debug($"Starting {typeof(Program).Namespace}");
+            IWebHost host = BuildWebHost(args);
+            host.Run();
+        }
 
-            var appsettings = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText("appsettings.json"));
-            var consulConfig = new ConsulRegistryHostConfiguration { HostName = appsettings.Consul.HostName, Port = appsettings.Consul.Port };
-            var config = new ConfigurationBuilder()
-                .AddNanoFabricKeyValues(() => new ConsulRegistryHost(consulConfig))
-                .Build();
+        private static IWebHost BuildWebHost(string[] args)
+        {
+            var configurationBuilder = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.Development.json", true, false)
+                .AddJsonFile("appsettings.Production.json", true, false)
+                .AddEnvironmentVariables()
+                .AddCommandLine(args);
 
-            var host = new WebHostBuilder()
+            if (args != null)
+            {
+                configurationBuilder.AddCommandLine(args);
+            }
+            var hostingconfig = configurationBuilder.Build();
+            var url = hostingconfig[addressKey] ?? defaultAddress;
+
+            return WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(config =>
+                {
+                    config.AddJsonFile("appsettings.json", false, true);
+                })
+                .UseConfiguration(hostingconfig)
                 .UseKestrel()
-                .UseUrls($"http://*:{PORT}")
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls(url)
                 .UseStartup<Startup>()
                 .Build();
-
-            host.Run();
         }
     }
 }

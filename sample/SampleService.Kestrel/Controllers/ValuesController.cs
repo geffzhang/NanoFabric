@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
+using Butterfly.Client.Tracing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SampleService.Kestrel.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// 测试API
+    /// </summary>
+    [Route("api/[controller]")]    
     public class ValuesController : Controller
     {
         /// <summary>
@@ -11,7 +16,7 @@ namespace SampleService.Kestrel.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get([FromServices] IServiceTracer tracer)
         {
             return new[] { "value1", "value2" };
         }
@@ -22,9 +27,10 @@ namespace SampleService.Kestrel.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [Authorize]
         public string Get(int id)
         {
-            return "value";
+            return $"{id}";
         }
 
         /// <summary>

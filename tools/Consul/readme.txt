@@ -1,1 +1,1 @@
-consul.exe agent -data-dir=data -ui-dir=web_ui -dev
+consul.exe agent -data-dir=/data/consul/data -ui -dev -bind 0.0.0.0 -client 0.0.0.0

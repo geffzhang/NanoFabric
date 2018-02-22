@@ -20,7 +20,10 @@ namespace NanoFabric.Router.Consul
         public ulong WaitIndex;
 
         public ConsulServiceSubscriber(IConsulClient client, string serviceName, ConsulSubscriberOptions consulOptions,
-            bool watch) : this(client, serviceName, consulOptions.Tags, consulOptions.PassingOnly, watch) { }
+            bool watch) : this(client, serviceName, consulOptions.Tags, consulOptions.PassingOnly, watch)
+        {
+
+        }
 
         public ConsulServiceSubscriber(IConsulClient client, string serviceName, List<string> tags,
             bool passingOnly, bool watch)

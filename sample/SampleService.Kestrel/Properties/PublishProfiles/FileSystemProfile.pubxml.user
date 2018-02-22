@@ -7,6 +7,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_NewBackgroundProfile>True</_NewBackgroundProfile>
-    <_PublishTargetUrl>D:\Workshop\GitHub\NanoFabric\sample\SampleService.Kestrel\bin\Release\PublishOutput</_PublishTargetUrl>
+    <_PublishTargetUrl>F:\Workshop\Github\NanoFabric\sample\SampleService.Kestrel\bin\Release\PublishOutput</_PublishTargetUrl>
   </PropertyGroup>
 </Project>

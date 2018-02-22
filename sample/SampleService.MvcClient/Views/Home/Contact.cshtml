@@ -1,17 +1,39 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Authentication
+@{
     ViewData["Title"] = "Contact";
 }
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
+<div class="panel">
+    <a class="btn btn-primary" href="~/home/callapi">Call API</a>
+</div>
+@{
+    string it = await Context.GetTokenAsync("id_token");
+    string at = await Context.GetTokenAsync("access_token");
+    string rt = await Context.GetTokenAsync("refresh_token");
+}
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div>
+    <dl>
+        @if (it != null)
+        {
+            <dt>id_token</dt>
+            <dd>@it</dd>
+        }
+        @if (at != null)
+        {
+            <dt>access_token</dt>
+            <dd>@at</dd>
+        }
+        @if (rt != null)
+        {
+            <dt>refresh_token</dt>
+            <dd>@rt</dd>
+        }
+        @foreach (var claim in User.Claims)
+        {
+            <dt>@claim.Type</dt>
+            <dd>@claim.Value</dd>
+        }
+    </dl>
+</div>

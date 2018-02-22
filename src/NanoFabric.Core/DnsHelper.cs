@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Linq;
+using DnsClient;
 
 namespace NanoFabric.Core
 {
@@ -14,7 +15,8 @@ namespace NanoFabric.Core
         /// <returns></returns>
         public static async Task<string> GetIpAddressAsync(bool ipv4 = true)
         {
-            var hostEntry = await Dns.GetHostEntryAsync(Dns.GetHostName());
+            var client = new LookupClient();            
+            var hostEntry = await client.GetHostEntryAsync(Dns.GetHostName());
             IPAddress ipaddress = null;
             if (ipv4)
             {

@@ -119,3 +119,5 @@ Temporary Items
 bin
 obj
 /sample/SampleService.MvcClient/obj
+/src/NanoFabric.Ocelot/Properties/PublishProfiles
+src/NanoFabric.Ocelot/httplocalhost5000.db

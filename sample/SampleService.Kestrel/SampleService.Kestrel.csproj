@@ -1,6 +1,6 @@
 ﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup Label="Configuration">
-    <DocumentationFile>bin\Debug\netcoreapp1.0\SampleService.Kestrel.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\SampleService.Kestrel.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,9 +9,10 @@
     <AssemblyName>SampleService.Kestrel</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />    
+    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.8-preview-35642484" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
@@ -23,14 +24,13 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.0" />
     <PackageReference Include="NLog" Version="5.0.0-beta04" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.0.0-rtm-beta1" />
-    <PackageReference Include="Swashbuckle.SwaggerGen" Version="6.0.0-beta902" />
-    <PackageReference Include="Swashbuckle.SwaggerUi" Version="6.0.0-beta902" />
-    <PackageReference Include="Winton.Extensions.Configuration.Consul" Version="1.0.0" />
+    <PackageReference Include="Winton.Extensions.Configuration.Consul" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.Core\NanoFabric.Core.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.RegistryHost.ConsulRegistry\NanoFabric.RegistryHost.ConsulRegistry.csproj" />
+    <ProjectReference Include="..\..\src\NanoFabric.Router\NanoFabric.Router.csproj" />
   </ItemGroup> 
   <ItemGroup>
     <Content Update="appsettings.json">
