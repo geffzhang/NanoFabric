@@ -4,7 +4,9 @@
 }
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
-
+<div class="panel">
+    <a class="btn btn-primary" href="~/home/callapi">Call API</a>
+</div>
 @{
     string it = await Context.GetTokenAsync("id_token");
     string at = await Context.GetTokenAsync("access_token");

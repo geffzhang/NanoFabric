@@ -1,10 +1,13 @@
 ﻿using Butterfly.Client.AspNetCore;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NanoFabric.AspNetCore;
+using NanoFabric.AspNetCore.Cors;
 using NanoFabric.Router;
 using NLog.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
@@ -38,8 +41,26 @@ namespace SampleService.Kestrel
         {
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
+
+            services.AddAuthorization();
+            services.AddCors();
+            services.AddDistributedMemoryCache();
+
+            var authority = Configuration.GetValue<string>("Authority");
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = authority;
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "api1";
+                    options.ApiSecret = "secret";
+                });
+         
             services.AddMvc()
                 .AddMvcApiResult();
+            services.Add(ServiceDescriptor.Transient<ICorsService, WildcardCorsService>());
+            services.Configure<CorsOptions>(options => options.AddPolicy(
+                "AllowSameDomain",builder => builder.WithOrigins("*.*")));
 
             services.AddOptions();
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
@@ -89,20 +110,14 @@ namespace SampleService.Kestrel
             {
                 app.UseExceptionHandler("/error");
             }
+            app.UseCors(policy =>
+            {
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.WithExposedHeaders("WWW-Authenticate");
+            });
 
-            //var authority = Configuration.GetValue<string>("AppSetting:IdentityServerAuthority");
-
-            //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
-            //{
-            //    Authority = authority,
-
-            //    RequireHttpsMetadata = false,
-
-            //    ApiName = "api1",
-
-            //    ApiSecret = "myApiSecret"
-
-            //});
+            app.UseAuthentication();
             app.UseMvc();
             app.UseStaticFiles();
             app.UseSwagger(c =>

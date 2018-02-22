@@ -19,6 +19,7 @@ using NLog.Extensions.Logging;
 using Butterfly.Client.AspNetCore;
 using NanoFabric.AspNetCore;
 using System.IO;
+using IdentityServer4.AccessTokenValidation;
 
 namespace NanoFabric.Ocelot
 {
@@ -49,12 +50,18 @@ namespace NanoFabric.Ocelot
                 })
                 .WithDictionaryHandle();
             };
+            var authority = Configuration.GetValue<string>("Authority");
+
+            var authenticationProviderKey = "Ids4";
+            Action<IdentityServerAuthenticationOptions> options = o => {
+                o.Authority = authority;
+                o.ApiName = "api";
+                o.SupportedTokens = SupportedTokens.Both;
+                o.ApiSecret = "secret";
+            };
             services.AddAuthentication()
-                .AddJwtBearer("TestKey", x =>
-                {
-                    x.Authority = "test";
-                    x.Audience = "test";
-                });
+                .AddIdentityServerAuthentication(authenticationProviderKey, options);            
+
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
             services.AddOcelot()
                 .AddStoreOcelotConfigurationInConsul()
@@ -65,12 +72,11 @@ namespace NanoFabric.Ocelot
                     option.Service = "NanoFabric_Ocelot";
                     option.IgnoredRoutesRegexPatterns = new string[] { "/administration/status" };
                 })
-                .AddAdministration("/administration", "secret")                ; 
+                .AddAdministration("/administration", options); 
 
+            services.AddNanoFabricConsul(Configuration);
             var metrics = AppMetrics.CreateDefaultBuilder()
                        .Build();
-            services.AddNanoFabricConsul(Configuration);
-
             services.AddMetrics(metrics);
             services.AddMetricsTrackingMiddleware();
             services.AddMetricsEndpoints();
