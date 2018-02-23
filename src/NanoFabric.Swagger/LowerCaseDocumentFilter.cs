@@ -1,5 +1,6 @@
 ﻿using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Linq;
 
 namespace NanoFabric.Swagger
 {
