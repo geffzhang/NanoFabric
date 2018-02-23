@@ -1,18 +1,43 @@
-﻿using System;
-using System.Net;
-using Consul;
+﻿using Consul;
 using DnsClient;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using NanoFabric.Core;
 using NanoFabric.RegistryHost.ConsulRegistry;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 
 namespace NanoFabric.AspNetCore
 {
     public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddCustomIdentity(
+           this IServiceCollection services,
+           IApiInfo apiInfo
+           )
+        {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = apiInfo.AuthenticationAuthority;
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = apiInfo.ApiName;
+                    options.ApiSecret = apiInfo.ApiSecret;
+                });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUser, HttpContextUser>();
+
+            return services;
+        }
+
         public static IServiceCollection AddNanoFabricConsul(this IServiceCollection services,IConfiguration configuration)
         {
             services.AddOptions();
