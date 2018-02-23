@@ -37,7 +37,7 @@ namespace NanoFabric.Swagger
                         Scopes = apiInfo.Scopes
                     });
                 }
-
+                options.DocumentFilter<LowerCaseDocumentFilter>();
                 options.OperationFilter<AuthorizeCheckOperationFilter>(apiInfo);
                 options.OperationFilter<ExamplesOperationFilter>();
                 options.OperationFilter<DescriptionOperationFilter>();
