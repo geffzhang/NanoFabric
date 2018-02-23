@@ -27,7 +27,7 @@ namespace SampleService.Kestrel.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize]
+        [Authorize(Policy = "protectedScope")]
         public string Get(int id)
         {
             return $"{id}";

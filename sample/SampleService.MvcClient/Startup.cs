@@ -74,6 +74,7 @@ namespace SampleService.MvcClient
                options.Scope.Add("profile");
                options.Scope.Add("email");
                options.Scope.Add("api1");
+               options.Scope.Add("scope_used_for_api_in_protected_zone");
                options.Scope.Add("idbase");
                options.Scope.Add("offline_access");
 

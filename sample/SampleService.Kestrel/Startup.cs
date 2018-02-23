@@ -37,6 +37,7 @@ namespace SampleService.Kestrel
         public IConfiguration Configuration { get; }
 
         /// This method gets called by the runtime. Use this method to add services to the container.
+        /// https://damienbod.com/2018/02/02/securing-an-asp-net-core-mvc-application-which-uses-a-secure-api/
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddNanoFabricConsul(Configuration);
@@ -53,9 +54,15 @@ namespace SampleService.Kestrel
                     options.Authority = authority;
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "api1";
-                    options.ApiSecret = "secret";
+                    options.ApiSecret = "secret";                    
                 });
-         
+            services.AddAuthorization(options =>
+                   options.AddPolicy("protectedScope", policy =>
+                   {
+                       policy.RequireClaim("scope", "scope_used_for_api_in_protected_zone");
+                   })
+               );
+
             services.AddMvc()
                 .AddMvcApiResult();
             services.Add(ServiceDescriptor.Transient<ICorsService, WildcardCorsService>());
