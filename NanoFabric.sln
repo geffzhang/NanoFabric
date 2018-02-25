@@ -42,7 +42,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.Router.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot", "..\Ocelot\src\Ocelot\Ocelot.csproj", "{167DAEE0-38F9-4BA6-B141-7E549BF1110D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoFabric.Swagger", "src\NanoFabric.Swagger\NanoFabric.Swagger.csproj", "{73B530F9-17FA-4D4A-9934-DBC6351DA572}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.Swagger", "src\NanoFabric.Swagger\NanoFabric.Swagger.csproj", "{73B530F9-17FA-4D4A-9934-DBC6351DA572}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.Autofac", "src\NanoFabric.Autofac\NanoFabric.Autofac.csproj", "{E9BCB8CA-7008-4988-959D-F18B14C81B70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -246,6 +248,18 @@ Global
 		{73B530F9-17FA-4D4A-9934-DBC6351DA572}.Release|x64.Build.0 = Release|Any CPU
 		{73B530F9-17FA-4D4A-9934-DBC6351DA572}.Release|x86.ActiveCfg = Release|Any CPU
 		{73B530F9-17FA-4D4A-9934-DBC6351DA572}.Release|x86.Build.0 = Release|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Debug|x64.Build.0 = Debug|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Debug|x86.Build.0 = Debug|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Release|x64.ActiveCfg = Release|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Release|x64.Build.0 = Release|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Release|x86.ActiveCfg = Release|Any CPU
+		{E9BCB8CA-7008-4988-959D-F18B14C81B70}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

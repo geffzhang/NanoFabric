@@ -146,5 +146,8 @@ namespace NanoFabric.AspNetCore
             return serviceRegistry.DeregisterHealthCheckAsync(checkId)
                 .Result;
         }
+
+        public static IApplicationBuilder UsePermissiveCors(this IApplicationBuilder app)
+            => app.UseCors("PermissiveCorsPolicy");
     }
 }

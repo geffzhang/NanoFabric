@@ -104,5 +104,21 @@ namespace NanoFabric.AspNetCore
 
             return services;
         }
+
+        public static IServiceCollection AddPermissiveCors(
+           this IServiceCollection services
+       )
+        {
+            services.AddCors(options =>
+           {
+               options.AddPolicy("PermissiveCorsPolicy", builder => builder
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .AllowCredentials()
+               );
+           });
+            return services;
+        }
     }
 }
