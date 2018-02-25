@@ -54,11 +54,12 @@ namespace SampleService.Kestrel
                     options.Authority = authority;
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "api1";
+                    options.SupportedTokens = SupportedTokens.Both;
                     options.ApiSecret = "secret";                    
                 });
             services.AddAuthorization(options =>
                    options.AddPolicy("protectedScope", policy =>
-                   {
+                   {                      
                        policy.RequireClaim("scope", "scope_used_for_api_in_protected_zone");
                    })
                );

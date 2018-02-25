@@ -87,7 +87,7 @@ namespace SampleService.MvcClient.Controllers
             }
 
             var tokenClient = new TokenClient(disco.TokenEndpoint, "mvc.hybrid", "secret");
-            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("scope_used_for_api_in_protected_zone");
+            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
 
             if (tokenResponse.IsError)
             {
