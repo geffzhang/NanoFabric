@@ -52,15 +52,21 @@ namespace NanoFabric.Ocelot
             };
             var authority = Configuration.GetValue<string>("Authority");
 
-            var authenticationProviderKey = "Ids4";
-            Action<IdentityServerAuthenticationOptions> options = o => {
+            var authenticationProviderKey = "TestKey";
+            Action<IdentityServerAuthenticationOptions> options = o =>
+            {
                 o.Authority = authority;
                 o.ApiName = "api";
                 o.SupportedTokens = SupportedTokens.Both;
                 o.ApiSecret = "secret";
             };
             services.AddAuthentication()
-                .AddIdentityServerAuthentication(authenticationProviderKey, options);            
+            //.AddJwtBearer("TestKey", x =>
+            //{
+            //    x.Authority = "test";
+            //    x.Audience = "test";
+            //});
+            .AddIdentityServerAuthentication(authenticationProviderKey, options);
 
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
             services.AddOcelot()
@@ -72,7 +78,7 @@ namespace NanoFabric.Ocelot
                     option.Service = "NanoFabric_Ocelot";
                     option.IgnoredRoutesRegexPatterns = new string[] { "/administration/status" };
                 })
-                .AddAdministration("/administration", options); 
+                .AddAdministration("/administration", "secret"); 
 
             services.AddNanoFabricConsul(Configuration);
             var metrics = AppMetrics.CreateDefaultBuilder()
@@ -94,7 +100,7 @@ namespace NanoFabric.Ocelot
             logger.LogInformation("Application - Configure is invoked");
             app.UseConsulRegisterService(Configuration);
             app.UseMetricsAllMiddleware();
-            app.UseMetricsAllEndpoints();
+            app.UseMetricsAllEndpoints();     
             app.UseOcelot().Wait();
            
         }
