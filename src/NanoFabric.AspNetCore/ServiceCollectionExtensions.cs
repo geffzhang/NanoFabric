@@ -2,6 +2,7 @@
 using DnsClient;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +62,7 @@ namespace NanoFabric.AspNetCore
             var registryHost = registryHostFactory();
             var serviceRegistry = new ServiceRegistry(registryHost);
             services.AddSingleton(serviceRegistry);
+            services.AddTransient<IStartupFilter, NanoStartupFilter>();
             return services;
         }
 
