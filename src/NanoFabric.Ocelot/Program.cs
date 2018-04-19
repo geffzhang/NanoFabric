@@ -48,8 +48,7 @@ namespace NanoFabric.Ocelot
                 {
                     config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
                     var env = hostingContext.HostingEnvironment;
-                    config.AddJsonFile("configuration.json");
-                    config.AddJsonFile("peers.json");
+                    config.AddOcelot();
                     config.AddEnvironmentVariables();
                 })                
                 .ConfigureLogging((hostingContext, logging) =>
