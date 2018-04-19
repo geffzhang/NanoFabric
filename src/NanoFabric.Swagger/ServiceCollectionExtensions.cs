@@ -52,17 +52,15 @@ namespace NanoFabric.Swagger
             })
             .UseSwaggerUI(c =>
             {
-                //注入汉化文件
-                c.InjectOnCompleteJavaScript($"/lib/swagger/swagger_translator.js");
                 c.SwaggerEndpoint($"/swagger/{apiInfo.Version}/swagger.json", $"{apiInfo.Title} {apiInfo.Version}");
                 if (apiInfo.AuthenticationAuthority != null)
                 {
-                    c.ConfigureOAuth2(
-                        apiInfo.SwaggerAuthInfo.ClientId,
-                        apiInfo.SwaggerAuthInfo.Secret,
-                        apiInfo.SwaggerAuthInfo.Realm,
-                        $"{apiInfo.Title} - ${apiInfo.Version} - Swagger UI"
-                    );
+                    //c.ConfigureOAuth2(
+                    //    apiInfo.SwaggerAuthInfo.ClientId,
+                    //    apiInfo.SwaggerAuthInfo.Secret,
+                    //    apiInfo.SwaggerAuthInfo.Realm,
+                    //    $"{apiInfo.Title} - ${apiInfo.Version} - Swagger UI"
+                    //);
                 }
             });
     }

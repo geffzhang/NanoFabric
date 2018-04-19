@@ -135,8 +135,7 @@ namespace SampleService.Kestrel
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
-                //注入汉化文件
-                c.InjectOnCompleteJavaScript($"/lib/swagger/swagger_translator.js");
+                
             });
             app.UseConsulRegisterService(Configuration);
         }
