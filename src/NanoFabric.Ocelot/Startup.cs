@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using App.Metrics;
+using CacheManager.Core;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CacheManager.Core;
-using Ocelot.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Ocelot.Middleware;
-using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
-using App.Metrics;
-using Rafty.Infrastructure;
-using NLog.Web;
-using NLog.Extensions.Logging;
-using Butterfly.Client.AspNetCore;
 using NanoFabric.AspNetCore;
+using NLog.Extensions.Logging;
+using NLog.Web;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
+using System;
 using System.IO;
-using IdentityServer4.AccessTokenValidation;
 
 namespace NanoFabric.Ocelot
 {
