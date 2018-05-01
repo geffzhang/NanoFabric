@@ -23,8 +23,7 @@ namespace NanoFabric.Ocelot
             var configurationBuilder = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
            .SetBasePath(Directory.GetCurrentDirectory())
            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-           .AddJsonFile("appsettings.Development.json", true, false)
-           .AddJsonFile("appsettings.Production.json", true, false)
+           .AddJsonFile("ocelot.json", true, false)
            .AddEnvironmentVariables()
            .AddCommandLine(args);
            

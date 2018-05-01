@@ -6,7 +6,9 @@
       "UpstreamPathTemplate": "/api/values",
       "UpstreamHttpMethod": [ "Get" ],
       "ServiceName": "SampleService_Kestrel",
-      "LoadBalancer": "LeastConnection",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "UseServiceDiscovery": true,
       "FileCacheOptions": { "TtlSeconds": 15 }
     },
