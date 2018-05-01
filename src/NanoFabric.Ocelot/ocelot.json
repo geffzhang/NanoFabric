@@ -1,4 +1,4 @@
-﻿{
+{
   "ReRoutes": [
     {
       "DownstreamPathTemplate": "/api/values",
@@ -296,7 +296,6 @@
     "RequestIdKey": "ot-traceid",
     "BaseUrl": "http://localhost:8000",
     "ServiceDiscoveryProvider": {
-      "Provider": "Consul",
       "Host": "localhost",
       "Port": 8500
     }

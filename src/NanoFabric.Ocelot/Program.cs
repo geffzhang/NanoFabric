@@ -43,13 +43,13 @@ namespace NanoFabric.Ocelot
             builder.UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(hostingconfig)
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
-                    var env = hostingContext.HostingEnvironment;
-                    config.AddOcelot();
-                    config.AddEnvironmentVariables();
-                })                
+                //.ConfigureAppConfiguration((hostingContext, config) =>
+                //{
+                //    config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
+                //    var env = hostingContext.HostingEnvironment;
+                //    //config.AddOcelot();
+                //    config.AddEnvironmentVariables();
+                //})                
                 .ConfigureLogging((hostingContext, logging) =>
                  {
                      logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
