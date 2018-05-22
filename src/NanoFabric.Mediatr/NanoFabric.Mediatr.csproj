@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="7.5.2" />
     <PackageReference Include="MediatR" Version="4.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NanoFabric.Autofac\NanoFabric.Autofac.csproj" />

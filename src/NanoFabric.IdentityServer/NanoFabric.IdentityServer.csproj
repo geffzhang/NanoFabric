@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IdentityServer4" Version="2.2.0" />
-    <PackageReference Include="NodaTime" Version="2.2.5" />
+    <PackageReference Include="NodaTime" Version="2.2.6" />
     <PackageReference Include="StackExchange.Redis" Version="1.2.6" />
   </ItemGroup>
   <ItemGroup>
