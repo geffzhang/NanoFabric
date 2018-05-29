@@ -17,6 +17,7 @@ using NLog.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Threading;
+using NanoFabric.AspNetCore.Middleware;
 
 namespace SampleService.Kestrel
 {
@@ -132,6 +133,7 @@ namespace SampleService.Kestrel
                 .UsePermissiveCors()
                 .UseCustomSwagger(apiInfo)
                 .UseAuthentication()
+                .UseAuthenticationMiddleware(Configuration["WhiteListIps"])
                 .UseMvc()
                 .UseStaticFiles()
                 .UseConsulRegisterService(Configuration);
