@@ -18,6 +18,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Threading;
 using NanoFabric.AspNetCore.Middleware;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace SampleService.Kestrel
 {
@@ -77,6 +78,11 @@ namespace SampleService.Kestrel
 
             services.AddMvc()
                .AddMvcApiResult();
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
             var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
 
             services.AddButterfly(option =>
@@ -129,6 +135,10 @@ namespace SampleService.Kestrel
             loggerFactory.AddNLog();
             NLog.LogManager.LoadConfiguration("NLog.config");
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app .UseDeveloperExceptionPage()
                 .UsePermissiveCors()
                 .UseCustomSwagger(apiInfo)
