@@ -43,5 +43,9 @@ namespace SampleService.Kestrel
         public string ApiName => "api1";
 
         public string ApiSecret => "secret";
+
+        public string BindAddress { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public int BindPort { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

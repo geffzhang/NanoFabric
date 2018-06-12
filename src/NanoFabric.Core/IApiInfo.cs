@@ -5,6 +5,16 @@ namespace NanoFabric.Core
 {
     public interface IApiInfo
     {
+        /// <summary>
+        /// server-side-bound listener address
+        /// </summary>
+        string BindAddress { get; set; }
+
+        /// <summary>
+        /// service-side-bound listening ports
+        /// </summary>
+        int BindPort { get; set; }
+
         string AuthenticationAuthority { get; }
 
         string ApiName { get; }

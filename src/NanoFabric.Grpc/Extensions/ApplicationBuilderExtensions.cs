@@ -1,4 +1,6 @@
 ﻿using Consul;
+using Grpc.Core;
+using MagicOnion.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
@@ -11,27 +13,29 @@ using NanoFabric.RegistryHost.ConsulRegistry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GRpcServer = Grpc.Core.Server;
 
-namespace NanoFabric.AspNetCore
+namespace NanoFabric.Grpc.Extensions
 {
     public static class ApplicationBuilderExtensions
     {
-
         //the method check the service discovery parameter register ipaddress to generate service agent
         //those service agents will deregister when the app stop 
-        public static IApplicationBuilder UseConsulRegisterService(this IApplicationBuilder app, IConfiguration configuration)
+        public static IApplicationBuilder UseGrpcConsulRegisterService(this IApplicationBuilder app, IConfiguration configuration, IApiInfo apiInfo)
         {
             ConsulServiceDiscoveryOption serviceDiscoveryOption = new ConsulServiceDiscoveryOption();
             configuration.GetSection("ServiceDiscovery").Bind(serviceDiscoveryOption);
-            app.UseConsulRegisterService(serviceDiscoveryOption);
+            app.UseGrpcConsulRegisterService(serviceDiscoveryOption, apiInfo);
             return app;
         }
+
         //the method check the service discovery parameter register ipaddress to generate service agent
         //those service agents will deregister when the app stop 
-        public static IApplicationBuilder UseConsulRegisterService(this IApplicationBuilder app, ConsulServiceDiscoveryOption serviceDiscoveryOption)
+        public static IApplicationBuilder UseGrpcConsulRegisterService(this IApplicationBuilder app, ConsulServiceDiscoveryOption serviceDiscoveryOption, IApiInfo apiInfo)
         {
             var applicationLifetime = app.ApplicationServices.GetRequiredService<IApplicationLifetime>() ??
-               throw new ArgumentException("Missing Dependency", nameof(IApplicationLifetime));
+                 throw new ArgumentException("Missing Dependency", nameof(IApplicationLifetime));
+
             if (serviceDiscoveryOption.Consul == null)
                 throw new ArgumentException("Missing Dependency", nameof(serviceDiscoveryOption.Consul));
             var consul = app.ApplicationServices.GetRequiredService<IConsulClient>() ?? throw new ArgumentException("Missing dependency", nameof(IConsulClient));
@@ -54,32 +58,44 @@ namespace NanoFabric.AspNetCore
                 var features = app.Properties["server.Features"] as FeatureCollection;
                 addresses = features.Get<IServerAddressesFeature>().Addresses.Select(p => new Uri(p)).ToArray();
             }
+            var grpcServer = InitializeGrpcServer(apiInfo);
 
             foreach (var address in addresses)
             {
-                var serviceID = GetServiceId(serviceDiscoveryOption.ServiceName,address);
+                UriBuilder myUri = new UriBuilder(address.Scheme, address.Host, apiInfo.BindPort);
+
+                var serviceID = GetServiceId(serviceDiscoveryOption.ServiceName, myUri.Uri);
+
                 logger.LogInformation($"Registering service {serviceID} for address {address}.");
                 Uri healthCheck = null;
                 if (!string.IsNullOrEmpty(serviceDiscoveryOption.HealthCheckTemplate))
                 {
-                    healthCheck = new Uri(address, serviceDiscoveryOption.HealthCheckTemplate);
+                    healthCheck = new Uri(myUri.Uri, serviceDiscoveryOption.HealthCheckTemplate);
                     logger.LogInformation($"Adding healthcheck for {serviceID},checking {healthCheck}");
                 }
-                var registryInformation = app.AddTenant(serviceDiscoveryOption.ServiceName, serviceDiscoveryOption.Version, address, healthCheckUri: healthCheck, tags: new[] { $"urlprefix-/{serviceDiscoveryOption.ServiceName}" });
+                var registryInformation = app.AddTenant(serviceDiscoveryOption.ServiceName, serviceDiscoveryOption.Version, myUri.Uri, healthCheckUri: healthCheck, tags: new[] { $"urlprefix-/{serviceDiscoveryOption.ServiceName}" });
                 logger.LogInformation("Registering additional health check");
                 // register service & health check cleanup
                 applicationLifetime.ApplicationStopping.Register(() =>
                 {
+                    try
+                    {
+                        grpcServer.ShutdownAsync().Wait();
+                    }
+                    catch(Exception ex)
+                    {
+                        logger.LogError($"grpcServer had shutown {ex}");
+                    }
                     logger.LogInformation("Removing tenant & additional health check");
                     app.RemoveTenant(registryInformation.Id);
                 });
             }
             return app;
         }
-
-        private static  string GetServiceId(string serviceName, Uri uri)
+        
+        private static string GetServiceId(string serviceName, Uri uri)
         {
-            return $"WebAPI_{serviceName}_{uri.Host.Replace(".", "_")}_{uri.Port}";
+            return $"GRPC_{serviceName}_{uri.Host.Replace(".", "_")}_{uri.Port}";
         }
 
         public static RegistryInformation AddTenant(this IApplicationBuilder app, string serviceName, string version, Uri uri, Uri healthCheckUri = null, IEnumerable<string> tags = null)
@@ -88,7 +104,6 @@ namespace NanoFabric.AspNetCore
             {
                 throw new ArgumentNullException(nameof(app));
             }
-
             var serviceRegistry = app.ApplicationServices.GetRequiredService<ServiceRegistry>();
             var registryInformation = serviceRegistry.RegisterServiceAsync(serviceName, version, uri, healthCheckUri, tags)
                 .Result;
@@ -112,41 +127,23 @@ namespace NanoFabric.AspNetCore
                 .Result;
         }
 
-        public static string AddHealthCheck(this IApplicationBuilder app, RegistryInformation registryInformation, Uri checkUri, TimeSpan? interval = null, string notes = null)
+        /// <summary>
+        /// Initializing the GRPC service
+        /// </summary>
+        /// <param name="config">Grpc setting</param>
+        private static GRpcServer InitializeGrpcServer(IApiInfo apiInfo)
         {
-            if (app == null)
+            var grpcServer = new GRpcServer
             {
-                throw new ArgumentNullException(nameof(app));
-            }
-            if (registryInformation == null)
-            {
-                throw new ArgumentNullException(nameof(registryInformation));
-            }
-
-            var serviceRegistry = app.ApplicationServices.GetRequiredService<ServiceRegistry>();
-            string checkId = serviceRegistry.AddHealthCheckAsync(registryInformation.Name, registryInformation.Id, checkUri, interval, notes)
-                .Result;
-
-            return checkId;
+                Ports = { new ServerPort(apiInfo.BindAddress, apiInfo.BindPort, ServerCredentials.Insecure) },
+                Services =
+                {
+                    MagicOnionEngine.BuildServerServiceDefinition()
+                }
+            };
+            grpcServer.Start();
+            return grpcServer;
         }
 
-        public static bool RemoveHealthCheck(this IApplicationBuilder app, string checkId)
-        {
-            if (app == null)
-            {
-                throw new ArgumentNullException(nameof(app));
-            }
-            if (string.IsNullOrEmpty(checkId))
-            {
-                throw new ArgumentNullException(nameof(checkId));
-            }
-
-            var serviceRegistry = app.ApplicationServices.GetRequiredService<ServiceRegistry>();
-            return serviceRegistry.DeregisterHealthCheckAsync(checkId)
-                .Result;
-        }
-
-        public static IApplicationBuilder UsePermissiveCors(this IApplicationBuilder app)
-            => app.UseCors("PermissiveCorsPolicy");
     }
 }

@@ -83,15 +83,7 @@ namespace SampleService.Kestrel
                 options.ForwardedHeaders =
                     ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
             });
-            var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
-
-            services.AddButterfly(option =>
-            {
-                option.CollectorUrl = collectorUrl;
-                option.Service = "SampleService_Kestrel";
-                option.IgnoredRoutesRegexPatterns = new string[] { "/status" };
-            });
-
+   
             return services.ConvertToAutofac(
                 MediatrModule.Create(ApiInfo.Instance.ApplicationAssembly)
                 );
