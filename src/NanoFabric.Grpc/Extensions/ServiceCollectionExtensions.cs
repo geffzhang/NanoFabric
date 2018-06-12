@@ -12,7 +12,7 @@ namespace NanoFabric.Grpc.Extensions
         public static IServiceCollection AddGrpcClient(this IServiceCollection services)
         {
             services.AddSingleton<IGRpcConnection, GRpcConnection>();
-            services.AddScoped<IGrpcChannelFactory, GrpcChannelFactory>();
+            services.AddSingleton<IGrpcChannelFactory, GrpcChannelFactory>();
             return services;
         }
     }
