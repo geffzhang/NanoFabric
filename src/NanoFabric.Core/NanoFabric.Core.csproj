@@ -8,7 +8,7 @@
     <None Remove="Logging\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DnsClient" Version="1.0.7" />
+    <PackageReference Include="DnsClient" Version="1.1.1" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
   </ItemGroup>
 </Project>

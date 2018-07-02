@@ -71,25 +71,25 @@ namespace NanoFabric.Mediatr.Autofac
                 .RegisterAssemblyTypes(_applicationAssembly)
                 .AsClosedTypesOf(typeof(IValidator<>));
 
-            builder.Register<SingleInstanceFactory>(context =>
-            {
-                var componentContext = context.Resolve<IComponentContext>();
-                return t =>
-                {
-                    return componentContext.TryResolve(t, out var o) ? o : null;
-                };
-            });
+            //builder.Register<SingleInstanceFactory>(context =>
+            //{
+            //    var componentContext = context.Resolve<IComponentContext>();
+            //    return t =>
+            //    {
+            //        return componentContext.TryResolve(t, out var o) ? o : null;
+            //    };
+            //});
 
-            builder.Register<MultiInstanceFactory>(context =>
-            {
-                var componentContext = context.Resolve<IComponentContext>();
+            //builder.Register<MultiInstanceFactory>(context =>
+            //{
+            //    var componentContext = context.Resolve<IComponentContext>();
 
-                return t =>
-                {
-                    var resolved = (IEnumerable<object>)componentContext.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
-                    return resolved;
-                };
-            });
+            //    return t =>
+            //    {
+            //        var resolved = (IEnumerable<object>)componentContext.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
+            //        return resolved;
+            //    };
+            //});
 
             builder.RegisterGeneric(typeof(ValidatorsBehavior<,>)).As(typeof(IPipelineBehavior<,>));
         }
