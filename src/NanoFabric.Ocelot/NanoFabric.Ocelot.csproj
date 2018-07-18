@@ -17,7 +17,7 @@
     <PackageReference Include="App.Metrics.Formatters.Json" Version="2.1.0" />
     <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.8" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.4" />
-    <PackageReference Include="Ocelot" Version="7.0.6" />
+    <PackageReference Include="Ocelot" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
