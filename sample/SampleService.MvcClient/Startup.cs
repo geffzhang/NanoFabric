@@ -1,6 +1,4 @@
-﻿using Butterfly.Client.AspNetCore;
-using Butterfly.Client.Tracing;
-using IdentityModel;
+﻿using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -37,15 +35,15 @@ namespace SampleService.MvcClient
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
 
-            var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
-            services.AddButterfly(option =>
-            {
-                option.CollectorUrl = collectorUrl;
-                option.Service = "SampleService_MvcClient";
-                option.IgnoredRoutesRegexPatterns = new string[] { "/status" };
-            });
+            //var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
+            //services.AddButterfly(option =>
+            //{
+            //    option.CollectorUrl = collectorUrl;
+            //    option.Service = "SampleService_MvcClient";
+            //    option.IgnoredRoutesRegexPatterns = new string[] { "/status" };
+            //});
 
-            services.AddSingleton<HttpClient>(p => new HttpClient(p.GetService<HttpTracingHandler>()));
+            services.AddSingleton<HttpClient>(p => new HttpClient());
             var authority = Configuration.GetValue<string>("Authority");
             services.AddAuthentication(options =>
             {

@@ -1,5 +1,4 @@
 ﻿using App.Metrics;
-using CacheManager.Core;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,8 +10,12 @@ using NLog.Extensions.Logging;
 using NLog.Web;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
+using Ocelot.Provider.Polly;
+using Ocelot.Cache.CacheManager;
 using System;
 using System.IO;
+using Ocelot.Administration;
 
 namespace NanoFabric.Ocelot
 {
@@ -35,17 +38,8 @@ namespace NanoFabric.Ocelot
         /// This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Action<CacheManager.Core.ConfigurationBuilderCachePart> settings = (x) =>
-            {
-                x.WithMicrosoftLogging(log =>
-                {
-                    log.AddConsole(LogLevel.Debug);
-                })
-                .WithDictionaryHandle();
-            };
             var authority = Configuration.GetValue<string>("Authority");
 
-            var authenticationProviderKey = "TestKey";
             Action<IdentityServerAuthenticationOptions> options = o =>
             {
                 o.Authority = authority;
@@ -54,24 +48,21 @@ namespace NanoFabric.Ocelot
                 o.ApiSecret = "secret";
             };
             services.AddAuthentication()
-            //.AddJwtBearer("TestKey", x =>
-            //{
-            //    x.Authority = "test";
-            //    x.Audience = "test";
-            //});
-            .AddIdentityServerAuthentication(authenticationProviderKey, options);
+            .AddJwtBearer("TestKey", x =>
+            {
+                x.Authority = "test";
+                x.Audience = "test";
+            });
 
-            var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
             services.AddOcelot()
-                .AddStoreOcelotConfigurationInConsul()
-                .AddCacheManager(settings)
-                .AddOpenTracing(option =>
+                .AddCacheManager(x =>
                 {
-                    option.CollectorUrl = collectorUrl;
-                    option.Service = "NanoFabric_Ocelot";
-                    option.IgnoredRoutesRegexPatterns = new string[] { "/administration/status" };
+                    x.WithDictionaryHandle();
                 })
-                .AddAdministration("/administration", "secret"); 
+                 .AddConsul()
+                 .AddConfigStoredInConsul()
+                 .AddPolly()
+                 .AddAdministration("/administration", options);
 
             services.AddNanoFabricConsul(Configuration);
             var metrics = AppMetrics.CreateDefaultBuilder()

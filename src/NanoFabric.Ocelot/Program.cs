@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using NanoFabric.AspNetCore;
 using NLog.Web;
 using Ocelot.DependencyInjection;
-using Rafty.Infrastructure;
 using System;
 using System.IO;
 
@@ -38,7 +37,6 @@ namespace NanoFabric.Ocelot
             builder.ConfigureServices(s =>
             {
                 s.AddSingleton(builder);
-                s.AddSingleton(new NodeId(url));
             });
             builder.UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

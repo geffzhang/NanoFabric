@@ -49,7 +49,7 @@ namespace SampleService.Kestrel
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
 
-            services.AddAuthorization();
+            //services.AddAuthorization();
             services.AddCors();
             services.AddDistributedMemoryCache();
 
@@ -63,16 +63,16 @@ namespace SampleService.Kestrel
             //        options.SupportedTokens = SupportedTokens.Both;
             //        options.ApiSecret = "secret";                    
             //    });
-            services.AddAuthorization(options =>
-                   options.AddPolicy("protectedScope", policy =>
-                   {
-                       policy.RequireClaim("scope", "scope_used_for_api_in_protected_zone");
-                   })
-               );
+            //services.AddAuthorization(options =>
+            //       options.AddPolicy("protectedScope", policy =>
+            //       {
+            //           policy.RequireClaim("scope", "scope_used_for_api_in_protected_zone");
+            //       })
+            //   );
             services
                 .AddApplication<InMemoryRequestManager>(Configuration)
-                .AddPermissiveCors()
-                .AddCustomIdentity(ApiInfo.Instance)
+                //.AddPermissiveCors()
+                //.AddCustomIdentity(ApiInfo.Instance)
                 .AddCustomSwagger(ApiInfo.Instance);
 
             services.AddMvc()
@@ -131,7 +131,7 @@ namespace SampleService.Kestrel
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
             app .UseDeveloperExceptionPage()
-                .UsePermissiveCors()
+                //.UsePermissiveCors()
                 .UseCustomSwagger(apiInfo)
                 .UseAuthentication()
                 .UseAuthenticationMiddleware(Configuration["WhiteListIps"])

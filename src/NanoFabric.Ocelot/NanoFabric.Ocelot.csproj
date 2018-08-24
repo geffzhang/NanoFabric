@@ -15,9 +15,12 @@
     <PackageReference Include="App.Metrics.AspNetCore.Reporting" Version="2.0.0" />
     <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="2.0.0" />
     <PackageReference Include="App.Metrics.Formatters.Json" Version="2.1.0" />
-    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.8" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.4" />
-    <PackageReference Include="Ocelot" Version="8.0.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.6.0" />
+    <PackageReference Include="Ocelot" Version="10.0.3" />
+    <PackageReference Include="Ocelot.Administration" Version="0.1.0" />
+    <PackageReference Include="Ocelot.Cache.CacheManager" Version="0.1.0" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="0.1.0" />
+    <PackageReference Include="Ocelot.Provider.Polly" Version="0.1.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
@@ -32,9 +35,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="nlog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="peers.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
