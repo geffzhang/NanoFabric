@@ -18,6 +18,7 @@ using System;
 using System.Threading;
 using NanoFabric.AspNetCore.Middleware;
 using Microsoft.AspNetCore.HttpOverrides;
+using IdentityServer4.AccessTokenValidation;
 
 namespace SampleService.Kestrel
 {
@@ -53,22 +54,17 @@ namespace SampleService.Kestrel
             services.AddCors();
             services.AddDistributedMemoryCache();
 
-            //var authority = Configuration.GetValue<string>("Authority");
-            //services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-            //    .AddIdentityServerAuthentication(options =>
-            //    {
-            //        options.Authority = authority;
-            //        options.RequireHttpsMetadata = false;
-            //        options.ApiName = "api1";
-            //        options.SupportedTokens = SupportedTokens.Both;
-            //        options.ApiSecret = "secret";                    
-            //    });
-            //services.AddAuthorization(options =>
-            //       options.AddPolicy("protectedScope", policy =>
-            //       {
-            //           policy.RequireClaim("scope", "scope_used_for_api_in_protected_zone");
-            //       })
-            //   );
+            var authority = Configuration.GetValue<string>("Authority");
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = authority;
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "api1";
+                    options.SupportedTokens = SupportedTokens.Both;
+                    options.ApiSecret = "secret";
+                });
+
             services
                 .AddApplication<InMemoryRequestManager>(Configuration)
                 //.AddPermissiveCors()
@@ -133,8 +129,8 @@ namespace SampleService.Kestrel
             app .UseDeveloperExceptionPage()
                 //.UsePermissiveCors()
                 .UseCustomSwagger(apiInfo)
-                .UseAuthentication()
-                .UseAuthenticationMiddleware(Configuration["WhiteListIps"])
+                //.UseAuthentication()
+                //.UseAuthenticationMiddleware(Configuration["WhiteListIps"])
                 .UseMvc()
                 .UseStaticFiles()
                 .UseConsulRegisterService(Configuration);

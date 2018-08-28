@@ -9,27 +9,15 @@ namespace NanoFabric.IdentityServer.Repositories.ClientAggregate.InMemory
         public static IEnumerable<Client> Clients = new List<Client>
         {
             new Client
-                    {
-                       ClientId = "client",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
+            {
+                    ClientId = "mvc.hybrid",
                     ClientSecrets = { new Secret("secret".Sha256()) },
-
-                    AllowedScopes = { "api1" },                   
-                 
-                    },
-             new Client
-                {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
                     AllowedGrantTypes = GrantTypes.Hybrid,
-
-                    ClientSecrets = { new Secret("secret".Sha256()) },
 
                     RedirectUris = { "http://localhost:5001/signin-oidc" },
                     AllowedScopes = { "openid", "profile", "api1" }
-                }
-           
+
+            }
         };
     }
 }

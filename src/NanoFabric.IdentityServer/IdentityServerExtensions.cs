@@ -5,11 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using NanoFabric.IdentityServer.Interfaces.Repositories;
 using NanoFabric.IdentityServer.Interfaces.Services;
 using NanoFabric.IdentityServer.Repositories.ClientAggregate.InMemory;
-using NanoFabric.IdentityServer.Repositories.PersistedGrantAggregate;
 using NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory;
 using NanoFabric.IdentityServer.Repositories.UserAggregate.InMemory;
 using NanoFabric.IdentityServer.Services;
-
+using StackExchange.Redis;
 
 namespace NanoFabric.IdentityServer
 {
@@ -17,13 +16,22 @@ namespace NanoFabric.IdentityServer
     {
         public static IIdentityServerBuilder AddNanoFabricIDS(this IIdentityServerBuilder builder, IConfigurationRoot config)
         {
-            builder.Services.ConfigurePOCO(config.GetSection("IdentityOptions"), () => new IdentityOptions());
+            var option = builder.Services.ConfigurePOCO(config.GetSection("IdentityOptions"), () => new IdentityOptions());
             builder.Services.AddTransient<IUserRepository, UserInMemoryRepository>();
             builder.Services.AddTransient<IResourceRepository, ResourceInMemoryRepository>();
             builder.Services.AddTransient<IClientRepository, ClientInMemoryRepository>();
             builder.Services.AddTransient<IClientStore, ClientInMemoryRepository>();
             builder.Services.AddTransient<IResourceStore, ResourceInMemoryRepository>();
-            builder.Services.AddTransient<IPersistedGrantStore, PersistedGrantStore>();
+
+            builder.AddOperationalStore(options =>
+             {
+                 options.RedisConnectionString = option.Redis;
+                 options.KeyPrefix = "ids_prefix";
+             })
+             .AddRedisCaching(options =>
+             {
+                 options.RedisConnectionString = option.Redis;
+             });
             //services
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<IPasswordService, PasswordService>();
