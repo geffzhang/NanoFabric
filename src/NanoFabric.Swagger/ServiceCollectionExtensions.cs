@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-using Swashbuckle.AspNetCore.Examples;
 using Swashbuckle.AspNetCore.Swagger;
 
 using NanoFabric.Core;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace NanoFabric.Swagger
 {
@@ -39,7 +39,6 @@ namespace NanoFabric.Swagger
                 }
                 options.DocumentFilter<LowerCaseDocumentFilter>();
                 options.OperationFilter<AuthorizeCheckOperationFilter>(apiInfo);
-                options.OperationFilter<ExamplesOperationFilter>();
                 options.OperationFilter<DescriptionOperationFilter>();
             });
 

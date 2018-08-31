@@ -47,12 +47,17 @@ namespace NanoFabric.Ocelot
                 o.SupportedTokens = SupportedTokens.Both;
                 o.ApiSecret = "secret";
             };
-            services.AddAuthentication()
-            .AddJwtBearer("TestKey", x =>
+
+            var authenticationProviderKey = "apikey";
+            Action<IdentityServerAuthenticationOptions> options2 = o =>
             {
-                x.Authority = "test";
-                x.Audience = "test";
-            });
+                o.Authority = "http://localhost:5000";
+                o.ApiName = "api1";
+                o.RequireHttpsMetadata = false;
+            };
+
+            services.AddAuthentication()
+            .AddIdentityServerAuthentication(authenticationProviderKey, options2);
 
             services.AddOcelot()
                 .AddCacheManager(x =>

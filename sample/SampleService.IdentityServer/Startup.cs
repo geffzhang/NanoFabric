@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NanoFabric.AspNetCore;
 using NanoFabric.IdentityServer;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -49,6 +50,7 @@ namespace SampleService.IdentityServer
                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 
                })  ;
+            services.AddNanoFabricConsul(Configuration);
 
             services.AddIdentityServer()
                 .AddSigningCredential(cert)
@@ -83,6 +85,7 @@ namespace SampleService.IdentityServer
             }
             app.UseCors("CorsPolicy");
             app.UseIdentityServer();
+            app.UseConsulRegisterService(Configuration);
 
             app.UseStaticFiles();
 

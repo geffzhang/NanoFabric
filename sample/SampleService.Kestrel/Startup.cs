@@ -54,21 +54,10 @@ namespace SampleService.Kestrel
             services.AddCors();
             services.AddDistributedMemoryCache();
 
-            var authority = Configuration.GetValue<string>("Authority");
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = authority;
-                    options.RequireHttpsMetadata = false;
-                    options.ApiName = "api1";
-                    options.SupportedTokens = SupportedTokens.Both;
-                    options.ApiSecret = "secret";
-                });
-
             services
                 .AddApplication<InMemoryRequestManager>(Configuration)
-                //.AddPermissiveCors()
-                //.AddCustomIdentity(ApiInfo.Instance)
+                .AddPermissiveCors()
+                .AddCustomIdentity(ApiInfo.Instance)
                 .AddCustomSwagger(ApiInfo.Instance);
 
             services.AddMvc()
@@ -82,37 +71,7 @@ namespace SampleService.Kestrel
             return services.ConvertToAutofac(
                 MediatrModule.Create(ApiInfo.Instance.ApplicationAssembly)
                 );
-
-            //services.AddMvc()
-            //    .AddMvcApiResult();
-            //services.Add(ServiceDescriptor.Transient<ICorsService, WildcardCorsService>());
-            //services.Configure<CorsOptions>(options => options.AddPolicy(
-            //    "AllowSameDomain",builder => builder.WithOrigins("*.*")));
-
-            //services.AddOptions();
-            //var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
-            ////http://www.cnblogs.com/morang/p/8325729.html
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1",
-            //        new Info
-            //        {
-            //            Version = "v1",
-            //            Title = "SampleService 接口文档",
-            //            Description = "SampleService 接口集成 Swashbuckle",
-            //            TermsOfService = "Values 和 Status（健康检查）.",
-
-            //            //Contact = new Contact { Name = "geffzhang", Email = "", Url = "http://github.com/geffzhang" },
-            //            //License = new License { Name = "Use under MIT", Url = "https://github.com/geffzhang/NanoFabric/blob/develop/LICENSE.md" }
-            //        }
-                         
-            //    );
-            //    c.OperationFilter<AssignOperationVendorExtensions>();
-            //    c.DocumentFilter<ApplyTagDescriptions>();
-                
-            //});
-
-           
+         
         }
 
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -127,43 +86,14 @@ namespace SampleService.Kestrel
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
             app .UseDeveloperExceptionPage()
-                //.UsePermissiveCors()
+                .UsePermissiveCors()
                 .UseCustomSwagger(apiInfo)
-                //.UseAuthentication()
-                //.UseAuthenticationMiddleware(Configuration["WhiteListIps"])
+                .UseAuthentication()
                 .UseMvc()
                 .UseStaticFiles()
                 .UseConsulRegisterService(Configuration);
 
-            //env.EnvironmentName = EnvironmentName.Development;
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/error");
-            //}
-            //app.UseCors(policy =>
-            //{
-            //    policy.AllowAnyHeader();
-            //    policy.AllowAnyMethod();
-            //    policy.WithExposedHeaders("WWW-Authenticate");
-            //});
-
-            //app.UseAuthentication();
-            //app.UseMvc();
-            //app.UseStaticFiles();
-            //app.UseSwagger(c =>
-            // {
-            //     c.PreSerializeFilters.Add((swagger, httpReq) => swagger.Host = httpReq.Host.Value);
-            // });
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
-                
-            //});
-            //app.UseConsulRegisterService(Configuration);
+ 
         }
     }
 }

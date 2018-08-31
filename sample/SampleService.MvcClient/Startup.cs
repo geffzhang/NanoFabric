@@ -35,14 +35,6 @@ namespace SampleService.MvcClient
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
 
-            //var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
-            //services.AddButterfly(option =>
-            //{
-            //    option.CollectorUrl = collectorUrl;
-            //    option.Service = "SampleService_MvcClient";
-            //    option.IgnoredRoutesRegexPatterns = new string[] { "/status" };
-            //});
-
             services.AddSingleton<HttpClient>(p => new HttpClient());
             var authority = Configuration.GetValue<string>("Authority");
             services.AddAuthentication(options =>
@@ -70,10 +62,9 @@ namespace SampleService.MvcClient
                options.Scope.Clear();
                options.Scope.Add("openid");
                options.Scope.Add("profile");
-               options.Scope.Add("email");
+               //options.Scope.Add("email");
                options.Scope.Add("api1");
-               options.Scope.Add("idbase");
-               options.Scope.Add("offline_access");
+               //options.Scope.Add("offline_access");
 
                options.ClaimActions.Remove("amr");
                options.ClaimActions.MapJsonKey("website", "website");

@@ -97,12 +97,11 @@ namespace SampleService.MvcClient.Controllers
             serviceSubscriber.StartSubscription().ConfigureAwait(false).GetAwaiter().GetResult();
             ILoadBalancer loadBalancer = new RoundRobinLoadBalancer(serviceSubscriber);
             var endPoint = loadBalancer.Endpoint().ConfigureAwait(false).GetAwaiter().GetResult();
-            //string token = await HttpContext.GetTokenAsync("access_token");
             httpClient.SetBearerToken(tokenResponse.AccessToken);
 
             string response = await httpClient.GetStringAsync($"{endPoint.ToUri()}api/values/{new Random().Next()}");
 
-            ViewBag.Json = JArray.Parse(response).ToString();
+            ViewBag.Json = response;
 
             return View();
         }

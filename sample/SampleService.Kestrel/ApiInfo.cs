@@ -19,7 +19,7 @@ namespace SampleService.Kestrel
 
         public string Title => "SampleService_Kestrel Api";
 
-        public string Version => "V1";
+        public string Version => "v1";
 
         public Assembly ApplicationAssembly => GetType().Assembly;
 

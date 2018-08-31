@@ -27,8 +27,14 @@
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.Domain\NanoFabric.Domain.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.IdentityServer\NanoFabric.IdentityServer.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Update="nanofabrictest.pfx">
