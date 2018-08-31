@@ -8,6 +8,7 @@ using NanoFabric.AspNetCore;
 using NanoFabric.IdentityServer;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SkyWalking.AspNetCore;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -65,6 +66,13 @@ namespace SampleService.IdentityServer
                     corsBuilder.AllowAnyOrigin();
                     corsBuilder.AllowCredentials();
                 });
+            });
+
+            var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
+            services.AddSkyWalking(option =>
+            {
+                option.DirectServers = collectorUrl;
+                option.ApplicationCode = "SampleService_Idserver";
             });
         }
 

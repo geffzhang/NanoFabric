@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NanoFabric.AspNetCore;
 using NanoFabric.Router;
+using SkyWalking.AspNetCore;
 using System;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
@@ -30,11 +31,18 @@ namespace SampleService.MvcClient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             // Add framework services.
             services.AddMvc();
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
-
+            var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
+            services.AddSkyWalking(option =>
+            {
+                option.DirectServers = collectorUrl;
+                option.ApplicationCode = "SampleService_MvcClient";
+            });
             services.AddSingleton<HttpClient>(p => new HttpClient());
             var authority = Configuration.GetValue<string>("Authority");
             services.AddAuthentication(options =>
@@ -93,6 +101,7 @@ namespace SampleService.MvcClient
 
                };
            });
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -19,6 +19,7 @@ using System.Threading;
 using NanoFabric.AspNetCore.Middleware;
 using Microsoft.AspNetCore.HttpOverrides;
 using IdentityServer4.AccessTokenValidation;
+using SkyWalking.AspNetCore;
 
 namespace SampleService.Kestrel
 {
@@ -59,6 +60,13 @@ namespace SampleService.Kestrel
                 .AddPermissiveCors()
                 .AddCustomIdentity(ApiInfo.Instance)
                 .AddCustomSwagger(ApiInfo.Instance);
+
+            var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
+            services.AddSkyWalking(option =>
+            {
+                option.DirectServers = collectorUrl;
+                option.ApplicationCode = "SampleService_Kestrel";
+            });
 
             services.AddMvc()
                .AddMvcApiResult();

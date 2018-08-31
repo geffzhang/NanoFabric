@@ -16,6 +16,7 @@ using Ocelot.Cache.CacheManager;
 using System;
 using System.IO;
 using Ocelot.Administration;
+using SkyWalking.AspNetCore;
 
 namespace NanoFabric.Ocelot
 {
@@ -39,6 +40,7 @@ namespace NanoFabric.Ocelot
         public void ConfigureServices(IServiceCollection services)
         {
             var authority = Configuration.GetValue<string>("Authority");
+            var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
 
             Action<IdentityServerAuthenticationOptions> options = o =>
             {
@@ -76,6 +78,12 @@ namespace NanoFabric.Ocelot
             services.AddMetricsTrackingMiddleware();
             services.AddMetricsEndpoints();
             services.AddMetricsReportScheduler();
+
+            services.AddSkyWalking(option =>
+            {
+                option.DirectServers = collectorUrl;
+                option.ApplicationCode = "nanofabric_ocelot";
+            });
         }
 
         // http://edi.wang/post/2017/11/1/use-nlog-aspnet-20
