@@ -68,12 +68,12 @@ namespace SampleService.IdentityServer
                 });
             });
 
-            var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
-            services.AddSkyWalking(option =>
-            {
-                option.DirectServers = collectorUrl;
-                option.ApplicationCode = "SampleService_Idserver";
-            });
+            //var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
+            //services.AddSkyWalking(option =>
+            //{
+            //    option.DirectServers = collectorUrl;
+            //    option.ApplicationCode = "SampleService_Idserver";
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

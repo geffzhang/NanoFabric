@@ -37,12 +37,12 @@ namespace SampleService.MvcClient
             services.AddMvc();
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
-            var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
-            services.AddSkyWalking(option =>
-            {
-                option.DirectServers = collectorUrl;
-                option.ApplicationCode = "SampleService_MvcClient";
-            });
+            //var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
+            //services.AddSkyWalking(option =>
+            //{
+            //    option.DirectServers = collectorUrl;
+            //    option.ApplicationCode = "SampleService_MvcClient";
+            //});
             services.AddSingleton<HttpClient>(p => new HttpClient());
             var authority = Configuration.GetValue<string>("Authority");
             services.AddAuthentication(options =>

@@ -46,6 +46,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.Autofac", "src\N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.Mediatr", "src\NanoFabric.Mediatr\NanoFabric.Mediatr.csproj", "{10E02D8F-EC84-4785-95CC-0960C6CF5C9B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.AppMetrics", "src\NanoFabric.AppMetrics\NanoFabric.AppMetrics.csproj", "{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoFabric.Exceptionless", "src\NanoFabric.Exceptionless\NanoFabric.Exceptionless.csproj", "{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -260,6 +264,30 @@ Global
 		{10E02D8F-EC84-4785-95CC-0960C6CF5C9B}.Release|x64.Build.0 = Release|Any CPU
 		{10E02D8F-EC84-4785-95CC-0960C6CF5C9B}.Release|x86.ActiveCfg = Release|Any CPU
 		{10E02D8F-EC84-4785-95CC-0960C6CF5C9B}.Release|x86.Build.0 = Release|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Debug|x64.Build.0 = Debug|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Debug|x86.Build.0 = Debug|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Release|x64.ActiveCfg = Release|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Release|x64.Build.0 = Release|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Release|x86.ActiveCfg = Release|Any CPU
+		{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}.Release|x86.Build.0 = Release|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Debug|x64.Build.0 = Debug|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Debug|x86.Build.0 = Debug|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|x64.ActiveCfg = Release|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|x64.Build.0 = Release|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|x86.ActiveCfg = Release|Any CPU
+		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

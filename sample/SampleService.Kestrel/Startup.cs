@@ -61,12 +61,12 @@ namespace SampleService.Kestrel
                 .AddCustomIdentity(ApiInfo.Instance)
                 .AddCustomSwagger(ApiInfo.Instance);
 
-            var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
-            services.AddSkyWalking(option =>
-            {
-                option.DirectServers = collectorUrl;
-                option.ApplicationCode = "SampleService_Kestrel";
-            });
+            //var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
+            //services.AddSkyWalking(option =>
+            //{
+            //    option.DirectServers = collectorUrl;
+            //    option.ApplicationCode = "SampleService_Kestrel";
+            //});
 
             services.AddMvc()
                .AddMvcApiResult();

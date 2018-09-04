@@ -17,6 +17,7 @@ using System;
 using System.IO;
 using Ocelot.Administration;
 using SkyWalking.AspNetCore;
+using NanoFabric.AppMetrics;
 
 namespace NanoFabric.Ocelot
 {
@@ -42,6 +43,7 @@ namespace NanoFabric.Ocelot
             var authority = Configuration.GetValue<string>("Authority");
             var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
 
+ 
             Action<IdentityServerAuthenticationOptions> options = o =>
             {
                 o.Authority = authority;
@@ -72,18 +74,23 @@ namespace NanoFabric.Ocelot
                  .AddAdministration("/administration", options);
 
             services.AddNanoFabricConsul(Configuration);
-            var metrics = AppMetrics.CreateDefaultBuilder()
-                       .Build();
-            services.AddMetrics(metrics);
-            services.AddMetricsTrackingMiddleware();
-            services.AddMetricsEndpoints();
-            services.AddMetricsReportScheduler();
 
-            services.AddSkyWalking(option =>
+            services.AddAppMetrics(x=>
             {
-                option.DirectServers = collectorUrl;
-                option.ApplicationCode = "nanofabric_ocelot";
+                var opt= Configuration.GetSection("AppMetrics").Get<AppMetricsOptions>();
+                x.App = opt.App ;
+                x.ConnectionString = opt.ConnectionString;
+                x.DataBaseName = opt.DataBaseName;
+                x.Env = opt.Env;
+                x.Password = opt.Password;
+                x.UserName = opt.UserName;
             });
+
+            //services.AddSkyWalking(option =>
+            //{
+            //    option.DirectServers = collectorUrl;
+            //    option.ApplicationCode = "nanofabric_ocelot";
+            //});
         }
 
         // http://edi.wang/post/2017/11/1/use-nlog-aspnet-20
@@ -96,9 +103,9 @@ namespace NanoFabric.Ocelot
             var logger = loggerFactory.CreateLogger<Startup>();
             logger.LogInformation("Application - Configure is invoked");
             app.UseConsulRegisterService(Configuration);
-            app.UseMetricsAllMiddleware();
-            app.UseMetricsAllEndpoints();     
+     
             app.UseOcelot().Wait();
+            app.UseAppMetrics();
            
         }
     }
