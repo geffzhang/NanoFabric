@@ -22,6 +22,7 @@
     <ProjectReference Include="..\NanoFabric.AppMetrics\NanoFabric.AppMetrics.csproj" />
     <ProjectReference Include="..\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
     <ProjectReference Include="..\NanoFabric.Core\NanoFabric.Core.csproj" />
+    <ProjectReference Include="..\NanoFabric.Exceptionless\NanoFabric.Exceptionless.csproj" />
     <ProjectReference Include="..\NanoFabric.RegistryHost.ConsulRegistry\NanoFabric.RegistryHost.ConsulRegistry.csproj" />
   </ItemGroup>
   <ItemGroup>

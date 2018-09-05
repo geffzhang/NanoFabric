@@ -18,6 +18,7 @@ using System.IO;
 using Ocelot.Administration;
 using SkyWalking.AspNetCore;
 using NanoFabric.AppMetrics;
+using Exceptionless;
 
 namespace NanoFabric.Ocelot
 {
@@ -100,6 +101,9 @@ namespace NanoFabric.Ocelot
             env.ConfigureNLog($"{env.ContentRootPath}{ Path.DirectorySeparatorChar}nlog.config");
             //add NLog to ASP.NET Core
             loggerFactory.AddNLog();
+            var exceptionlessKey =Configuration.GetValue<string>("Exceptionless:ApiKey");
+            loggerFactory.AddExceptionless(exceptionlessKey);
+
             var logger = loggerFactory.CreateLogger<Startup>();
             logger.LogInformation("Application - Configure is invoked");
             app.UseConsulRegisterService(Configuration);

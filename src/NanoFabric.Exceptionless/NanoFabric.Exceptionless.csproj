@@ -5,8 +5,12 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Exceptionless" Version="4.3.2004" />
+    <PackageReference Include="Exceptionless.Extensions.Logging" Version="4.3.2012" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\NanoFabric.Core\NanoFabric.Core.csproj" />
   </ItemGroup>
   
 </Project>
