@@ -1,24 +1,25 @@
-﻿using App.Metrics;
+﻿using Exceptionless;
+using Exceptionless.Models;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NanoFabric.AppMetrics;
 using NanoFabric.AspNetCore;
 using NLog.Extensions.Logging;
 using NLog.Web;
+using Ocelot.Administration;
+using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
 using Ocelot.Provider.Polly;
-using Ocelot.Cache.CacheManager;
 using System;
+using System.Collections.Generic;
 using System.IO;
-using Ocelot.Administration;
-using SkyWalking.AspNetCore;
-using NanoFabric.AppMetrics;
-using Exceptionless;
+using System.Linq;
 
 namespace NanoFabric.Ocelot
 {
@@ -97,12 +98,12 @@ namespace NanoFabric.Ocelot
         // http://edi.wang/post/2017/11/1/use-nlog-aspnet-20
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
-        {        
+        {
+            app.UseExceptionless(Configuration);
             env.ConfigureNLog($"{env.ContentRootPath}{ Path.DirectorySeparatorChar}nlog.config");
             //add NLog to ASP.NET Core
             loggerFactory.AddNLog();
-            var exceptionlessKey =Configuration.GetValue<string>("Exceptionless:ApiKey");
-            loggerFactory.AddExceptionless(exceptionlessKey);
+            loggerFactory.AddExceptionless();
 
             var logger = loggerFactory.CreateLogger<Startup>();
             logger.LogInformation("Application - Configure is invoked");
@@ -110,7 +111,59 @@ namespace NanoFabric.Ocelot
      
             app.UseOcelot().Wait();
             app.UseAppMetrics();
-           
+            ExceptionlessClient.Default.SubmittingEvent += Default_SubmittingEvent;
+
+        }
+
+        /// <summary>
+        /// 默认提交异常处理事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void Default_SubmittingEvent(object sender, EventSubmittingEventArgs e)
+        {
+            var argEvent = e.Event;
+            if (argEvent.Type == Event.KnownTypes.Log && argEvent.Source == "Ocelot.Configuration.Repository.FileConfigurationPoller")
+            {
+                e.Cancel = true;
+                return;
+            }
+            // 只处理未处理的异常
+            if (!e.IsUnhandledError)
+                return;
+          
+
+            //忽略没有错误体的错误
+            var error = argEvent.GetError();
+            if (error == null)
+                return;
+
+            // 忽略404错误
+            if (e.Event.IsNotFound())
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            //忽略401(Unauthorized)和请求验证的错误.
+            if (error.Code == "401")
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            //忽略任何未被代码抛出的异常
+            var handledNamespaces = new List<string> { "Exceptionless" };
+            var handledNamespaceList = error.StackTrace.Select(s => s.DeclaringNamespace).Distinct();
+            if (!handledNamespaceList.Any(ns => handledNamespaces.Any(ns.Contains)))
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            e.Event.Tags.Add("未捕获异常");//添加系统异常标签
+            e.Event.MarkAsCritical();//标记为关键异常
+
         }
     }
 }
