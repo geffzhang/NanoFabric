@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NanoFabric.AppMetrics;
 using NanoFabric.AspNetCore;
+using NanoFabric.Exceptionless;
+using NanoFabric.Exceptionless.Model;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using Ocelot.Administration;
@@ -76,6 +78,7 @@ namespace NanoFabric.Ocelot
                  .AddAdministration("/administration", options);
 
             services.AddNanoFabricConsul(Configuration);
+            services.AddNanoFabricExceptionless();
 
             services.AddAppMetrics(x=>
             {
@@ -104,15 +107,31 @@ namespace NanoFabric.Ocelot
             //add NLog to ASP.NET Core
             loggerFactory.AddNLog();
             loggerFactory.AddExceptionless();
-
-            var logger = loggerFactory.CreateLogger<Startup>();
-            logger.LogInformation("Application - Configure is invoked");
+                       
             app.UseConsulRegisterService(Configuration);
      
             app.UseOcelot().Wait();
             app.UseAppMetrics();
             ExceptionlessClient.Default.SubmittingEvent += Default_SubmittingEvent;
 
+            string tagName = "消息标签";//自定义标签
+            var data = new ExcDataParam() { Name = "请求参数", Data = new { Id = 001, Name = "张三" } };//自定义单个model
+            var user = new ExcUserParam() { Id = "No0001", Name = "张善友", Email = "geffzhang@live.cn", Description = "高级开发工程师" };//用户信息
+            var datas = new List<ExcDataParam>() {
+                new ExcDataParam(){
+                    Name ="请求参数",
+                    Data =new { Id = 002, Name = "李四"
+                    }
+                },
+                new ExcDataParam(){
+                    Name ="返回结果",
+                    Data =new { Id = 003, Name = "王五"
+                    }
+                }
+            };
+
+            ILessLog lessLog = app.ApplicationServices.GetRequiredService<ILessLog>();
+            lessLog.Info("带用户&自定义数据&标签: Application - Configure is invoked", user, datas, tagName);
         }
 
         /// <summary>
