@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{45A95389-8368-49B3-A252-53E60A655D95}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{45A95389-8368-49B3-A252-53E60A655D95}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{B65FAC1E-DA36-42F2-95F9-8F10E5CEBA47}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{B65FAC1E-DA36-42F2-95F9-8F10E5CEBA47}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService.Kestrel", "sample\SampleService.Kestrel\SampleService.Kestrel.csproj", "{78E00EB6-0C06-4F9C-84EB-1065414A22FF}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService.Client", "sam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService.IdentityServer", "Sample\SampleService.IdentityServer\SampleService.IdentityServer.csproj", "{E2974632-2770-4E8C-BA04-72368AC760C9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{C20230F6-0006-4A51-84D9-838C3EDD663A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{C20230F6-0006-4A51-84D9-838C3EDD663A}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
