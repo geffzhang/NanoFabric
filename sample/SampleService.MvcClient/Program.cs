@@ -1,5 +1,4 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +7,7 @@ namespace SampleService.MvcClient
 {
     public class Program
     {
-        private const string defaultAddress = "http://localhost:9000";
+        private const string defaultAddress = "http://127.0.0.1:9000";
         private const string addressKey = "serveraddress";
 
         public static void Main(string[] args)
@@ -29,7 +28,8 @@ namespace SampleService.MvcClient
             var url = hostingconfig[addressKey] ?? defaultAddress;
 
             IWebHostBuilder builder = new WebHostBuilder();
-            builder.ConfigureServices(s => {
+            builder.ConfigureServices(s =>
+            {
                 s.AddSingleton(builder);
             });
             builder.UseKestrel()
@@ -39,7 +39,7 @@ namespace SampleService.MvcClient
                 .UseUrls(url)
                 .UseStartup<Startup>();
             var host = builder.Build();
-            host.Run();           
+            host.Run();
         }
     }
 }

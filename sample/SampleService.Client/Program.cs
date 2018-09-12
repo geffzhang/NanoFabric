@@ -10,19 +10,19 @@ using System;
 using System.IO;
 using System.Net.Http;
 
-class Program
+internal class Program
 {
     private readonly IDnsQuery _dns;
     private static ServiceProvider _serviceProvider;
 
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         Initialize();
         IServiceSubscriberFactory subscriberFactory = _serviceProvider.GetRequiredService<IServiceSubscriberFactory>();
         // 创建ConsoleLogProvider并根据日志类目名称（CategoryName）生成Logger实例
         var logger = _serviceProvider.GetService<ILoggerFactory>().AddConsole().CreateLogger("App");
 
-        var serviceSubscriber = subscriberFactory.CreateSubscriber("SampleService.Kestrel",ConsulSubscriberOptions.Default, new NanoFabric.Router.Throttle.ThrottleSubscriberOptions() {  MaxUpdatesPeriod = TimeSpan.FromSeconds(30), MaxUpdatesPerPeriod = 20} );
+        var serviceSubscriber = subscriberFactory.CreateSubscriber("SampleService_Kestrel", ConsulSubscriberOptions.Default, new NanoFabric.Router.Throttle.ThrottleSubscriberOptions() { MaxUpdatesPeriod = TimeSpan.FromSeconds(30), MaxUpdatesPerPeriod = 20 });
         serviceSubscriber.StartSubscription().ConfigureAwait(false).GetAwaiter().GetResult();
         serviceSubscriber.EndpointsChanged += async (sender, eventArgs) =>
         {
@@ -33,7 +33,7 @@ class Program
         };
         ILoadBalancer loadBalancer = new RoundRobinLoadBalancer(serviceSubscriber);
         var endPoint = loadBalancer.Endpoint().ConfigureAwait(false).GetAwaiter().GetResult();
-                var httpClient = new HttpClient();
+        var httpClient = new HttpClient();
         var traceid = Guid.NewGuid().ToString();
         httpClient.DefaultRequestHeaders.Add("ot-traceid", traceid);
         var content = httpClient.GetStringAsync($"{endPoint.ToUri()}api/values").Result;

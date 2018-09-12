@@ -47,7 +47,6 @@ namespace NanoFabric.Ocelot
             var authority = Configuration.GetValue<string>("Authority");
             var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
 
- 
             Action<IdentityServerAuthenticationOptions> options = o =>
             {
                 o.Authority = authority;
@@ -59,7 +58,7 @@ namespace NanoFabric.Ocelot
             var authenticationProviderKey = "apikey";
             Action<IdentityServerAuthenticationOptions> options2 = o =>
             {
-                o.Authority = "http://localhost:5000";
+                o.Authority = "http://127.0.0.1:5000";
                 o.ApiName = "api1";
                 o.RequireHttpsMetadata = false;
             };
@@ -80,10 +79,10 @@ namespace NanoFabric.Ocelot
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricExceptionless();
 
-            services.AddAppMetrics(x=>
+            services.AddAppMetrics(x =>
             {
-                var opt= Configuration.GetSection("AppMetrics").Get<AppMetricsOptions>();
-                x.App = opt.App ;
+                var opt = Configuration.GetSection("AppMetrics").Get<AppMetricsOptions>();
+                x.App = opt.App;
                 x.ConnectionString = opt.ConnectionString;
                 x.DataBaseName = opt.DataBaseName;
                 x.Env = opt.Env;
@@ -107,9 +106,9 @@ namespace NanoFabric.Ocelot
             //add NLog to ASP.NET Core
             loggerFactory.AddNLog();
             loggerFactory.AddExceptionless();
-                       
+
             app.UseConsulRegisterService(Configuration);
-     
+
             app.UseOcelot().Wait();
             app.UseAppMetrics();
             ExceptionlessClient.Default.SubmittingEvent += Default_SubmittingEvent;
@@ -150,7 +149,6 @@ namespace NanoFabric.Ocelot
             // 只处理未处理的异常
             if (!e.IsUnhandledError)
                 return;
-          
 
             //忽略没有错误体的错误
             var error = argEvent.GetError();
@@ -182,7 +180,6 @@ namespace NanoFabric.Ocelot
 
             e.Event.Tags.Add("未捕获异常");//添加系统异常标签
             e.Event.MarkAsCritical();//标记为关键异常
-
         }
     }
 }

@@ -30,7 +30,7 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "apikey",
         "AllowedScopes": [
-         
+
         ]
       },
       "AddHeadersToRequest": {
@@ -59,9 +59,9 @@
   ],
   "GlobalConfiguration": {
     "RequestIdKey": "ot-traceid",
-    "BaseUrl": "http://localhost:8000",
+    "BaseUrl": "http://127.0.0.1:8000",
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
+      "Host": "127.0.0.1",
       "Port": 8500,
       "Type": "Consul"
     }
