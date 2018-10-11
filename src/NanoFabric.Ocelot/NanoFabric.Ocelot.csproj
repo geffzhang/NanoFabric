@@ -11,8 +11,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Exceptionless.AspNetCore" Version="4.3.2012" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.6.0" />
-    <PackageReference Include="Ocelot" Version="11.0.2" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.7.0" />
+    <PackageReference Include="Ocelot" Version="12.0.1" />
     <PackageReference Include="Ocelot.Administration" Version="0.1.0" />
     <PackageReference Include="Ocelot.Cache.CacheManager" Version="0.1.0" />
     <PackageReference Include="Ocelot.Provider.Consul" Version="0.1.2" />
