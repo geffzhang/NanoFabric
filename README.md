@@ -20,6 +20,7 @@ nanofabric 是 nano 和 fabric的合成，nano表示微服务， fabric来自于
 ##  微服务APM https://github.com/OpenSkywalking/skywalking-netcore 
 ## .NET API client for vault https://github.com/Chatham/Vault.NET 
 ##  使用vault密钥保管库配置提供程序 https://github.com/kdcllc/NetCore.HashiCorp.Vault
+##  Additional configuration providers to use with ASP.NET Core https://github.com/andrewlock/NetEscapades.Configuration
 ##  Quartz Enterprise Scheduler .NET http://www.quartz-scheduler.net/
 ##  Apollo（阿波罗）是携程框架部门研发的分布式配置中心 https://github.com/ctripcorp/apollo.net/tree/dotnet-core
 ##  使用Audit.NET，您可以生成有关正在执行的操作的跟踪信息 https://github.com/thepirat000/Audit.NET
