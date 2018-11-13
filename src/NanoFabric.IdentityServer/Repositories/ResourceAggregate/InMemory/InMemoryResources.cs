@@ -120,7 +120,7 @@ namespace NanoFabric.IdentityServer.Repositories.ResourceAggregate.InMemory
             },
               new ApiResource("api1", "My API")
                 {
-                    ApiSecrets =   {   new Secret("myApiSecret".Sha256())  }
+                    ApiSecrets =   {   new Secret("secret".Sha256())  },
                 }
         };
 

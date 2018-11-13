@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Consul;
+﻿using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
@@ -10,6 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NanoFabric.Core;
+using NanoFabric.RegistryHost.ConsulRegistry;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NanoFabric.AspNetCore
 {
@@ -54,8 +55,6 @@ namespace NanoFabric.AspNetCore
                 addresses = features.Get<IServerAddressesFeature>().Addresses.Select(p => new Uri(p)).ToArray();
             }
 
-            var serviceChecks = new List<AgentServiceCheck>();
-
             foreach (var address in addresses)
             {
                 var serviceID = GetServiceId(serviceDiscoveryOption.ServiceName,address);
@@ -66,7 +65,7 @@ namespace NanoFabric.AspNetCore
                     healthCheck = new Uri(address, serviceDiscoveryOption.HealthCheckTemplate);
                     logger.LogInformation($"Adding healthcheck for {serviceID},checking {healthCheck}");
                 }
-                var registryInformation = app.AddTenant(serviceDiscoveryOption.ServiceName, serviceDiscoveryOption.Version, address, healthCheckUri: healthCheck, tags: new[] { "urlprefix-/values" });
+                var registryInformation = app.AddTenant(serviceDiscoveryOption.ServiceName, serviceDiscoveryOption.Version, address, healthCheckUri: healthCheck, tags: new[] { $"urlprefix-/{serviceDiscoveryOption.ServiceName}" });
                 logger.LogInformation("Registering additional health check");
                 // register service & health check cleanup
                 applicationLifetime.ApplicationStopping.Register(() =>
@@ -80,7 +79,7 @@ namespace NanoFabric.AspNetCore
 
         private static  string GetServiceId(string serviceName, Uri uri)
         {
-            return $"{serviceName}_{uri.Host.Replace(".", "_")}_{uri.Port}";
+            return $"WebAPI_{serviceName}_{uri.Host.Replace(".", "_")}_{uri.Port}";
         }
 
         public static RegistryInformation AddTenant(this IApplicationBuilder app, string serviceName, string version, Uri uri, Uri healthCheckUri = null, IEnumerable<string> tags = null)
@@ -146,5 +145,8 @@ namespace NanoFabric.AspNetCore
             return serviceRegistry.DeregisterHealthCheckAsync(checkId)
                 .Result;
         }
+
+        public static IApplicationBuilder UsePermissiveCors(this IApplicationBuilder app)
+            => app.UseCors("PermissiveCorsPolicy");
     }
 }

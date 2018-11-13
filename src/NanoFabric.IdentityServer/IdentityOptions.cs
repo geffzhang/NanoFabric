@@ -7,9 +7,5 @@
         /// </summary>
         public string Redis { get; set; }
 
-        /// <summary>
-        /// redis的数据库
-        /// </summary>
-        public int DbNum { get; set; } = 2;
     }
 }

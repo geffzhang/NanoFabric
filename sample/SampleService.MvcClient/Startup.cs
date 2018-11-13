@@ -1,6 +1,4 @@
-﻿using Butterfly.Client.AspNetCore;
-using Butterfly.Client.Tracing;
-using IdentityModel;
+﻿using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NanoFabric.AspNetCore;
 using NanoFabric.Router;
+using SkyWalking.AspNetCore;
 using System;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
@@ -32,20 +31,19 @@ namespace SampleService.MvcClient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             // Add framework services.
             services.AddMvc();
             services.AddNanoFabricConsul(Configuration);
             services.AddNanoFabricConsulRouter();
-
-            var collectorUrl = Configuration.GetValue<string>("Butterfly:CollectorUrl");
-            services.AddButterfly(option =>
-            {
-                option.CollectorUrl = collectorUrl;
-                option.Service = "SampleService_MvcClient";
-                option.IgnoredRoutesRegexPatterns = new string[] { "/status" };
-            });
-
-            services.AddSingleton<HttpClient>(p => new HttpClient(p.GetService<HttpTracingHandler>()));
+            //var collectorUrl = Configuration.GetValue<string>("Skywalking:CollectorUrl");
+            //services.AddSkyWalking(option =>
+            //{
+            //    option.DirectServers = collectorUrl;
+            //    option.ApplicationCode = "SampleService_MvcClient";
+            //});
+            services.AddSingleton<HttpClient>(p => new HttpClient());
             var authority = Configuration.GetValue<string>("Authority");
             services.AddAuthentication(options =>
             {
@@ -72,10 +70,9 @@ namespace SampleService.MvcClient
                options.Scope.Clear();
                options.Scope.Add("openid");
                options.Scope.Add("profile");
-               options.Scope.Add("email");
+               //options.Scope.Add("email");
                options.Scope.Add("api1");
-               options.Scope.Add("idbase");
-               options.Scope.Add("offline_access");
+               //options.Scope.Add("offline_access");
 
                options.ClaimActions.Remove("amr");
                options.ClaimActions.MapJsonKey("website", "website");
@@ -104,6 +101,7 @@ namespace SampleService.MvcClient
 
                };
            });
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

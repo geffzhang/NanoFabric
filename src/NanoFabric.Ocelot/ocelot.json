@@ -1,0 +1,69 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/values",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ServiceName": "SampleService_Kestrel",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "UseServiceDiscovery": true,
+      "FileCacheOptions": { "TtlSeconds": 15 }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "http",
+      "ServiceName": "SampleService_Kestrel",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/api/{url}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 10,
+        "TimeoutValue": 5000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "apikey",
+        "AllowedScopes": [
+         
+        ]
+      },
+      "AddHeadersToRequest": {
+        "CustomerId": "Claims[CustomerId] > value",
+        "LocationId": "Claims[LocationId] > value",
+        "UserType": "Claims[sub] > value[0] > |",
+        "UserId": "Claims[sub] > value[1] > |"
+      },
+      "AddClaimsToRequest": {
+        "CustomerId": "Claims[CustomerId] > value",
+        "LocationId": "Claims[LocationId] > value",
+        "UserType": "Claims[sub] > value[0] > |",
+        "UserId": "Claims[sub] > value[1] > |"
+      },
+      "AddQueriesToRequest": {
+        "CustomerId": "Claims[CustomerId] > value",
+        "LocationId": "Claims[LocationId] > value",
+        "UserType": "Claims[sub] > value[0] > |",
+        "UserId": "Claims[sub] > value[1] > |"
+      },
+      "RouteClaimsRequirement": {
+        "UserType": "registered"
+      },
+      "RequestIdKey": "OcRequestId"
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "ot-traceid",
+    "BaseUrl": "http://localhost:8000",
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}

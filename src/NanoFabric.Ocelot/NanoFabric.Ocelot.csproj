@@ -1,6 +1,6 @@
 ﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>NanoFabric.Ocelot</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
@@ -10,31 +10,30 @@
     <None Remove="wwwroot\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="App.Metrics" Version="2.0.0-preview1" />
-    <PackageReference Include="App.Metrics.AspNetCore.Endpoints" Version="2.0.0-preview1" />
-    <PackageReference Include="App.Metrics.AspNetCore.Reporting" Version="2.0.0-preview1" />
-    <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="2.0.0-preview1" />
-    <PackageReference Include="App.Metrics.Formatters.Json" Version="2.0.0-preview1" />
-    <PackageReference Include="Butterfly.Client.AspNetCore" Version="0.0.8-preview-35642484" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc2" />
-    <PackageReference Include="Ocelot" Version="3.1.5" />
+    <PackageReference Include="Exceptionless.AspNetCore" Version="4.3.2012" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.7.0" />
+    <PackageReference Include="Ocelot" Version="12.0.1" />
+    <PackageReference Include="Ocelot.Administration" Version="0.1.0" />
+    <PackageReference Include="Ocelot.Cache.CacheManager" Version="0.1.0" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="0.1.2" />
+    <PackageReference Include="Ocelot.Provider.Polly" Version="0.1.0" />
+    <PackageReference Include="SkyWalking.AspNetCore" Version="0.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NanoFabric.AppMetrics\NanoFabric.AppMetrics.csproj" />
     <ProjectReference Include="..\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
     <ProjectReference Include="..\NanoFabric.Core\NanoFabric.Core.csproj" />
+    <ProjectReference Include="..\NanoFabric.Exceptionless\NanoFabric.Exceptionless.csproj" />
     <ProjectReference Include="..\NanoFabric.RegistryHost.ConsulRegistry\NanoFabric.RegistryHost.ConsulRegistry.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="configuration.json">
+    <Content Update="ocelot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="nlog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="peers.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

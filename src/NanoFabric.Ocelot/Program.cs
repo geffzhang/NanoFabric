@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using NanoFabric.AspNetCore;
 using NLog.Web;
 using Ocelot.DependencyInjection;
-using Rafty.Infrastructure;
 using System;
 using System.IO;
 
@@ -23,8 +22,7 @@ namespace NanoFabric.Ocelot
             var configurationBuilder = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
            .SetBasePath(Directory.GetCurrentDirectory())
            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-           .AddJsonFile("appsettings.Development.json", true, false)
-           .AddJsonFile("appsettings.Production.json", true, false)
+           .AddJsonFile("ocelot.json", true, false)
            .AddEnvironmentVariables()
            .AddCommandLine(args);
            
@@ -39,19 +37,17 @@ namespace NanoFabric.Ocelot
             builder.ConfigureServices(s =>
             {
                 s.AddSingleton(builder);
-                s.AddSingleton(new NodeId(url));
             });
             builder.UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(hostingconfig)
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
-                    var env = hostingContext.HostingEnvironment;
-                    config.AddJsonFile("configuration.json");
-                    config.AddJsonFile("peers.json");
-                    config.AddEnvironmentVariables();
-                })                
+                //.ConfigureAppConfiguration((hostingContext, config) =>
+                //{
+                //    config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
+                //    var env = hostingContext.HostingEnvironment;
+                //    //config.AddOcelot();
+                //    config.AddEnvironmentVariables();
+                //})                
                 .ConfigureLogging((hostingContext, logging) =>
                  {
                      logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));

@@ -1,6 +1,6 @@
 ﻿using NanoFabric.RegistryHost.ConsulRegistry;
 
-namespace NanoFabric.Core
+namespace NanoFabric.RegistryHost.ConsulRegistry
 {
     public class ConsulServiceDiscoveryOption
     {

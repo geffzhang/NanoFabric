@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Butterfly.Client.Tracing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +15,7 @@ namespace SampleService.Kestrel.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get([FromServices] IServiceTracer tracer)
+        public IEnumerable<string> Get()
         {
             return new[] { "value1", "value2" };
         }
@@ -27,7 +26,7 @@ namespace SampleService.Kestrel.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize]
+        [Authorize()]
         public string Get(int id)
         {
             return $"{id}";
