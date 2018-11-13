@@ -48,7 +48,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.Mediatr", "src\N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.AppMetrics", "src\NanoFabric.AppMetrics\NanoFabric.AppMetrics.csproj", "{3EA8BBB8-D220-4BF0-8D86-46717B2876D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoFabric.Exceptionless", "src\NanoFabric.Exceptionless\NanoFabric.Exceptionless.csproj", "{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.Exceptionless", "src\NanoFabric.Exceptionless\NanoFabric.Exceptionless.csproj", "{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoFabric.MqMessages", "src\NanoFabric.MqMessages\NanoFabric.MqMessages.csproj", "{81D821E6-84C4-4356-82C0-355EBAF3DF5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -288,6 +290,18 @@ Global
 		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|x64.Build.0 = Release|Any CPU
 		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|x86.ActiveCfg = Release|Any CPU
 		{EDC3660E-C8AE-4291-B4D2-48BDA782BF82}.Release|x86.Build.0 = Release|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Debug|x64.Build.0 = Debug|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Debug|x86.Build.0 = Debug|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Release|x64.ActiveCfg = Release|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Release|x64.Build.0 = Release|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Release|x86.ActiveCfg = Release|Any CPU
+		{81D821E6-84C4-4356-82C0-355EBAF3DF5E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
