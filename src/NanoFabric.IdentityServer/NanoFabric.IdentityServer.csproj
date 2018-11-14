@@ -7,7 +7,4 @@
     <PackageReference Include="IdentityServer4.Contrib.RedisStore" Version="1.4.2" />
     <PackageReference Include="NodaTime" Version="2.3.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NanoFabric.Domain\NanoFabric.Domain.csproj" />
-  </ItemGroup>
 </Project>

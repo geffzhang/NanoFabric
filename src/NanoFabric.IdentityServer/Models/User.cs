@@ -6,7 +6,7 @@ using System.Text;
 
 namespace NanoFabric.IdentityServer.Models
 {
-    public class User : DomainEntity<int>, IAggregateRoot
+    public class User : DomainEntity<int>
     {
         public string Username { get; private set; }
         public Instant Created { get; private set; }

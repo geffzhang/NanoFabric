@@ -29,7 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NanoFabric.AspNetCore\NanoFabric.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\src\NanoFabric.Domain\NanoFabric.Domain.csproj" />
     <ProjectReference Include="..\..\src\NanoFabric.IdentityServer\NanoFabric.IdentityServer.csproj" />
   </ItemGroup>
   <ItemGroup>
