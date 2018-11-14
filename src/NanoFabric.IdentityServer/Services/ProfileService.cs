@@ -6,6 +6,7 @@ using NanoFabric.IdentityServer.Interfaces.Services;
 using NanoFabric.IdentityServer.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,16 +24,29 @@ namespace NanoFabric.IdentityServer.Services
 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
-            var sub = context.Subject.GetSubjectId();
-            if (int.TryParse(sub, out int userId))
+            string subject = context.Subject.Claims.ToList().Find(s => s.Type == "sub").Value;
+            try
             {
-                var user = await _userManager.GetAsync(userId);
-
-                context.IssuedClaims.AddRange(user.GetClaims());
+                // Get Claims From Database, And Use Subject To Find The Related Claims, As A Subject Is An Unique Identity Of User
+                List<string> claimStringList = new List<string>();
+                if (claimStringList == null)
+                {
+                    return ;
+                }
+                else
+                {
+                    List<Claim> claimList = new List<Claim>();
+                    for (int i = 0; i < claimStringList.Count; i++)
+                    {
+                        claimList.Add(new Claim("role", claimStringList[i]));
+                    }
+                    context.IssuedClaims = claimList.Where(x => context.RequestedClaimTypes.Contains(x.Type)).ToList();
+                    return;
+                }
             }
-            else
+            catch
             {
-                // what SHOULD I do here?
+                
             }
         }
 

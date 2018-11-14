@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace NanoFabric.IdentityServer.Services
 {
-
     public class UserService : IUserService
     {
         public IUserRepository UserRepository { get; private set; }
-
 
         public UserService(IUserRepository userRepository)
         {

@@ -42,5 +42,24 @@ namespace NanoFabric.IdentityServer
 
             return builder;
         }
+
+        public static IIdentityServerBuilder AddNanoFabricIdentityIDS(this IIdentityServerBuilder builder, IConfigurationRoot config)
+        {
+            var option = builder.Services.ConfigurePOCO(config.GetSection("IdentityOptions"), () => new IdentityOptions());
+ 
+            builder.AddOperationalStore(options =>
+            {
+                options.RedisConnectionString = option.Redis;
+                options.KeyPrefix = "ids_prefix";
+            })
+             .AddRedisCaching(options =>
+             {
+                 options.RedisConnectionString = option.Redis;
+             });
+ 
+            builder.AddProfileService<ProfileService>();
+
+            return builder;
+        }
     }
 }
