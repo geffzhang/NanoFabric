@@ -1,6 +1,8 @@
 [<img src="https://nanofabric.visualstudio.com/_apis/public/build/definitions/513c9929-3dab-4c44-8a43-588bdb7d2441/1/badge">](https://nanofabric.visualstudio.com/_apis/public/build/definitions/513c9929-3dab-4c44-8a43-588bdb7d2441/1/badge)
 
 
+大家好，这个项目我们已经连续16个月没有维护了，在过去的16个月里，我一直在使用[ABP xNext](https://github.com/abpframework/abp) , 虽然我把项目设置为归档状态，Star 却还在增长，鉴于Abp vNext 已经发布了2.2.1，也已经推出了商业版。他现在是一个成熟的开发框架，在过去的16个月里我一直在基于ABP vNext实践这个项目里面的内容，而且我们还有一个组织 [easyabp](https://github.com/easyabp), 目标是帮助大家更容易的使用ABP vNext。
+
 基于Consul + .NET Core + Polly + Ocelot + Exceptionless + IdentityServer等开源项目的微服务开发框架
 
 nanofabric 是 nano 和 fabric的合成，nano表示微服务， fabric来自于微软的微服务框架 service fabric
